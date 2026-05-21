@@ -167,6 +167,12 @@ uv run pytest -m evaluate                # advisory heuristics on latest iterati
 Requires `ANTHROPIC_API_KEY` and `codex` logged in. Tests skip gracefully if a backend
 is missing.
 
+**Inline alternative**: `tests/INLINE-ITERATION.md` documents a session-driven
+iteration mode that reuses the bundle preprocessor and prompt templates but
+generates via subagent (or codex driven manually) instead of subprocess CLIs.
+Saves API tokens; outputs marked `mode: "inline"` in meta.json. Use for
+audits/probes; use the pytest harness for publishable cross-iteration measurement.
+
 ### Locked decisions — tooling
 
 - Backends: claude + codex, both in bare modes (no skill auto-loading), JSON
