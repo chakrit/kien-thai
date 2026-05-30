@@ -103,6 +103,9 @@ uv run pytest -m evaluate           # ตรวจหยาบเชิงปร
 artifact จะลงที่ `workspace/iteration-N/<eval>/<backend>/<config>/`
 จากนั้นดูผลกับ Claude ใน chat ได้เลย ไม่มี viewer แยกต่างหาก
 
+สารบบของทุก iteration อยู่ที่ [`workspace/INDEX.md`](workspace/INDEX.md) — สร้าง iteration
+ใหม่เมื่อไรให้เพิ่มแถว และอัปเดตช่อง Review เมื่อ review เสร็จ
+
 การตัดสินคุณภาพงานเขียนเป็นงานของมนุษย์ ส่วน `test_quant.py` แค่ flag คำต้องห้าม
 และตำแหน่งที่คำเชื่อมแน่นเกิน ไม่ใช่ด่านตัดสินคุณภาพ
 

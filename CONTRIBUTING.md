@@ -129,6 +129,10 @@ uv run pytest -m generate      # full eval (ใช้ API token)
 เก็บผลไว้ที่ `workspace/iteration-N/` แล้วเปรียบเทียบ convergence (loop_passes,
 converged) กับ baseline iteration ปัจจุบัน ถ้าระดับคุณภาพหรือจำนวน pass แย่ลงอย่างมีนัย ตัว pytest จะ flag ให้เอง
 
+ทุกครั้งที่สร้าง iteration ใหม่ ให้เพิ่มแถวใน [`workspace/INDEX.md`](workspace/INDEX.md)
+(วันที่ + mode/scope, ช่อง Review = `pending`) และเมื่อ review เสร็จก็เปลี่ยนช่องนั้นเป็น
+`reviewed` พร้อมลิงก์ไป feedback ตาราง INDEX คือสารบบของ iteration ทั้งหมด ถ้าไม่อัปเดตก็จะบอกสถานะ repo ผิด
+
 ถ้าไม่มี API key หรือ codex setup ก็ไม่เป็นไร แจ้งมาใน issue/PR แล้วเดี๋ยวทางเรา run ให้เอง
 
 ## 6. สิ่งที่เกินขอบเขต (ตอนนี้)

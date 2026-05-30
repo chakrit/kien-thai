@@ -88,6 +88,14 @@ External contributors follow the same logic via [`CONTRIBUTING.md`](CONTRIBUTING
 > subdirectories are ignored). When a corrected version of an output line teaches a
 > generalizable pattern, lift it into `references/examples.md` with the trace — that
 > is where "before → after" content lives durably.
+>
+> **The iteration ledger.** [`workspace/INDEX.md`](workspace/INDEX.md) is the tracked
+> table of every iteration — date, mode/scope, review status, feedback link. It is
+> the entry point for "what iterations exist and where do they stand". Update it at
+> two moments: **when you create an iteration** (add a row with date + mode/scope,
+> Review `pending`), and **when you finish reviewing one** (flip its Review cell to
+> `reviewed` and link the feedback file). A row without these updates means the ledger
+> lies about the repo's state.
 
 > **1-by-1 review protocol.** When chakrit invokes "1-by-1" on a stretch of review
 > work, discuss each item to resolution one at a time and **log agreed edits to a
@@ -150,7 +158,9 @@ assertions.
   meta.json tracks per-pass usage (cache hits, input/output tokens).
 - **Stage 2 (review)**: human + Claude review artifacts inline in the chat. No browser
   viewer (yet). Cross-check across backends to mitigate self-judge bias. Consolidated
-  notes go to `iteration-N/feedback.md` and graduate into `references/*.md`.
+  notes go to `iteration-N/feedback.md` and graduate into `references/*.md`. Flip the
+  iteration's Review cell to `reviewed` in [`workspace/INDEX.md`](workspace/INDEX.md)
+  and link the feedback file.
 - **`test_quant.py`** is advisory only — flags forbidden phrases and connective
   density. Not a quality gate.
 

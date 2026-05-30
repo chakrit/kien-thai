@@ -222,6 +222,12 @@ uv run python -c "from tests.lib import next_iteration_dir; \
 
 — or reuse an existing iteration directory if extending a partial run.
 
+When you create a fresh iteration `N`, add a row to
+[`workspace/INDEX.md`](../workspace/INDEX.md) — date, mode/scope (note `inline`),
+Review `pending` — and flip that cell to `reviewed` with a feedback link once the
+iteration is reviewed. The INDEX is the tracked ledger of what iterations exist; an
+unrecorded run leaves it lying about the repo's state.
+
 ## Notes on register-slug values
 
 The slug passed to `kien_thai_bundle(register=...)` matches the `register`
