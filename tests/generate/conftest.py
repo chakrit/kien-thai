@@ -33,7 +33,7 @@ def iteration_dir() -> Path:
     return next_iteration_dir()
 
 
-def pytest_generate_tests(metafunc):
+def pytest_generate_tests(metafunc: pytest.Metafunc):
     if "eval_case" in metafunc.fixturenames:
         evals = load_evals()
         metafunc.parametrize("eval_case", evals, ids=[e.name for e in evals])

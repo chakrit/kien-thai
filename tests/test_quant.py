@@ -40,7 +40,7 @@ def _output_files() -> list[Path]:
     return list(iter_dir.glob("*/*/*/output.md"))
 
 
-def pytest_generate_tests(metafunc):
+def pytest_generate_tests(metafunc: pytest.Metafunc):
     if "output_file" in metafunc.fixturenames:
         files = _output_files()
         if not files:

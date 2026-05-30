@@ -101,14 +101,11 @@ class Eval:
 
 def load_evals() -> list[Eval]:
     data = json.loads(EVALS_FILE.read_text(encoding="utf-8"))
-    evals: list[Eval] = []
-    for e in data["evals"]:
-        if "register" not in e:
-            raise ValueError(
-                f"eval {e.get('name', e.get('id'))!r} missing required `register` field"
-            )
-        evals.append(Eval(**e))
-    return evals
+    for raw in data["evals"]:
+        if "register" not in raw:
+            name = raw.get("name", raw.get("id"))
+            raise ValueError(f"eval {name!r} missing required `register` field")
+    return [Eval(**raw) for raw in data["evals"]]
 
 
 def latest_iteration() -> Path | None:
@@ -123,10 +120,10 @@ def latest_iteration() -> Path | None:
 
 def next_iteration_dir() -> Path:
     last = latest_iteration()
-    n = (int(last.name.split("-")[1]) + 1) if last else 1
-    d = WORKSPACE / f"iteration-{n}"
-    d.mkdir(parents=True, exist_ok=True)
-    return d
+    number = (int(last.name.split("-")[1]) + 1) if last else 1
+    next_dir = WORKSPACE / f"iteration-{number}"
+    next_dir.mkdir(parents=True, exist_ok=True)
+    return next_dir
 
 
 def enabled_backends() -> set[Backend]:
@@ -172,6 +169,26 @@ def _wrap_paragraph(text: str, width: int, prefix: str = "", cont: str = "") -> 
     return lines
 
 
+# (marker regex, continuation indent) per line type that wraps under a marker.
+# Headers and lists indent the continuation to the marker width; blockquotes
+# repeat the marker.
+_WRAP_RULES: tuple[tuple[re.Pattern[str], Callable[[str], str]], ...] = (
+    (_HEADER_RE, lambda marker: " " * len(marker)),
+    (_LIST_RE, lambda marker: " " * len(marker)),
+    (_BLOCKQUOTE_RE, lambda marker: marker),
+)
+
+
+def _block_prefix(line: str) -> tuple[str, str] | None:
+    """Return (marker, continuation-indent) for a header/list/quote line, else None."""
+    for regex, continuation in _WRAP_RULES:
+        match = regex.match(line)
+        if match:
+            marker = match.group(1)
+            return marker, continuation(marker)
+    return None
+
+
 def wrap_markdown(text: str, width: int = 90) -> str:
     """Wrap markdown for terminal readability. Thai-aware via pythainlp.
 
@@ -182,28 +199,23 @@ def wrap_markdown(text: str, width: int = 90) -> str:
     in_fence = False
     fence_marker: str | None = None
     for line in text.split("\n"):
-        m = _FENCE_RE.match(line)
-        if m:
-            if in_fence and m.group(2) == fence_marker:
+        fence = _FENCE_RE.match(line)
+        if fence:
+            if in_fence and fence.group(2) == fence_marker:
                 in_fence = False
                 fence_marker = None
             elif not in_fence:
                 in_fence = True
-                fence_marker = m.group(2)
+                fence_marker = fence.group(2)
             out.append(line)
             continue
         if in_fence or not line.strip():
             out.append(line)
             continue
-        if (h := _HEADER_RE.match(line)):
-            p = h.group(1)
-            out.extend(_wrap_paragraph(line[len(p):], width, prefix=p, cont=" " * len(p)))
-        elif (li := _LIST_RE.match(line)):
-            p = li.group(1)
-            out.extend(_wrap_paragraph(line[len(p):], width, prefix=p, cont=" " * len(p)))
-        elif (bq := _BLOCKQUOTE_RE.match(line)):
-            p = bq.group(1)
-            out.extend(_wrap_paragraph(line[len(p):], width, prefix=p, cont=p))
+        block = _block_prefix(line)
+        if block:
+            marker, cont = block
+            out.extend(_wrap_paragraph(line[len(marker):], width, prefix=marker, cont=cont))
         else:
             out.extend(_wrap_paragraph(line, width))
     return "\n".join(out)
@@ -248,6 +260,9 @@ _WORKFLOW_HEADINGS = (
 _EXAMPLE_REGISTER_RE = re.compile(
     r"^<!--\s*register:\s*([a-z0-9-]+)\s*-->\s*$", re.MULTILINE
 )
+_DEFAULT_META_FIELDS = frozenset(
+    {"mechanical", "all-registers", "hard", "craft", "style", "soft"}
+)
 
 
 def _strip_frontmatter(text: str) -> str:
@@ -260,12 +275,10 @@ def _strip_default_meta(text: str) -> str:
     Matches `### \`slug\` *(type · scope · severity)*`. When all fields are
     default, collapses to `### \`slug\``. Non-default fields are preserved.
     """
-    def repl(m: re.Match[str]) -> str:
-        heading = m.group(1)
-        meta_inner = m.group(2)
-        fields = [p.strip() for p in meta_inner.split("·") if p.strip()]
-        defaults = {"mechanical", "all-registers", "hard", "craft", "style", "soft"}
-        kept = [f for f in fields if f not in defaults]
+    def repl(match: re.Match[str]) -> str:
+        heading, meta_inner = match.group(1), match.group(2)
+        fields = [f.strip() for f in meta_inner.split("·") if f.strip()]
+        kept = [f for f in fields if f not in _DEFAULT_META_FIELDS]
         if not kept:
             return heading
         return f"{heading} *({' · '.join(kept)})*"
