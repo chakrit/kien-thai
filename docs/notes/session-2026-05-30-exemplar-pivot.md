@@ -57,7 +57,7 @@ tracking), 5 (deferred: register-as-axes, eval-as-demand, triage-not-judge model
 
 ## Gated on chakrit (no rush)
 
-- Phase 1 review — iter-8/9/10 CLEAN outputs via `REVIEW-PROTOCOL.md` (his ear).
+- Phase 1 review — iter-8/9/10 CLEAN outputs via `docs/spec/review-protocol.md` (his ear).
 - Two Thai docs — `README.md`, `CONTRIBUTING.md` reframe (Thai authoring is his). Spans:
   README `หลักคิดของ skill` / `วินัยการเพิ่มกฎ` / `Eval ทำงานยังไง`; CONTRIBUTING §1, §5, §6.
 - Green light to spend the full `-m recall` baseline (~74 calls) for the before-number.
