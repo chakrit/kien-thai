@@ -11,8 +11,8 @@ from lib import (
     SKILL_PATH,
     BundleMode,
     Eval,
-    build_prompt,
     kien_thai_bundle,
+    skill_prompt,
 )
 
 
@@ -33,8 +33,8 @@ def test_skill_file_present():
 
 def test_skill_injection_differs_from_baseline(skill_text: str):
     sample = Eval(id=0, name="dummy", prompt="ทดสอบ", register="explainer")
-    base = build_prompt(sample, "baseline", skill_text)
-    injected = build_prompt(sample, "with_skill", skill_text)
+    base = sample.prompt
+    injected = skill_prompt(sample, skill_text)
     assert base != injected, "with_skill prompt identical to baseline"
     assert sample.prompt in injected, "task prompt missing from injected version"
     assert "skill" in injected.lower(), "skill content not actually injected"

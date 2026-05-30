@@ -393,14 +393,10 @@ def kien_thai_bundle(register: str | None = None, mode: BundleMode = BundleMode.
     return "".join(parts)
 
 
-def build_prompt(eval_case: Eval, config: str, skill_text: str) -> str:
-    if config == "baseline":
-        return eval_case.prompt
-    return (
-        "ใช้แนวทางการเขียนต่อไปนี้:\n\n"
-        "<skill>\n"
-        f"{skill_text}\n"
-        "</skill>\n\n"
-        "งานที่ต้องทำ:\n\n"
-        f"{eval_case.prompt}"
-    )
+def wrap_skill(skill_text: str) -> str:
+    """The `<skill>` envelope shared by every skill-injected prompt."""
+    return f"ใช้แนวทางการเขียนต่อไปนี้:\n\n<skill>\n{skill_text}\n</skill>\n\n"
+
+
+def skill_prompt(eval_case: Eval, bundle: str) -> str:
+    return wrap_skill(bundle) + f"งานที่ต้องทำ:\n\n{eval_case.prompt}"

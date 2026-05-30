@@ -15,11 +15,12 @@ from lib import (
     BundleMode,
     Config,
     Eval,
-    build_prompt,
     kien_thai_bundle,
     load_evals,
     next_iteration_dir,
+    skill_prompt,
     wrap_markdown,
+    wrap_skill,
 )
 
 MAX_LOOP = 5
@@ -64,9 +65,8 @@ def _run_once(backend: Backend, prompt: str, out_dir: Path, label: str) -> tuple
 def _audit_prompt(prose: str, bundle: str, register: str) -> str:
     # bundle is already register-scoped (see kien_thai_bundle(register=...)).
     return (
-        "ใช้แนวทางการเขียนต่อไปนี้:\n\n"
-        "<skill>\n" + bundle + "\n</skill>\n\n"
-        f"prose นี้เป็น register `{register}`\n\n"
+        wrap_skill(bundle)
+        + f"prose นี้เป็น register `{register}`\n\n"
         "งาน: อ่าน prose ทั้งหมดให้จบก่อน แล้วค่อย flag issues — อย่าสแกนทีละบรรทัด. "
         "Pre-check: scan `forbidden-phrases.md` blocklist กับ prose "
         "(เฉพาะ occurrence ที่ไม่ได้อยู่ใน backtick — use/mention exemption). "
@@ -81,9 +81,8 @@ def _audit_prompt(prose: str, bundle: str, register: str) -> str:
 def _fix_prompt(prose: str, audit: str, bundle: str, register: str) -> str:
     # bundle is already register-scoped.
     return (
-        "ใช้แนวทางการเขียนต่อไปนี้:\n\n"
-        "<skill>\n" + bundle + "\n</skill>\n\n"
-        f"prose นี้เป็น register `{register}`\n\n"
+        wrap_skill(bundle)
+        + f"prose นี้เป็น register `{register}`\n\n"
         "issue ที่ต้องแก้:\n\n" + audit + "\n\n"
         "prose ปัจจุบัน:\n\n<prose>\n" + prose + "\n</prose>\n\n"
         "งาน: แก้ prose ตาม issue ข้างบน output เฉพาะ prose ที่แก้แล้ว "
@@ -99,8 +98,7 @@ def _is_clean(audit: str) -> bool:
 
 
 def _run_baseline(backend: Backend, eval_case: Eval, out_dir: Path) -> dict:
-    prompt = build_prompt(eval_case, "baseline", "")
-    text, dur, usage = _run_once(backend, prompt, out_dir, "input")
+    text, dur, usage = _run_once(backend, eval_case.prompt, out_dir, "input")
     (out_dir / "output.md").write_text(wrap_markdown(text), encoding="utf-8")
     return {"duration_s": round(dur, 2), "usage": usage}
 
@@ -112,7 +110,7 @@ def _run_loop(backend: Backend, eval_case: Eval, out_dir: Path) -> dict:
     draft_bundle = kien_thai_bundle(register=register, mode=BundleMode.DRAFT)
     audit_bundle = kien_thai_bundle(register=register, mode=BundleMode.AUDIT)
 
-    initial_prompt = build_prompt(eval_case, "with_skill", draft_bundle)
+    initial_prompt = skill_prompt(eval_case, draft_bundle)
     prose, dur0, usage0 = _run_once(backend, initial_prompt, out_dir, "pass-0")
     (out_dir / "pass-0.md").write_text(wrap_markdown(prose), encoding="utf-8")
     passes: list[dict] = [
