@@ -11,8 +11,9 @@ from pathlib import Path
 import pytest
 
 from lib import (
-    CONFIGS,
     Backend,
+    BundleMode,
+    Config,
     Eval,
     build_prompt,
     kien_thai_bundle,
@@ -35,7 +36,7 @@ def pytest_generate_tests(metafunc):
         evals = load_evals()
         metafunc.parametrize("eval_case", evals, ids=[e.name for e in evals])
     if "config" in metafunc.fixturenames:
-        metafunc.parametrize("config", CONFIGS)
+        metafunc.parametrize("config", list(Config), ids=[c.value for c in Config])
 
 
 def _invoke(backend: Backend, prompt: str) -> tuple[str, dict, int, float]:
@@ -108,8 +109,8 @@ def _run_loop(backend: Backend, eval_case: Eval, out_dir: Path) -> dict:
     register = eval_case.register
     # Two register-scoped bundles: 'draft' for pass-0 (keeps workflow sections),
     # 'audit' for audit/fix passes (drops draft-time advice).
-    draft_bundle = kien_thai_bundle(register=register, mode="draft")
-    audit_bundle = kien_thai_bundle(register=register, mode="audit")
+    draft_bundle = kien_thai_bundle(register=register, mode=BundleMode.DRAFT)
+    audit_bundle = kien_thai_bundle(register=register, mode=BundleMode.AUDIT)
 
     initial_prompt = build_prompt(eval_case, "with_skill", draft_bundle)
     prose, dur0, usage0 = _run_once(backend, initial_prompt, out_dir, "pass-0")
@@ -151,12 +152,12 @@ def _run_loop(backend: Backend, eval_case: Eval, out_dir: Path) -> dict:
 
 @pytest.fixture
 def run_eval(iteration_dir: Path):
-    def _run(backend: Backend, eval_case: Eval, config: str) -> Path:
+    def _run(backend: Backend, eval_case: Eval, config: Config) -> Path:
         if not backend.available:
             pytest.skip(f"{backend.name} not on PATH")
         out_dir = iteration_dir / eval_case.name / backend.name / config
         out_dir.mkdir(parents=True, exist_ok=True)
-        if config == "baseline":
+        if config == Config.BASELINE:
             extra = _run_baseline(backend, eval_case, out_dir)
         else:
             extra = _run_loop(backend, eval_case, out_dir)

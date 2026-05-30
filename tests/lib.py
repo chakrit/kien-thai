@@ -12,6 +12,7 @@ import re
 import shutil
 from collections.abc import Callable
 from dataclasses import dataclass
+from enum import StrEnum
 from pathlib import Path
 
 from pythainlp.tokenize import word_tokenize
@@ -79,7 +80,15 @@ CLAUDE = Backend(
 CODEX = Backend("codex", ("codex", "exec", "--json"), _parse_codex)
 BACKENDS: dict[str, Backend] = {b.name: b for b in (CLAUDE, CODEX)}
 
-CONFIGS = ("with_skill", "baseline")
+
+class Config(StrEnum):
+    WITH_SKILL = "with_skill"
+    BASELINE = "baseline"
+
+
+class BundleMode(StrEnum):
+    DRAFT = "draft"
+    AUDIT = "audit"
 
 
 @dataclass(frozen=True)
@@ -348,7 +357,7 @@ def _scope_examples_md(text: str, register: str) -> str:
     return "".join(out)
 
 
-def kien_thai_bundle(register: str | None = None, mode: str = "draft") -> str:
+def kien_thai_bundle(register: str | None = None, mode: BundleMode = BundleMode.DRAFT) -> str:
     """Build the prompt-ready skill bundle.
 
     register: optional register slug; when set, register.md, examples.md, and
@@ -361,7 +370,7 @@ def kien_thai_bundle(register: str | None = None, mode: str = "draft") -> str:
     """
     skill = SKILL_PATH.read_text(encoding="utf-8")
     skill = _strip_frontmatter(skill)
-    if mode == "audit":
+    if mode == BundleMode.AUDIT:
         skill = _strip_workflow_sections(skill)
     skill = _strip_default_meta(skill)
     parts: list[str] = [skill]

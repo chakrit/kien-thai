@@ -9,6 +9,7 @@ from lib import (
     CODEX,
     EVALS_FILE,
     SKILL_PATH,
+    BundleMode,
     Eval,
     build_prompt,
     kien_thai_bundle,
@@ -102,8 +103,8 @@ def test_bundle_exemplars_last_and_scoped():
 
 
 def test_bundle_audit_mode_drops_workflow():
-    draft = kien_thai_bundle(register="explainer", mode="draft")
-    audit = kien_thai_bundle(register="explainer", mode="audit")
+    draft = kien_thai_bundle(register="explainer", mode=BundleMode.DRAFT)
+    audit = kien_thai_bundle(register="explainer", mode=BundleMode.AUDIT)
     assert "Workflow when asked" in draft
     assert "Workflow when asked" not in audit
     assert "When asked to translate" in draft

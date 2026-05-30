@@ -8,12 +8,12 @@ from __future__ import annotations
 
 import pytest
 
-from lib import CODEX, Eval, enabled_backends
+from lib import CODEX, Config, Eval, enabled_backends
 
 pytestmark = pytest.mark.generate
 
 
-def test_codex(run_eval, eval_case: Eval, config: str):
+def test_codex(run_eval, eval_case: Eval, config: Config):
     if CODEX not in enabled_backends():
         pytest.skip("codex not in EVAL_BACKENDS (opt-in)")
     run_eval(CODEX, eval_case, config)
