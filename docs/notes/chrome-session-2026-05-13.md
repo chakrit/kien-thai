@@ -81,7 +81,7 @@ driven popular fiction.
 - Update `references/register.md` Register-3 to move Fictionlog /
   Tunwalai from "Vetting queued" to "Dropped from source list" with
   the out-of-scope rationale.
-- Mark `notes/research-queue.md` Fictionlog/Tunwalai entry resolved.
+- Mark `docs/research-queue.md` Fictionlog/Tunwalai entry resolved.
 
 ---
 
@@ -183,7 +183,7 @@ Two rules, not one. Provisional shapes:
 
 - Add a `ๆ-spacing` entry to `references/style-rules.md` covering
   the `ต่าง ๆ` carve-out + the register-scoped general rule.
-- Mark `notes/research-queue.md` ๆ-spacing entry resolved.
+- Mark `docs/research-queue.md` ๆ-spacing entry resolved.
 - Caveat: small-N (~20 samples). Confidence is "directional, not
   absolute." Skill rule should be phrased as a default, not a hard
   ai-tells-tier check.
@@ -241,7 +241,7 @@ restricted, not animacy-restricted.
 
 ### Action
 
-- Rewrite `notes/research-queue.md` "Personification verbs"
+- Rewrite `docs/research-queue.md` "Personification verbs"
   entry: drop animacy framing, replace with "colloquial-
   emotional verb leak into Explainer/News register."
 - Defer adding a hard rule until iter-8+ shows recurrence; right
@@ -271,8 +271,8 @@ Chrome session ends here per chakrit's session boundary.
 
 **Working tree at session end (uncommitted):**
 
-- `notes/chrome-session-2026-05-13.md` (new — this file)
-- `notes/research-queue.md` (resolved 2 entries, reframed 1)
+- `docs/notes/chrome-session-2026-05-13.md` (new — this file)
+- `docs/research-queue.md` (resolved 2 entries, reframed 1)
 - `skills/kien-thai/references/register.md` (Fictionlog/Tunwalai
   → dropped list; Minimore citation added)
 - `skills/kien-thai/references/style-rules.md` (new

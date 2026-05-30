@@ -17,10 +17,10 @@ One-shot generation is a welcome side-effect, not the goal.
 Three of our own artifacts, read together, say the current architecture invests in the
 weaker bet:
 
-- The framing investigation (`notes/framing-investigation-2026-05-21.md`) ranks native
+- The framing investigation (`docs/notes/framing-investigation-2026-05-21.md`) ranks native
   exemplars near the task as the highest-impact lever and English rules as a mitigation.
 - The idiomatic-edges judgement
-  (`notes/judgements/2026-05-11-frame-rules-have-idiomatic-edges.md`) concludes the long
+  (`docs/decisions/2026-05-11-frame-rules-have-idiomatic-edges.md`) concludes the long
   tail of naturalness is not rule-shaped.
 - Every recent `feedback.md` notes that loop-to-CLEAN is "not for bundle-effect
   measurement."
@@ -81,8 +81,8 @@ inverted relative to our own stated theory of what works.
 ## Consequences
 
 - The review loop becomes a first-class, repeatable workflow that collects the
-  skill-clean-vs-chakrit-clean data as a byproduct. Spec: `tests/REVIEW-PROTOCOL.md`.
-- Work is sequenced measurement-first; the rollout phases live in `notes/work-queue.md`
+  skill-clean-vs-chakrit-clean data as a byproduct. Spec: `docs/spec/review-protocol.md`.
+- Work is sequenced measurement-first; the rollout phases live in `docs/work-queue.md`
   ("Framing experiments" graduates from speculative to committed direction).
 - This formalizes the framing-investigation recommendations (#1, #2) that have sat at
   Block: None, and the iteration-7 idiomatic-edges judgement.

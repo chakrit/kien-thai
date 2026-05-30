@@ -1,11 +1,13 @@
 # Inline iteration — the default generate mode
 
+**Status:** accepted
+
 Generating an iteration **inline** — in the active session, via a fresh subagent or
 chakrit driving Codex — is the default. The cold pytest harness (`pytest -m generate`,
 shelling out to `claude -p` / `codex exec`) is the specialized tool: reach for it only
 when you need contamination-free, cross-iteration A/B numbers — which, post-pivot, is
 rare until an automated gradient + discrimination metric exists. Direction:
-[`../notes/decisions/2026-05-30-exemplar-first-pivot.md`](../notes/decisions/2026-05-30-exemplar-first-pivot.md).
+[`../decisions/2026-05-30-exemplar-first-pivot.md`](../decisions/2026-05-30-exemplar-first-pivot.md).
 
 Why inline is the default: bundle-effect convergence is demoted as a quality signal
 (`CLEAN` = ruleset-coverage, not naturalness), so the cold harness's signature deliverable
@@ -15,7 +17,7 @@ outputs, and that runs on inline outputs just as well.
 > **CLEAN is not the finish line.** Reaching `CLEAN` makes an output *skill-clean* (the
 > ruleset finds nothing), not *chakrit-clean*. Review of skill-clean outputs — and the
 > skill-clean-vs-chakrit-clean measurement it collects — is the outer loop, specified in
-> [`REVIEW-PROTOCOL.md`](REVIEW-PROTOCOL.md).
+> [`review-protocol.md`](review-protocol.md).
 
 ## Fresh context per generation
 
@@ -55,7 +57,7 @@ Caveats, stated honestly:
   also the substrate the automated gradient will later run on — the audit stage becomes
   the hill-climb once a metric exists.
 
-Tracked in [`../notes/work-queue.md`](../notes/work-queue.md); prototype when ready.
+Tracked in [`../work-queue.md`](../work-queue.md); prototype when ready.
 
 ### 2. Manual subagent (chat-Claude)
 
@@ -153,7 +155,7 @@ Save to `pass-i-audit-prompt.txt`. Run generator. Save output to `pass-i-audit.m
 
 **Convergence check**: if the audit output's first non-empty line starts with `CLEAN`
 (case-insensitive), stop the loop. Current prose is final. (Reaching this point is
-*skill-clean* — the review loop still applies; see `REVIEW-PROTOCOL.md`.)
+*skill-clean* — the review loop still applies; see `review-protocol.md`.)
 
 ### 4b — fix prompt
 
@@ -238,9 +240,9 @@ uv run python -c "from tests.lib import next_iteration_dir; print(next_iteration
 ```
 
 When you create a fresh iteration `N`, add a row to
-[`../workspace/INDEX.md`](../workspace/INDEX.md) — date, mode/scope (note `inline`), Review
+[`../../workspace/INDEX.md`](../../workspace/INDEX.md) — date, mode/scope (note `inline`), Review
 `pending` — and flip that cell to `reviewed` with a feedback link once it is reviewed per
-[`REVIEW-PROTOCOL.md`](REVIEW-PROTOCOL.md). The INDEX is the tracked ledger of what
+[`review-protocol.md`](review-protocol.md). The INDEX is the tracked ledger of what
 iterations exist; an unrecorded run leaves it lying about the repo's state.
 
 ## Notes on register-slug values

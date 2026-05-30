@@ -258,7 +258,7 @@ Don't translate dev jargon.
 - *Dev / war-story (verified):* Thanaphoom Babparn (tpbabparn.medium.com),
   Somkiat Puisungnoen (somkiat.cc), Nutta, Rath Panyowat (rath.asia).
 - *Plain-diary personal essay (verified — vetted 2026-05-13, see
-  [`notes/source-vetting-2026-05-13.md`](../../../notes/source-vetting-2026-05-13.md)):*
+  [`docs/notes/source-vetting-2026-05-13.md`](../../../docs/notes/source-vetting-2026-05-13.md)):*
   Vicharn Panich's `ชีวิตที่พอเพียง` series on GotoKnow.org. Plain ผม
   voice, daily-diary register, period-light Thai-comma flow. **Author-
   scoped — not GotoKnow as a platform.** Other GotoKnow authors
@@ -288,7 +288,7 @@ Don't translate dev jargon.
   by พอกลอน ซาเสียง (visible amateur tells: closing-line typo
   `ความผิดชอบ`, code-mixed `support` as Thai verb, self-help
   cliché kicker; see
-  [`notes/chrome-session-2026-05-13.md`](../../../notes/chrome-session-2026-05-13.md)).
+  [`docs/notes/chrome-session-2026-05-13.md`](../../../docs/notes/chrome-session-2026-05-13.md)).
 - Pantip long-form anonymous posts and short-form rooms (outside the
   bylined Model carve-out above). Grammar varies.
 
@@ -307,7 +307,7 @@ Don't translate dev jargon.
   authors of long-form essay.
 - *Fictionlog / Tunwalai* — popular-fiction / web-novel register,
   out-of-scope for the kien-thai brief. Vetted 2026-05-13 (see
-  [`notes/chrome-session-2026-05-13.md`](../../../notes/chrome-session-2026-05-13.md)):
+  [`docs/notes/chrome-session-2026-05-13.md`](../../../docs/notes/chrome-session-2026-05-13.md)):
   Fictionlog Thai-original 7-day bestsellers are uniformly
   cultivation/wuxia (`กำลังภายใน`/`แฟนตาซี`) with archaic pronouns
   (`ข้า`/`เจ้า`) and Chinese-genre lexicon; Tunwalai is dominated
@@ -391,7 +391,7 @@ does not.
 **Provisional** (added 2026-05-21): synthesized from a single drafting session
 (ป.ป.ท. / Samarterware minutes). Application trail with the original
 correction pairs lives in
-[`notes/feedback-2026-05-21-application.md`](../../../notes/feedback-2026-05-21-application.md).
+[`docs/notes/feedback-2026-05-21-application.md`](../../../docs/notes/feedback-2026-05-21-application.md).
 Awaiting broader corpus validation — apply the session-derived examples below
 as anchors, not as authority.
 

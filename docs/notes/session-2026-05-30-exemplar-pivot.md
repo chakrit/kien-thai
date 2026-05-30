@@ -8,7 +8,7 @@ Phase-2 auditor-recall instrument.
 
 Pivot to **exemplar-first, auditor-recall-measured**, with **inline as the default
 mode**. Full rationale + eight decisions:
-[`decisions/2026-05-30-exemplar-first-pivot.md`](decisions/2026-05-30-exemplar-first-pivot.md).
+[`decisions/2026-05-30-exemplar-first-pivot.md`](../decisions/2026-05-30-exemplar-first-pivot.md).
 Core: the kode-thai loop converges to *skill-clean* (ruleset finds nothing), never
 *chakrit-clean* (native ear finds nothing); the binding constraint is **auditor recall**,
 not drafter quality; native before/after **pairs** are the default artifact, a rule a last
@@ -18,15 +18,15 @@ resort.
 
 **Phase 0 — doc reframe (English surfaces done):**
 
-- New: `notes/decisions/2026-05-30-exemplar-first-pivot.md`; `tests/REVIEW-PROTOCOL.md`
+- New: `docs/decisions/2026-05-30-exemplar-first-pivot.md`; `docs/spec/review-protocol.md`
   (the outer review loop — skill-clean vs chakrit-clean, CLEAN-but-flawed rate,
   recall-miss/coverage-gap, agent does everything except the verdict).
 - Edited: `CLAUDE.md` (iteration discipline → pairs-first; Stage 2 → recall + the
-  CLEAN-≠-quality caveat), `notes/work-queue.md` (framing work committed; new
+  CLEAN-≠-quality caveat), `docs/work-queue.md` (framing work committed; new
   harness-efficiency workstream — SDK caching, code-side mechanical audit),
-  `notes/research-queue.md`, `notes/judgements/README.md`, `corpus/README.md` (pointers +
+  `docs/research-queue.md`, `docs/decisions/README.md`, `corpus/README.md` (pointers +
   provenance-safety axis).
-- Rewrote `tests/INLINE-ITERATION.md` → inline-as-default + three drivers (Workflow
+- Rewrote `docs/spec/inline-iteration.md` → inline-as-default + three drivers (Workflow
   recommended, manual subagent, manual Codex); fixed stale register slugs (`tech-writing`,
   `newspaper-feature` → `explainer`, `news`).
 

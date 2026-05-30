@@ -8,7 +8,7 @@ the first time and a fresh comparison set on the other two evals.
 Harness note: `pytest -m generate -n 4` split the 12 outputs across
 `iteration-7/` and `iteration-8/` (6 each) because `iteration_dir` is a
 session-scoped fixture and xdist gives each worker its own session.
-Manually consolidated post-run. Bug logged in `notes/work-queue.md`.
+Manually consolidated post-run. Bug logged in `docs/work-queue.md`.
 
 Review status: only `tech-doc-short/claude/with_skill` and
 `marketing-blurb/claude/with_skill` reviewed in this session. The other
@@ -106,11 +106,11 @@ For each pattern, check existing rules before adding new ones.
 
 ## Judgements logged
 
-Three judgements from this session, in `notes/judgements/`:
+Three judgements from this session, in `docs/decisions/`:
 
-- [`2026-05-11-cognitive-vs-affective-verbs.md`](../../notes/judgements/2026-05-11-cognitive-vs-affective-verbs.md)
-- [`2026-05-11-frame-rules-have-idiomatic-edges.md`](../../notes/judgements/2026-05-11-frame-rules-have-idiomatic-edges.md)
-- [`2026-05-11-person-deixis-discourse-over-syntax.md`](../../notes/judgements/2026-05-11-person-deixis-discourse-over-syntax.md)
+- [`2026-05-11-cognitive-vs-affective-verbs.md`](../../docs/decisions/2026-05-11-cognitive-vs-affective-verbs.md)
+- [`2026-05-11-frame-rules-have-idiomatic-edges.md`](../../docs/decisions/2026-05-11-frame-rules-have-idiomatic-edges.md)
+- [`2026-05-11-person-deixis-discourse-over-syntax.md`](../../docs/decisions/2026-05-11-person-deixis-discourse-over-syntax.md)
 
 A fourth call (Claude treating workspace outputs as editable artifacts) was
 diagnosed as a context defect rather than a prose-judgement override —
@@ -122,7 +122,7 @@ outputs are evidence, not artifacts"), not a retrospective judgement.
 - Review the remaining 10 outputs (codex backends, baselines, news-feature-bts
   both backends) — un-reviewed in iter-7 session.
 - Resolve the xdist iteration-dir split before the next `-n N` generation
-  run (see `notes/work-queue.md`).
+  run (see `docs/work-queue.md`).
 
 ## Done
 
@@ -189,7 +189,7 @@ Edits to `craft.md`:
 - Provisional note citing corpus gap.
 
 Corpus gap (no curated operational/system-spec material) logged in
-`notes/source-vetting-2026-05-13.md` with candidate source directions.
+`docs/notes/source-vetting-2026-05-13.md` with candidate source directions.
 
 Method note: native-checked one of the Good forms by probe-generating
 candidate pairs and getting per-item correction. Pair-4 form
@@ -231,4 +231,4 @@ plausible vector for AI-influenced phrasing — large-vendor Thai marketing
 output increasingly drafted with LLM assistance. AWS Thailand corpus
 entries should not be treated as gold-standard native for blocklist-
 calibration purposes; they may themselves reflect AI-shaped Thai. Flagged
-in `notes/source-vetting-2026-05-13.md` for a re-vet pass.
+in `docs/notes/source-vetting-2026-05-13.md` for a re-vet pass.

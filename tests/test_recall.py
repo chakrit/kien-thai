@@ -8,7 +8,7 @@ example through the audit pass and reports per-slug hit/miss; costly, opt-in
 
 This is the seed for the Phase-2 auditor-recall measure. It tests recall on
 *isolated* tells; the review loop's in-context misses (Phase 1) expand the set.
-See tests/REVIEW-PROTOCOL.md and notes/decisions/2026-05-30-exemplar-first-pivot.md.
+See docs/spec/review-protocol.md and docs/decisions/2026-05-30-exemplar-first-pivot.md.
 """
 
 from __future__ import annotations

@@ -1,13 +1,15 @@
 # Review protocol — the outer loop
 
+**Status:** accepted
+
 kode-thai is the **inner loop**: audit→fix until *skill-clean* (the ruleset finds no
 citable violation). This protocol is the **outer loop**: a skill-clean output goes to the
 native ear for the *chakrit-clean* verdict. The gap between the two terminals is the
 measurement. Closing it across iterations is the product improving; a gap that stops
 shrinking is the prompt-only ceiling.
 
-Counterpart to `INLINE-ITERATION.md` (the generate protocol). Direction and rationale:
-`notes/decisions/2026-05-30-exemplar-first-pivot.md`.
+Counterpart to `inline-iteration.md` (the generate protocol). Direction and rationale:
+`docs/decisions/2026-05-30-exemplar-first-pivot.md`.
 
 ## Definitions
 

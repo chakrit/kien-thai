@@ -57,7 +57,7 @@ pages (likely calqued).
 ## Provenance-safety (coming axis)
 
 Per the 2026-05-30 direction
-([`../notes/decisions/2026-05-30-exemplar-first-pivot.md`](../notes/decisions/2026-05-30-exemplar-first-pivot.md)),
+([`../docs/decisions/2026-05-30-exemplar-first-pivot.md`](../docs/decisions/2026-05-30-exemplar-first-pivot.md)),
 recency is a contamination risk: post-2022 web marketing may itself be AI-drafted (the
 AWS-Thailand flag in `workspace/iteration-7/feedback.md`). A `provenance` frontmatter
 field — pre/post-2022, print/archive vs live web, established pre-LLM author — is planned

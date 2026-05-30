@@ -153,9 +153,9 @@ tagged for the active register at that point.
 
 ## Trail for next session
 
-- This file: `notes/proposals-2026-05-13.md`.
-- Chrome-session evidence: `notes/chrome-session-2026-05-13.md`.
-- Reframed research-queue entry: `notes/research-queue.md`
+- This file: `docs/notes/proposals-2026-05-13.md`.
+- Chrome-session evidence: `docs/notes/chrome-session-2026-05-13.md`.
+- Reframed research-queue entry: `docs/research-queue.md`
   → "Colloquial-emotional verbs leaking into Explainer/News register"
   — now links here for draft text.
 - Iter-7 feedback (open followups, 10 unreviewed outputs):

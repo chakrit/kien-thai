@@ -32,13 +32,13 @@ Single-day session. Committed cleanly; working tree clean.
 
    All Register 6 rules tagged **provisional** in the section preamble
    pending corpus validation. Per-rule application trail lives in
-   [`notes/feedback-2026-05-21-application.md`](feedback-2026-05-21-application.md).
+   [`docs/notes/feedback-2026-05-21-application.md`](feedback-2026-05-21-application.md).
 
 3. **Researched agent-framing techniques** for shifting Claude toward
    Thai-native generation. Literature pass (English-accent paper,
    multilingual ICL, persona-effect, multilingual CoT) plus first-
    principles analysis. Conclusion in
-   [`notes/framing-investigation-2026-05-21.md`](framing-investigation-2026-05-21.md).
+   [`docs/notes/framing-investigation-2026-05-21.md`](framing-investigation-2026-05-21.md).
 
    Key updates to the prior "Act as Thai writer" intuition: (a) few-shot
    exemplars near the task are the bigger lever than persona; (b) bundle
@@ -64,7 +64,7 @@ Ordered by priority:
 2. **Test framing-experiment #1+#2** — bundle reorder (put `examples.md`
    last) + native-prose exemplar priming. Cheapest test arm; highest
    expected value per the framing investigation. Added as a work-queue
-   entry; see `notes/work-queue.md`.
+   entry; see `docs/work-queue.md`.
 
 3. **Add an eval for `register=official`** in `evals/evals.json`. Seed
    prompt from the Samarterware session or write a fresh minutes-drafting
@@ -97,8 +97,8 @@ Ordered by priority:
 - `skills/kien-thai/references/grammar.md`
 - `skills/kien-thai/references/craft.md`
 - `tests/lib.py`
-- `notes/feedback-2026-05-21-application.md` (new)
-- `notes/framing-investigation-2026-05-21.md` (new)
+- `docs/notes/feedback-2026-05-21-application.md` (new)
+- `docs/notes/framing-investigation-2026-05-21.md` (new)
 - `feedback.md` (deleted; content preserved in application trail file)
-- `notes/work-queue.md` (entry to be added during this checkpoint)
-- `notes/session-2026-05-21-checkpoint.md` (this file)
+- `docs/work-queue.md` (entry to be added during this checkpoint)
+- `docs/notes/session-2026-05-21-checkpoint.md` (this file)

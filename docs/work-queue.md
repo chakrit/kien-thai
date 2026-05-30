@@ -1,8 +1,8 @@
 # Work queue
 
 Decided work items awaiting design/build. Distinct from `research-queue.md`
-(speculative items needing evidence) and `judgements/` (retrospective entries
-about calls already made). Items here are committed scope — the question is
+(speculative items needing evidence) and `decisions/` (point-in-time rulings,
+incl. prose-direction judgements). Items here are committed scope — the question is
 *how*, not *whether*.
 
 ---
@@ -16,7 +16,7 @@ codepoints. Thai also has no word spaces, so line-break candidates need
 dictionary-based segmentation rather than splitting on whitespace.
 
 **Scope.** Uniform across every `.md` the repo produces or maintains —
-`SKILL.md`, `references/*.md`, `notes/*.md`, `CONTRIBUTING.md`, eval feedback
+`SKILL.md`, `references/*.md`, `docs/**/*.md`, `CONTRIBUTING.md`, eval feedback
 files. Includes both authoring help and CI enforcement.
 
 **Findings so far.**
@@ -66,7 +66,7 @@ unverifiable.
 ## Browser tooling for Thai source vetting ✅ unblocked 2026-05-13
 
 **Status.** Claude-in-Chrome MCP wired up. Used for the 2026-05-13 vetting
-pass — see [`source-vetting-2026-05-13.md`](source-vetting-2026-05-13.md).
+pass — see [`notes/source-vetting-2026-05-13.md`](notes/source-vetting-2026-05-13.md).
 Worked well for GotoKnow, readthecloud.co, storyloggroup.com, Pantip.
 Minimore continues to return empty body even via Chrome (same JS-render
 block as WebFetch); use Wayback / paste-in for those.
@@ -141,7 +141,7 @@ investigation:
 **Findings so far.** Literature lens, recommended ordering, and the
 "don't force Thai-language CoT for mid-resource languages" caveat
 captured in
-[`notes/framing-investigation-2026-05-21.md`](framing-investigation-2026-05-21.md).
+[`notes/framing-investigation-2026-05-21.md`](notes/framing-investigation-2026-05-21.md).
 
 **Open design choices.**
 

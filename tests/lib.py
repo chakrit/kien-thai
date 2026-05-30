@@ -383,7 +383,7 @@ def kien_thai_bundle(register: str | None = None, mode: BundleMode = BundleMode.
 
     exemplars.md is pinned last regardless of alphabetical order — proximity
     to the task prompt is the whole point of that file (see
-    notes/framing-investigation-2026-05-21.md).
+    docs/notes/framing-investigation-2026-05-21.md).
     """
     skill = SKILL_PATH.read_text(encoding="utf-8")
     skill = _strip_frontmatter(skill)
@@ -439,8 +439,8 @@ def audit_prompt(prose: str, bundle: str, register: str) -> str:
 #
 # Each rule's own **Bad** example is a labeled known-bad item: fed to the audit
 # pass, it should surface the rule's slug. This seeds the recall measure until
-# the review loop's in-context misses expand it (see tests/REVIEW-PROTOCOL.md and
-# notes/decisions/2026-05-30-exemplar-first-pivot.md).
+# the review loop's in-context misses expand it (see docs/spec/review-protocol.md and
+# docs/decisions/2026-05-30-exemplar-first-pivot.md).
 
 RULE_REF_FILES = ("ai-tells.md", "grammar.md", "register.md", "craft.md", "style-rules.md")
 

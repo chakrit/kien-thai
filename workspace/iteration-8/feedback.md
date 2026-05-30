@@ -6,7 +6,7 @@ generated and looped through `/kode-thai` audit/fix passes until `CLEAN`.
 Baseline (no skill) was not generated this run — focus was on
 audit-to-convergence per chakrit's overnight brief.
 
-> **Caveat (per `tests/INLINE-ITERATION.md`):** outputs are tagged
+> **Caveat (per `docs/spec/inline-iteration.md`):** outputs are tagged
 > `mode: "inline"` and are not cross-iteration comparable to harness output.
 > Treat as audit/probe material — judge prose quality, derive rule traces,
 > but don't cite for bundle-effect measurement.

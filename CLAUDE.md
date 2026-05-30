@@ -58,7 +58,7 @@ the iteration discipline below.
 > recall*, not drafter quality: the kode-thai loop converges to *skill-clean* (the
 > ruleset finds nothing), never to *chakrit-clean* (the native ear finds nothing). Full
 > rationale + the eight decisions:
-> [`notes/decisions/2026-05-30-exemplar-first-pivot.md`](notes/decisions/2026-05-30-exemplar-first-pivot.md).
+> [`docs/decisions/2026-05-30-exemplar-first-pivot.md`](docs/decisions/2026-05-30-exemplar-first-pivot.md).
 
 When an eval output looks bad, the temptation is to immediately add a new rule or
 tighten an existing one. **Resist this.** Trace first:
@@ -93,8 +93,8 @@ External contributors follow the same logic via [`CONTRIBUTING.md`](CONTRIBUTING
 > regeneration and produce nothing durable.
 >
 > The tracked, durable artifacts are: `skills/kien-thai/references/*.md` (rules),
-> `references/examples.md` (before/after exemplars), `notes/judgements/`
-> (retrospective calls), and `workspace/iteration-N/feedback.md` (per-iteration
+> `references/examples.md` (before/after exemplars), `docs/decisions/`
+> (rulings + judgements), and `workspace/iteration-N/feedback.md` (per-iteration
 > trace — note: feedback files at the iteration root are tracked; only the eval
 > subdirectories are ignored). When a corrected version of an output line teaches a
 > generalizable pattern, lift it into `references/examples.md` with the trace — that
@@ -151,7 +151,20 @@ tests/
     ├── test_claude.py       # -m generate
     └── test_codex.py        # -m generate
 workspace/                   # gitignored: iteration-N/<eval>/<backend>/<config>/
+docs/                         # durable artifacts — see docs/README.md
+├── decisions/                # point-in-time rulings + prose-direction judgements
+├── spec/                     # current-intent protocol/design docs
+├── notes/                    # impermanent: research dumps, session checkpoints
+├── work-queue.md             # agent-doable committed work
+├── research-queue.md         # speculative items awaiting evidence
+└── human-tasks-queue.md      # tasks needing chakrit (ear, Thai, decisions)
 ```
+
+**Durable artifacts** live in [`docs/`](docs/), sorted by permanence: `decisions/`
+(point-in-time rulings + prose-direction judgements), `spec/` (current-intent
+design/protocol), `notes/` (impermanent). Live backlogs — `work-queue.md`,
+`research-queue.md`, `human-tasks-queue.md` — sit at `docs/` root. Default new
+artifacts to `notes/`; see [`docs/README.md`](docs/README.md).
 
 ### Eval strategy
 
@@ -168,8 +181,8 @@ assertions.
   `iteration-N/<eval>/<backend>/<config>/{output.md,prompt.txt,meta.json}`.
   meta.json tracks per-pass usage (cache hits, input/output tokens).
 - **Stage 2 (review)**: the outer loop — see
-  [`tests/REVIEW-PROTOCOL.md`](tests/REVIEW-PROTOCOL.md). A skill-clean output goes to
-  chakrit's ear for the *chakrit-clean* verdict; the gap between the two is the
+  [`docs/spec/review-protocol.md`](docs/spec/review-protocol.md). A skill-clean output
+  goes to chakrit's ear for the *chakrit-clean* verdict; the gap between the two is the
   measurement. **Never read loop-to-CLEAN as a quality result — it is ruleset-coverage,
   not naturalness.** Primary signals: the *CLEAN-but-flawed rate* and *auditor recall*
   (recall-miss vs coverage-gap). Consolidated notes + the aggregate go to
@@ -193,7 +206,7 @@ uv run pytest -m evaluate                # advisory heuristics on latest iterati
 Requires `ANTHROPIC_API_KEY` and `codex` logged in. Tests skip gracefully if a backend
 is missing.
 
-**Inline alternative**: `tests/INLINE-ITERATION.md` documents a session-driven
+**Inline alternative**: `docs/spec/inline-iteration.md` documents a session-driven
 iteration mode that reuses the bundle preprocessor and prompt templates but
 generates via subagent (or codex driven manually) instead of subprocess CLIs.
 Saves API tokens; outputs marked `mode: "inline"` in meta.json. Use for
@@ -241,7 +254,7 @@ them **short** (fair-use sized) and cite the corpus file path in an HTML
 comment above the block.
 
 Gaps (registers with no curated entry yet) are tracked in
-`notes/source-vetting-2026-05-13.md` and the work-queue. If a register has no
+`docs/notes/source-vetting-2026-05-13.md` and the work-queue. If a register has no
 corpus file, surface that — don't paper over it with synthesized prose.
 
 ## Markdown style for this repo
@@ -314,7 +327,7 @@ open -a 'iA Writer' <filename>
 ```
 
 Default to this for any Thai-prose target — eval outputs under
-`workspace/iteration-N/...`, `references/*.md`, `notes/judgements/*`,
+`workspace/iteration-N/...`, `references/*.md`, `docs/decisions/*`,
 `skills/kien-thai/**/*.md`, etc. — and for any "open in markdown editor" /
 "open the markdown" request regardless of Thai content.
 

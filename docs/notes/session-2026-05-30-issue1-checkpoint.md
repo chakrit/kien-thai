@@ -7,7 +7,7 @@ iter-8/iter-9 review work. This session was docs + a bug fix; both shipped.
 
 1. **Wired `workspace/INDEX.md` into iteration entry points** so the ledger
    stays discoverable and gets updated on create/review. Pointers added in
-   `CLAUDE.md` (evidence block + Stage-2 review note), `tests/INLINE-ITERATION.md`,
+   `CLAUDE.md` (evidence block + Stage-2 review note), `docs/spec/inline-iteration.md`,
    `README.md`, `CONTRIBUTING.md`. Rule: add a row on create (Review `pending`),
    flip to `reviewed` + link feedback on review. Commit `6c9ad93`, pushed.
 

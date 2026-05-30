@@ -160,7 +160,7 @@ vetting must select for *experienced* / *paid-out* author profiles
 (Fictionlog publicly lists per-author earnings) and skip the amateur
 long tail. Same caveat applies to Minimore — same author profile.
 
-Queued in `notes/research-queue.md` as a separate vetting target.
+Queued in `docs/research-queue.md` as a separate vetting target.
 
 ---
 
@@ -276,9 +276,9 @@ reflect this pass.
 
 Remaining follow-ups:
 
-1. Add `notes/research-queue.md` entry for Fictionlog/Tunwalai
+1. Add `docs/research-queue.md` entry for Fictionlog/Tunwalai
    serial-fiction register vetting (filter to paid-out authors).
-2. Optionally add a `notes/judgements/` entry for the readthecloud.co
+2. Optionally add a `docs/decisions/` entry for the readthecloud.co
    regression as a "publication can decline" case study.
 3. The closed research-queue item "Vet non-tech personal-blog source
    candidates" can now be marked done (this file is its output).

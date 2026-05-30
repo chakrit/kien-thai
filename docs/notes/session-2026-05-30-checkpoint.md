@@ -10,7 +10,7 @@ pass before any rule changes get derived from them.
 ## What was done this session
 
 Ran inline iteration-8 end-to-end overnight per chakrit's autonomous brief.
-Used the subagent-driven inline protocol from `tests/INLINE-ITERATION.md`
+Used the subagent-driven inline protocol from `docs/spec/inline-iteration.md`
 (bundle preprocessor + audit/fix prompts identical to the harness; outputs
 marked `mode: "inline"` in meta.json).
 
