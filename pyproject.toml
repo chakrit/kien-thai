@@ -19,5 +19,6 @@ pythonpath = ["tests"]
 markers = [
     "generate: invokes a real backend (claude/codex) to produce artifacts.",
     "evaluate: reads artifacts from latest iteration and grades them.",
+    "recall: feeds known-bad examples through the audit pass; costly, opt-in.",
 ]
-addopts = "-m 'not generate and not evaluate'"
+addopts = "-m 'not generate and not evaluate and not recall'"

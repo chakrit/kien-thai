@@ -17,6 +17,7 @@ from lib import (
     Config,
     Eval,
     PassKind,
+    audit_prompt,
     kien_thai_bundle,
     load_evals,
     next_iteration_dir,
@@ -73,19 +74,7 @@ def _run_once(backend: Backend, prompt: str, out_dir: Path, label: str) -> Invoc
 
 
 def _audit_prompt(prose: str, bundle: str, register: str) -> str:
-    # bundle is already register-scoped (see kien_thai_bundle(register=...)).
-    return (
-        wrap_skill(bundle)
-        + f"prose นี้เป็น register `{register}`\n\n"
-        "งาน: อ่าน prose ทั้งหมดให้จบก่อน แล้วค่อย flag issues — อย่าสแกนทีละบรรทัด. "
-        "Pre-check: scan `forbidden-phrases.md` blocklist กับ prose "
-        "(เฉพาะ occurrence ที่ไม่ได้อยู่ใน backtick — use/mention exemption). "
-        "จากนั้น audit ตามกฎใน skill เต็มชุด. "
-        "สำหรับทุก issue ให้ cite ด้วย slug ก่อน (เช่น `f4/targhak-closure`, "
-        "`wrong-classifier`, `f6/ko-resumptive`); ยกข้อความที่ผิดมาประกอบทุกครั้ง. "
-        "ถ้าผ่านทุกข้อ ให้ตอบบรรทัดเดียวว่า `CLEAN` ห้าม output prose\n\n"
-        "<prose>\n" + prose + "\n</prose>"
-    )
+    return audit_prompt(prose, bundle, register)
 
 
 def _fix_prompt(prose: str, audit: str, bundle: str, register: str) -> str:

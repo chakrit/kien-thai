@@ -417,3 +417,73 @@ def wrap_skill(skill_text: str) -> str:
 
 def skill_prompt(eval_case: Eval, bundle: str) -> str:
     return wrap_skill(bundle) + f"งานที่ต้องทำ:\n\n{eval_case.prompt}"
+
+
+def audit_prompt(prose: str, bundle: str, register: str) -> str:
+    """The audit-pass prompt. `bundle` must already be register-scoped."""
+    return (
+        wrap_skill(bundle)
+        + f"prose นี้เป็น register `{register}`\n\n"
+        "งาน: อ่าน prose ทั้งหมดให้จบก่อน แล้วค่อย flag issues — อย่าสแกนทีละบรรทัด. "
+        "Pre-check: scan `forbidden-phrases.md` blocklist กับ prose "
+        "(เฉพาะ occurrence ที่ไม่ได้อยู่ใน backtick — use/mention exemption). "
+        "จากนั้น audit ตามกฎใน skill เต็มชุด. "
+        "สำหรับทุก issue ให้ cite ด้วย slug ก่อน (เช่น `f4/targhak-closure`, "
+        "`wrong-classifier`, `f6/ko-resumptive`); ยกข้อความที่ผิดมาประกอบทุกครั้ง. "
+        "ถ้าผ่านทุกข้อ ให้ตอบบรรทัดเดียวว่า `CLEAN` ห้าม output prose\n\n"
+        "<prose>\n" + prose + "\n</prose>"
+    )
+
+
+# --- Auditor-recall seed ----------------------------------------------------
+#
+# Each rule's own **Bad** example is a labeled known-bad item: fed to the audit
+# pass, it should surface the rule's slug. This seeds the recall measure until
+# the review loop's in-context misses expand it (see tests/REVIEW-PROTOCOL.md and
+# notes/decisions/2026-05-30-exemplar-first-pivot.md).
+
+RULE_REF_FILES = ("ai-tells.md", "grammar.md", "register.md", "craft.md", "style-rules.md")
+
+_RULE_HEADING_RE = re.compile(
+    r"^###\s+`([a-z0-9][a-z0-9/_-]*)`\s+\*\(([^)]+)\)\*\s*$", re.MULTILINE
+)
+# Anchor on the colon so an inline-code token inside the **Bad (...)** descriptive
+# label isn't mistaken for the example itself.
+_BAD_EXAMPLE_RE = re.compile(r"\*\*Bad[^\n]*?:\s*`([^`]+)`")
+
+
+@dataclass(frozen=True)
+class KnownBad:
+    slug: str
+    bad: str
+    register: str
+    source: str
+
+
+def _scope_to_register(scope: str) -> str:
+    if scope in REGISTER_HEADERS:
+        return scope
+    if scope == "marketing":
+        return "marketing-saas-sme"
+    return "explainer"
+
+
+def extract_known_bad() -> list[KnownBad]:
+    """Labeled known-bad seed: (slug, the rule's own Bad example, register)."""
+    items: list[KnownBad] = []
+    refs = KIEN_THAI_DIR / "references"
+    for name in RULE_REF_FILES:
+        path = refs / name
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        headings = list(_RULE_HEADING_RE.finditer(text))
+        for i, m in enumerate(headings):
+            meta = [p.strip() for p in m.group(2).split("·")]
+            scope = meta[1] if len(meta) > 1 else "all-registers"
+            end = headings[i + 1].start() if i + 1 < len(headings) else len(text)
+            for bad in _BAD_EXAMPLE_RE.findall(text[m.end():end]):
+                items.append(
+                    KnownBad(m.group(1), bad.strip(), _scope_to_register(scope), name)
+                )
+    return items
