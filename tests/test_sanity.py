@@ -5,12 +5,13 @@ from __future__ import annotations
 import json
 
 from lib import (
+    CLAUDE,
+    CODEX,
     EVALS_FILE,
     SKILL_PATH,
     Eval,
     build_prompt,
     kien_thai_bundle,
-    parse_backend_output,
 )
 
 
@@ -44,9 +45,9 @@ def test_parse_claude_output():
         "usage": {"input_tokens": 10, "cache_read_input_tokens": 1000,
                   "cache_creation_input_tokens": 0, "output_tokens": 4},
     })
-    text, usage = parse_backend_output("claude", blob)
-    assert text == "Hello world."
-    assert usage["cache_read_input_tokens"] == 1000
+    out = CLAUDE.parse(blob)
+    assert out.text == "Hello world."
+    assert out.usage["cache_read_input_tokens"] == 1000
 
 
 def test_bundle_unscoped_includes_all_registers():
@@ -129,6 +130,6 @@ def test_parse_codex_output():
         '{"type":"item.completed","item":{"id":"i0","type":"agent_message","text":"Hi."}}',
         '{"type":"turn.completed","usage":{"input_tokens":2000,"cached_input_tokens":1500,"output_tokens":3}}',
     ]
-    text, usage = parse_backend_output("codex", "\n".join(lines))
-    assert text == "Hi."
-    assert usage["cached_input_tokens"] == 1500
+    out = CODEX.parse("\n".join(lines))
+    assert out.text == "Hi."
+    assert out.usage["cached_input_tokens"] == 1500

@@ -11,15 +11,13 @@ from pathlib import Path
 import pytest
 
 from lib import (
-    BACKENDS,
     CONFIGS,
+    Backend,
     Eval,
-    backend_available,
     build_prompt,
     kien_thai_bundle,
     load_evals,
     next_iteration_dir,
-    parse_backend_output,
     wrap_markdown,
 )
 
@@ -40,9 +38,9 @@ def pytest_generate_tests(metafunc):
         metafunc.parametrize("config", CONFIGS)
 
 
-def _invoke(backend: str, prompt: str) -> tuple[str, dict, int, float]:
+def _invoke(backend: Backend, prompt: str) -> tuple[str, dict, int, float]:
     """Run backend on prompt; return (text, usage, rc, duration)."""
-    cmd = [*BACKENDS[backend], prompt]
+    cmd = [*backend.argv, prompt]
     t0 = time.monotonic()
     proc = subprocess.run(
         cmd, capture_output=True, text=True, timeout=TIMEOUT_S, env={**os.environ}
@@ -50,15 +48,15 @@ def _invoke(backend: str, prompt: str) -> tuple[str, dict, int, float]:
     dur = time.monotonic() - t0
     if proc.returncode != 0:
         return proc.stdout, {}, proc.returncode, dur
-    text, usage = parse_backend_output(backend, proc.stdout)
-    return text, usage, proc.returncode, dur
+    out = backend.parse(proc.stdout)
+    return out.text, out.usage, proc.returncode, dur
 
 
-def _run_once(backend: str, prompt: str, out_dir: Path, label: str) -> tuple[str, float, dict]:
+def _run_once(backend: Backend, prompt: str, out_dir: Path, label: str) -> tuple[str, float, dict]:
     (out_dir / f"{label}-prompt.txt").write_text(prompt, encoding="utf-8")
     text, usage, rc, dur = _invoke(backend, prompt)
-    assert rc == 0, f"{backend} {label} exited {rc}: {text[:500]}"
-    assert text.strip(), f"{backend} {label} empty output"
+    assert rc == 0, f"{backend.name} {label} exited {rc}: {text[:500]}"
+    assert text.strip(), f"{backend.name} {label} empty output"
     return text, dur, usage
 
 
@@ -99,14 +97,14 @@ def _is_clean(audit: str) -> bool:
     return txt.splitlines()[0].strip().upper().startswith("CLEAN")
 
 
-def _run_baseline(backend: str, eval_case: Eval, out_dir: Path) -> dict:
+def _run_baseline(backend: Backend, eval_case: Eval, out_dir: Path) -> dict:
     prompt = build_prompt(eval_case, "baseline", "")
     text, dur, usage = _run_once(backend, prompt, out_dir, "input")
     (out_dir / "output.md").write_text(wrap_markdown(text), encoding="utf-8")
     return {"duration_s": round(dur, 2), "usage": usage}
 
 
-def _run_loop(backend: str, eval_case: Eval, out_dir: Path) -> dict:
+def _run_loop(backend: Backend, eval_case: Eval, out_dir: Path) -> dict:
     register = eval_case.register
     # Two register-scoped bundles: 'draft' for pass-0 (keeps workflow sections),
     # 'audit' for audit/fix passes (drops draft-time advice).
@@ -153,10 +151,10 @@ def _run_loop(backend: str, eval_case: Eval, out_dir: Path) -> dict:
 
 @pytest.fixture
 def run_eval(iteration_dir: Path):
-    def _run(backend: str, eval_case: Eval, config: str) -> Path:
-        if not backend_available(backend):
-            pytest.skip(f"{backend} not on PATH")
-        out_dir = iteration_dir / eval_case.name / backend / config
+    def _run(backend: Backend, eval_case: Eval, config: str) -> Path:
+        if not backend.available:
+            pytest.skip(f"{backend.name} not on PATH")
+        out_dir = iteration_dir / eval_case.name / backend.name / config
         out_dir.mkdir(parents=True, exist_ok=True)
         if config == "baseline":
             extra = _run_baseline(backend, eval_case, out_dir)
@@ -165,7 +163,7 @@ def run_eval(iteration_dir: Path):
         (out_dir / "meta.json").write_text(
             json.dumps(
                 {
-                    "backend": backend,
+                    "backend": backend.name,
                     "config": config,
                     "eval_id": eval_case.id,
                     "eval_name": eval_case.name,

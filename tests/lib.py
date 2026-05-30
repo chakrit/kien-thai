@@ -10,6 +10,7 @@ import json
 import os
 import re
 import shutil
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -25,10 +26,58 @@ WORKSPACE = ROOT / "workspace"
 # the backend's own skill-loading machinery — so the only delta between
 # `with_skill` and `baseline` is the prompt. Output-format flags emit usage
 # stats (token counts + cache hit/miss) for per-pass instrumentation.
-BACKENDS: dict[str, list[str]] = {
-    "claude": ["claude", "--disable-slash-commands", "--output-format", "json", "-p"],
-    "codex": ["codex", "exec", "--json"],
-}
+
+
+@dataclass(frozen=True)
+class Output:
+    text: str
+    usage: dict
+
+
+def _parse_claude(stdout: str) -> Output:
+    """claude --output-format json: one JSON object with `result` + `usage`."""
+    data = json.loads(stdout)
+    return Output(data.get("result", ""), data.get("usage", {}))
+
+
+def _parse_codex(stdout: str) -> Output:
+    """codex --json: JSONL stream; agent_message carries text, turn.completed usage."""
+    text = ""
+    usage: dict = {}
+    for line in stdout.splitlines():
+        if not line.strip():
+            continue
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if event.get("type") == "item.completed":
+            item = event.get("item", {})
+            if item.get("type") == "agent_message":
+                text = item.get("text", text)
+        elif event.get("type") == "turn.completed":
+            usage = event.get("usage", {}) or usage
+    return Output(text, usage)
+
+
+@dataclass(frozen=True)
+class Backend:
+    name: str
+    argv: tuple[str, ...]
+    parse: Callable[[str], Output]
+
+    @property
+    def available(self) -> bool:
+        return shutil.which(self.argv[0]) is not None
+
+
+CLAUDE = Backend(
+    "claude",
+    ("claude", "--disable-slash-commands", "--output-format", "json", "-p"),
+    _parse_claude,
+)
+CODEX = Backend("codex", ("codex", "exec", "--json"), _parse_codex)
+BACKENDS: dict[str, Backend] = {b.name: b for b in (CLAUDE, CODEX)}
 
 CONFIGS = ("with_skill", "baseline")
 
@@ -71,50 +120,21 @@ def next_iteration_dir() -> Path:
     return d
 
 
-def backend_available(backend: str) -> bool:
-    return shutil.which(BACKENDS[backend][0]) is not None
-
-
-def enabled_backends() -> set[str]:
+def enabled_backends() -> set[Backend]:
     """Backends opted in for this run. Default: claude only.
 
     Override via `EVAL_BACKENDS=claude,codex` (comma-separated). Empty/unset
-    means claude only — codex is opt-in.
+    means claude only — codex is opt-in. Unknown names are rejected at this
+    boundary rather than silently dropped.
     """
     raw = os.environ.get("EVAL_BACKENDS", "").strip()
     if not raw:
-        return {"claude"}
-    return {b.strip() for b in raw.split(",") if b.strip()}
-
-
-def parse_backend_output(backend: str, stdout: str) -> tuple[str, dict]:
-    """Extract (text, usage) from a backend's stdout.
-
-    claude --output-format json: single JSON object with `result` + `usage`.
-    codex --json: JSONL stream; agent_message item carries text, turn.completed
-    carries usage.
-    """
-    if backend == "claude":
-        data = json.loads(stdout)
-        return data.get("result", ""), data.get("usage", {})
-    if backend == "codex":
-        text = ""
-        usage: dict = {}
-        for line in stdout.splitlines():
-            if not line.strip():
-                continue
-            try:
-                ev = json.loads(line)
-            except json.JSONDecodeError:
-                continue
-            if ev.get("type") == "item.completed":
-                item = ev.get("item", {})
-                if item.get("type") == "agent_message":
-                    text = item.get("text", text)
-            elif ev.get("type") == "turn.completed":
-                usage = ev.get("usage", {}) or usage
-        return text, usage
-    raise ValueError(f"unknown backend: {backend}")
+        return {CLAUDE}
+    names = {n.strip() for n in raw.split(",") if n.strip()}
+    unknown = names - BACKENDS.keys()
+    if unknown:
+        raise ValueError(f"unknown EVAL_BACKENDS: {sorted(unknown)}")
+    return {BACKENDS[n] for n in names}
 
 
 _FENCE_RE = re.compile(r"^(\s*)(```|~~~)")
