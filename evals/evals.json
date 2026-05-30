@@ -24,6 +24,12 @@
       "name": "personal-essay-homecoming",
       "register": "personal-blog",
       "prompt": "เขียน personal essay ภาษาไทยความยาวประมาณ 4-5 ย่อหน้า สไตล์ blog ส่วนตัว (ไม่ใช่ dev war-story ไม่ใช่บทความนิตยสาร) เกี่ยวกับการกลับไปอยู่บ้านต่างจังหวัดช่วงสั้นๆ หลังทำงานในกรุงเทพมานาน สังเกตอะไรเปลี่ยนไป อะไรยังเหมือนเดิม ความรู้สึกตัวเองต่อทั้งสองที่ ใช้มุมมองบุคคลที่หนึ่ง"
+    },
+    {
+      "id": 5,
+      "name": "exec-brief-oss-bi-hana",
+      "register": "explainer",
+      "prompt": "เขียน executive briefing ภาษาไทยสั้นๆ (3-4 ย่อหน้า) สำหรับผู้บริหารที่ไม่ใช่สาย tech ตอบคำถามว่า องค์กรที่ใช้ SAP S/4HANA อยู่จะเอาข้อมูลออกมาทำ BI ด้วยเครื่องมือ open-source ได้ไหม อธิบายสองแนวทางหลัก — ต่อ BI tool เข้า HANA ตรงๆ ผ่าน connector vs. ดึงข้อมูลออกมา replicate ลง open-source database (เช่น Postgres / DuckDB) แล้วค่อย report บน copy — ชี้ว่าทางไหนคือกับดักและเพราะอะไร (license, performance, governance) แล้วสรุปว่าควรเลือกทางไหนและต้องเตรียมอะไร น้ำเสียงเป็น briefing ผู้บริหาร ไม่ใช่ tutorial นักพัฒนา"
     }
   ]
 }
