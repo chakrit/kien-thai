@@ -16,6 +16,7 @@ from lib import (
     BundleMode,
     Config,
     Eval,
+    PassKind,
     kien_thai_bundle,
     load_evals,
     next_iteration_dir,
@@ -123,10 +124,12 @@ def _run_loop(backend: Backend, eval_case: Eval, out_dir: Path) -> dict:
     initial = _run_once(backend, initial_prompt, out_dir, "pass-0")
     prose = initial.text
     (out_dir / "pass-0.md").write_text(wrap_markdown(prose), encoding="utf-8")
-    passes: list[dict] = [
-        {"pass": 0, "kind": "initial", "duration_s": round(initial.duration_s, 2),
-         "usage": initial.usage}
-    ]
+    passes: list[dict] = [{
+        "pass": 0,
+        "kind": PassKind.INITIAL,
+        "duration_s": round(initial.duration_s, 2),
+        "usage": initial.usage,
+    }]
 
     converged = False
     last_pass = 0
@@ -137,9 +140,11 @@ def _run_loop(backend: Backend, eval_case: Eval, out_dir: Path) -> dict:
         (out_dir / f"pass-{i}-audit.md").write_text(audit.text.strip() + "\n", encoding="utf-8")
         clean = _is_clean(audit.text)
         passes.append({
-            "pass": i, "kind": "audit",
+            "pass": i,
+            "kind": PassKind.AUDIT,
             "duration_s": round(audit.duration_s, 2),
-            "clean": clean, "usage": audit.usage,
+            "clean": clean,
+            "usage": audit.usage,
         })
         last_pass = i
         if clean:
@@ -151,7 +156,8 @@ def _run_loop(backend: Backend, eval_case: Eval, out_dir: Path) -> dict:
         prose = fix.text
         (out_dir / f"pass-{i}.md").write_text(wrap_markdown(prose), encoding="utf-8")
         passes.append({
-            "pass": i, "kind": "fix",
+            "pass": i,
+            "kind": PassKind.FIX,
             "duration_s": round(fix.duration_s, 2),
             "usage": fix.usage,
         })

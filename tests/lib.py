@@ -23,11 +23,6 @@ SKILL_PATH = KIEN_THAI_DIR / "SKILL.md"
 EVALS_FILE = ROOT / "evals" / "evals.json"
 WORKSPACE = ROOT / "workspace"
 
-# Bare-mode invocations. Skills are injected via prompt prepend, never via
-# the backend's own skill-loading machinery — so the only delta between
-# `with_skill` and `baseline` is the prompt. Output-format flags emit usage
-# stats (token counts + cache hit/miss) for per-pass instrumentation.
-
 
 @dataclass(frozen=True)
 class Output:
@@ -72,6 +67,10 @@ class Backend:
         return shutil.which(self.argv[0]) is not None
 
 
+# Bare-mode invocations. Skills are injected via prompt prepend, never via
+# the backend's own skill-loading machinery — so the only delta between
+# `with_skill` and `baseline` is the prompt. Output-format flags emit usage
+# stats (token counts + cache hit/miss) for per-pass instrumentation.
 CLAUDE = Backend(
     "claude",
     ("claude", "--disable-slash-commands", "--output-format", "json", "-p"),
@@ -89,6 +88,12 @@ class Config(StrEnum):
 class BundleMode(StrEnum):
     DRAFT = "draft"
     AUDIT = "audit"
+
+
+class PassKind(StrEnum):
+    INITIAL = "initial"
+    AUDIT = "audit"
+    FIX = "fix"
 
 
 @dataclass(frozen=True)
