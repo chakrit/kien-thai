@@ -6,6 +6,12 @@ contributor) is about to make the same wrong call again, this directory
 catches it. Memory captures the rule; these entries capture the *examples*
 the rule grew from.
 
+> **Direction (2026-05-30):** when a judgement's correction generalizes, the durable
+> landing is a register-tagged before/after *pair* in
+> [`../../skills/kien-thai/references/examples.md`](../../skills/kien-thai/references/examples.md)
+> (rules only when the pair doesn't transfer) — see
+> [`../decisions/2026-05-30-exemplar-first-pivot.md`](../decisions/2026-05-30-exemplar-first-pivot.md).
+
 ## Layout
 
 One file per entry, named `YYYY-MM-DD-slug.md`. Slug is kebab-case, short,

@@ -51,6 +51,15 @@ the iteration discipline below.
 >
 > **Rules without provenance rot. Don't grow the skill faster than the evidence does.**
 
+> **Direction (2026-05-30): exemplar-first, auditor-recall-measured.** The default
+> durable artifact is now a native before/after *pair*, not a rule — pairs are lossless
+> native signal, rules a lossy compression a non-native generalizer (Claude) performs,
+> earned only when the pair alone doesn't transfer. The binding constraint is *auditor
+> recall*, not drafter quality: the kode-thai loop converges to *skill-clean* (the
+> ruleset finds nothing), never to *chakrit-clean* (the native ear finds nothing). Full
+> rationale + the eight decisions:
+> [`notes/decisions/2026-05-30-exemplar-first-pivot.md`](notes/decisions/2026-05-30-exemplar-first-pivot.md).
+
 When an eval output looks bad, the temptation is to immediately add a new rule or
 tighten an existing one. **Resist this.** Trace first:
 
@@ -59,14 +68,16 @@ tighten an existing one. **Resist this.** Trace first:
    `ai-tells.md` (mechanical), `craft.md` (soft), `grammar.md` (surface),
    `style-rules.md`, `register.md`, or `examples.md`? If it's in none, that's a real
    gap.
-3. **If a rule exists but didn't fire**: ask why. Was it buried? Phrased weakly?
-   Conflicting with another rule? Wrong register applied? Fix the existing rule's
-   wording, prominence, or anchoring example — don't pile on a new rule that says
-   the same thing differently.
-4. **If no rule covers it**: before adding one, check the source-research evidence.
-   Is this a pattern the research surfaced? If yes, surface the existing observation
-   into a rule. If no, the new rule is speculative — flag it as such, add only with
-   a concrete citation or counter-example, and keep it provisional.
+3. **If a rule exists but didn't fire** (a recall-miss): ask why. Buried? Phrased
+   weakly? Conflicting with another rule? Wrong register? Strengthen the existing rule's
+   wording, prominence, or anchoring example — or add a native pair to the audit bundle
+   so the auditor has a concrete anchor — but don't pile on a new rule that says the
+   same thing differently.
+4. **If no rule covers it** (a coverage-gap): land it as a register-tagged before/after
+   *pair* in `references/examples.md` / `exemplars.md` first — that is the default.
+   Promote to a rule only when the pair alone doesn't transfer across outputs, and then
+   only with corpus evidence; a rule without a source is speculative — flag it
+   `provisional`.
 5. **Document the trace** in `iteration-N/feedback.md` so the rule's origin survives.
 
 External contributors follow the same logic via [`CONTRIBUTING.md`](CONTRIBUTING.md)
@@ -156,11 +167,16 @@ assertions.
   Outputs land in
   `iteration-N/<eval>/<backend>/<config>/{output.md,prompt.txt,meta.json}`.
   meta.json tracks per-pass usage (cache hits, input/output tokens).
-- **Stage 2 (review)**: human + Claude review artifacts inline in the chat. No browser
-  viewer (yet). Cross-check across backends to mitigate self-judge bias. Consolidated
-  notes go to `iteration-N/feedback.md` and graduate into `references/*.md`. Flip the
-  iteration's Review cell to `reviewed` in [`workspace/INDEX.md`](workspace/INDEX.md)
-  and link the feedback file.
+- **Stage 2 (review)**: the outer loop — see
+  [`tests/REVIEW-PROTOCOL.md`](tests/REVIEW-PROTOCOL.md). A skill-clean output goes to
+  chakrit's ear for the *chakrit-clean* verdict; the gap between the two is the
+  measurement. **Never read loop-to-CLEAN as a quality result — it is ruleset-coverage,
+  not naturalness.** Primary signals: the *CLEAN-but-flawed rate* and *auditor recall*
+  (recall-miss vs coverage-gap). Consolidated notes + the aggregate go to
+  `iteration-N/feedback.md` and graduate into pairs (`references/examples.md` /
+  `exemplars.md`) first, rules only when the pair doesn't transfer. Flip the iteration's
+  Review cell to `reviewed` in [`workspace/INDEX.md`](workspace/INDEX.md) and link the
+  feedback file.
 - **`test_quant.py`** is advisory only — flags forbidden phrases and connective
   density. Not a quality gate.
 
@@ -265,6 +281,13 @@ gets a right-aligned header.
 ```
 
 Repad the whole column whenever any cell in it changes width.
+
+**`mdfmt` caveats.** The `markdown-writing` skill bundles `mdfmt.py`, but: this repo's
+`.md` files are hand-wrapped conservatively (≤90, not `mdfmt`'s greedy fill), so
+`mdfmt --check` flags them wholesale — it is **not** the enforced standard; the ≤90 rule
+above is. And `mdfmt` mangles `<...>` inline-code in prose (splits the span, overruns 90).
+Hand-wrap to ≤90 and **do not run `mdfmt --write` on existing files** — it reformats them
+entirely and can mangle inline-code such as `<skill>`.
 
 ## Load these skills
 

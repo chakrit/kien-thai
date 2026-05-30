@@ -5,6 +5,12 @@ here are *questions*, not verdicts. Each entry should name the question, the
 hypothesis (if any), the scope of work that would settle it, and where the
 finding would land.
 
+> **Direction (2026-05-30):** items here that surface a recurring pattern now land as
+> register-tagged before/after *pairs* first (rules only when the pair doesn't transfer),
+> and graduate only with the auditor-recall data from the review loop — see
+> [`decisions/2026-05-30-exemplar-first-pivot.md`](decisions/2026-05-30-exemplar-first-pivot.md)
+> and [`../tests/REVIEW-PROTOCOL.md`](../tests/REVIEW-PROTOCOL.md).
+
 ---
 
 ## ๆ-spacing as register-scoped style ✅ resolved 2026-05-13

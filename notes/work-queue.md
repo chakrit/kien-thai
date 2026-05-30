@@ -111,6 +111,11 @@ and the vetting pass completes.
 
 ## Framing experiments for Thai-native generation
 
+**Status (2026-05-30): committed direction**, not speculative — see
+[`decisions/2026-05-30-exemplar-first-pivot.md`](decisions/2026-05-30-exemplar-first-pivot.md).
+The exemplar inversion (rules → pairs) and measurement-first sequencing are decided; what
+remains is execution per the decision record's phases.
+
 **Need.** Bundle ordering and exemplar proximity matter for shifting
 Claude's output distribution toward Thai-native prose. Literature
 (multilingual ICL, English-accent paper, persona effect, multilingual
@@ -175,3 +180,34 @@ Manual consolidation required before review.
 
 **Block.** Do not run `-m generate -n >1` until fixed, or expect to
 manually merge iteration directories afterward.
+
+---
+
+## Harness efficiency — SDK caching + code-side mechanical audit
+
+**Status (2026-05-30): recorded, not started.** Tactical token/latency wins surfaced
+while scoping the refactor. Orchestration is already deterministic Python
+(`tests/generate/conftest.py`); the LLM is already just generate + audit. So the wins are
+in bundle×passes and the LLM calls, not the orchestration language.
+
+**Levers, ranked.**
+
+1. **Prompt caching via the Anthropic SDK.** The bundle is a static prefix reused across
+   every pass and every eval in a register — the ideal cache target (~90% off the static
+   part on a hit). `meta.json` already records `cache_read` / `cache_creation`. Cheap
+   first move: check whether the current `claude -p` CLI runs hit cache at all; if ~0,
+   move the generate/audit calls to the SDK for explicit `cache_control`.
+2. **Code-side mechanical audit.** `forbidden-phrases` + connective density are already
+   grepped in `test_quant.py` with no LLM. Grow that into a regex + pythainlp linter for
+   the pattern-matchable tells; reserve the LLM audit for discourse frames that need
+   understanding. Shrinks the LLM audit, makes the cheap layer instant and deterministic.
+3. **Batch API** for the non-interactive generation matrix (~50% off).
+4. **Bundle shrink** — falls out of the exemplar inversion (rules → pairs).
+
+**Open.** SDK migration touches `tests/lib.py` BACKENDS + `_invoke`; keep CLI parity for
+the codex backend (not an Anthropic model). The linter's scope boundary — what is
+mechanical enough for code vs needs the LLM — tracks the recall data; promote a check to
+code only once it is reliably pattern-matchable.
+
+**Block.** None, but lower priority than the measurement phases — efficiency compounds the
+loop, it does not create the gradient.
