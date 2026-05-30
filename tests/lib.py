@@ -289,6 +289,17 @@ def _strip_workflow_sections(text: str) -> str:
     return "".join(out)
 
 
+def _split_on_heading(text: str, prefix: str) -> list[str]:
+    """Split into `[preamble, heading-led section, ...]` at lines starting with prefix."""
+    sections = [""]
+    for line in text.splitlines(keepends=True):
+        if line.lstrip().startswith(prefix):
+            sections.append(line)
+        else:
+            sections[-1] += line
+    return sections
+
+
 def _scope_register_md(text: str, register: str) -> str:
     """Keep only the active register's sections; drop the others.
 
@@ -301,44 +312,32 @@ def _scope_register_md(text: str, register: str) -> str:
     if not keys:
         return text  # unknown register, ship full file
 
-    lines = text.splitlines(keepends=True)
-    out: list[str] = []
-    in_register_section = False
-    keep_register_section = True
-    in_marketing_subreg = False
-    keep_marketing_subreg = True
+    preamble, *sections = _split_on_heading(text, "## ")
+    kept = [preamble] + [_scope_register_section(s, keys) for s in sections]
+    return "".join(kept)
 
-    for line in lines:
-        stripped = line.lstrip()
-        if stripped.startswith("## Register "):
-            in_register_section = True
-            in_marketing_subreg = False
-            # Keep this section if its heading mentions one of our keys.
-            keep_register_section = any(k in line for k in keys)
-            if keep_register_section:
-                out.append(line)
-            continue
-        if in_register_section and stripped.startswith("## "):
-            in_register_section = False
-            in_marketing_subreg = False
-        if in_register_section and "Register 2" in keys[0] and stripped.startswith("### "):
-            # Marketing sub-register subsection
-            in_marketing_subreg = True
-            # Keep if heading number matches our sub-key (e.g. "2.1")
-            sub_key = keys[1] if len(keys) > 1 else None
-            keep_marketing_subreg = bool(sub_key and sub_key in line)
-            if keep_register_section and keep_marketing_subreg:
-                out.append(line)
-            continue
-        if in_register_section:
-            if "Register 2" in keys[0] and in_marketing_subreg:
-                if keep_register_section and keep_marketing_subreg:
-                    out.append(line)
-            elif keep_register_section:
-                out.append(line)
-            continue
-        out.append(line)
-    return "".join(out)
+
+def _scope_register_section(section: str, keys: tuple[str, ...]) -> str:
+    """Keep a `## ` section; drop it only if it's a non-matching `## Register N`."""
+    heading = section.splitlines()[0]
+    if not heading.lstrip().startswith("## Register "):
+        return section  # always-keep section (Voice, Coherence, ...)
+    if not any(k in heading for k in keys):
+        return ""  # a different register — drop it
+    if keys[0] == "Register 2":
+        return _filter_marketing_subregisters(section, keys)
+    return section
+
+
+def _filter_marketing_subregisters(section: str, keys: tuple[str, ...]) -> str:
+    """Within the Marketing family, keep only the matching `### 2.X` sub-register."""
+    sub_key = keys[1] if len(keys) > 1 else None
+    preamble, *subsections = _split_on_heading(section, "### ")
+    kept = [preamble]
+    for sub in subsections:
+        if sub_key and sub_key in sub.splitlines()[0]:
+            kept.append(sub)
+    return "".join(kept)
 
 
 def _scope_examples_md(text: str, register: str) -> str:
