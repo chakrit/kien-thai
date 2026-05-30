@@ -44,8 +44,7 @@ def test_auditor_recall():
         pytest.skip("claude not on PATH")
     rows = [(it, _audit_cites_slug(it)) for it in extract_known_bad()]
     assert rows, "no known-bad items to audit"
-    hits = sum(fired for _, fired in rows)
-    _write_report(rows, hits / len(rows))
+    _write_report(rows)
 
 
 def _audit_cites_slug(it: KnownBad) -> bool:
@@ -61,7 +60,7 @@ def _audit_cites_slug(it: KnownBad) -> bool:
     return it.slug in CLAUDE.parse(proc.stdout).text
 
 
-def _write_report(rows: list[tuple[KnownBad, bool]], rate: float) -> Path:
+def _write_report(rows: list[tuple[KnownBad, bool]]) -> Path:
     hits = sum(fired for _, fired in rows)
     misses = [it for it, fired in rows if not fired]
     lines = [
@@ -70,7 +69,7 @@ def _write_report(rows: list[tuple[KnownBad, bool]], rate: float) -> Path:
         "Seed: each rule's own Bad example. Miss = the audit pass did not cite the",
         "rule's slug when fed that rule's own canonical Bad example.",
         "",
-        f"Recall: {hits}/{len(rows)} = {rate:.0%}",
+        f"Recall: {hits}/{len(rows)} = {hits / len(rows):.0%}",
         "",
         "## Misses",
         "",
