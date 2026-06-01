@@ -162,9 +162,12 @@ docs/                         # durable artifacts — see docs/README.md
 
 **Durable artifacts** live in [`docs/`](docs/), sorted by permanence: `decisions/`
 (point-in-time rulings + prose-direction judgements), `spec/` (current-intent
-design/protocol), `notes/` (impermanent). Live backlogs — `work-queue.md`,
-`research-queue.md`, `human-tasks-queue.md` — sit at `docs/` root. Default new
-artifacts to `notes/`; see [`docs/README.md`](docs/README.md).
+design/protocol), `notes/` (impermanent). Three live backlogs sit at `docs/` root:
+`work-queue.md` (agent-doable), `research-queue.md` (speculative, needs evidence),
+`human-tasks-queue.md` (needs chakrit's ear/decision/token-spend). **Task discovery
+reads all three** — `/ace`, or any "what's next" — not just `work-queue.md`; agent
+threads routinely gate on a `human-tasks-queue.md` decision, so one queue is never
+enough. Default new artifacts to `notes/`; see [`docs/README.md`](docs/README.md).
 
 ### Eval strategy
 
