@@ -37,9 +37,17 @@ the spec, so the protocol shrinks the human surface to the ear alone.
    audit trace (which slugs did fire).
 
 2. **[agent] Stage.** Open each output in iA Writer (Thai renders wrong in terminal
-   pagers; the command is in CLAUDE.md). One at a time, register labelled, audit trace
-   visible so chakrit can see what the auditor claimed was clean. Pre-fill a record with
-   identity + `skill_clean` fields; leave findings blank.
+   pagers; the command is in CLAUDE.md). **Open exactly one file at a time — never several
+   at once — and before opening it, state the verdict format: how and where chakrit marks
+   corrections.** Register labelled, audit trace visible so chakrit can see what the
+   auditor claimed was clean. Pre-fill a record with identity + `skill_clean` fields;
+   leave findings blank.
+
+   Editing the staged `output.md` inline is an accepted way to give the verdict — the
+   rewrite *is* the before/after pair's "after". But `output.md` is gitignored evidence
+   that regenerates, so harvest the edit immediately: diff it against the pass that
+   returned CLEAN (`pass-0.md` when it converged at pass-0) to recover the "before", lift
+   the pair into the queue, and do not treat `output.md` as the durable home.
 
 3. **[chakrit] Verdict.** Read end-to-end — not span-scan. Call it: chakrit-clean, yes/no.
    If no, mark each offending span and the correction in your own words. If the piece is

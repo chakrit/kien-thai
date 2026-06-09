@@ -13,6 +13,46 @@ finding would land.
 
 ---
 
+## Discourse / composition axis — macrostructure + inter-sentence cohesion
+
+**Provenance.** iter-8 outer-loop review (2026-06-08), two findings the sentence-scoped
+ruleset is structurally blind to. See
+[`../workspace/iteration-8/feedback.md`](../workspace/iteration-8/feedback.md) → ② and ④.
+
+**Question (a) — macrostructure.** The skill + review protocol run entirely
+sentence-to-paragraph. The frames' "structural" tag means *clause* structure;
+`style-rules.md §Structure` caps at single-paragraph. There is no per-register
+macrostructure (news arc, essay shape) and no discourse-level finding class — the only
+holistic verdict is `reads-flat` (voice). ②'s `news-feature-bts` was chakrit-clean: no on a
+**whole-piece restructure** (Dao's flag) that no slot can hold. Does kien-thai need a
+per-register macrostructure axis and a `reads-misstructured` verdict flag in the protocol?
+
+**Question (b) — inter-sentence cohesion.** Finer than (a): ④'s `ที่ยังเหมือนเดิมก็มี` was
+a connective error *between adjacent sentences* — additive `ก็มี` used where the discourse
+move is contrast against the prior sentence's `เปลี่ยน`. Fix mirrored the prior verb
+(`ไม่เปลี่ยนแปลง`) to license the marker. No slug covers cross-sentence connective-choice
+logic; every connective rule (`connective-budget`, `seam-connective-missing`, `doi-sprawl`)
+is within-sentence. Is inter-sentence cohesion a distinct rule class, or does it fold into
+the macrostructure axis above?
+
+**Hypothesis.** (a) and (b) are the same axis at two scales — discourse cohesion the skill
+has never modeled because generation/audit operate a sentence at a time. Likely a real
+coverage hole, but **gate any rule on corpus evidence of native macrostructure per
+register** — without attested news-arc / essay-shape patterns this stays speculative.
+
+**Scope to investigate.** Survey `corpus/curated/` per register for macrostructure
+signatures (lede/nut-graf in news-feature, turn-structure in personal essay) and for
+inter-sentence contrast/continuation marker choice. Tabulate whether native writing has a
+consistent shape worth encoding vs being too author-variable to rule.
+
+**Landing place.** Pairs first into `references/examples.md` (the ④ cohesion pair is ready:
+`ที่ยังเหมือนเดิมก็มี` → `ที่ยังเหมือนเดิมไม่เปลี่ยนแปลงก็มี`, register `personal-blog`).
+Macrostructure → possibly a new `references/structure.md` or a `register.md` per-family
+shape note. The `reads-misstructured` **protocol-flag decision is chakrit's** — tracked in
+[`human-tasks-queue.md`](human-tasks-queue.md).
+
+---
+
 ## ๆ-spacing as register-scoped style ✅ resolved 2026-05-13
 
 **Resolution.** Browser-vetted across 5 registers (see
