@@ -5,9 +5,10 @@
 - **Date:** 2026-06-09
 - **Task:** Investigate training/fine-tuning a model good at native Thai prose,
   as an alternative to the kien-thai skill (the skill's goal minus the harness).
-- **Status:** in-progress — feasibility confirmed, naturalness review pending
-  (chakrit needs a Thai-readable review tool; SSH/terminal/iA-Writer-over-SSH all
-  failed this session).
+- **Status:** in-progress — feasibility confirmed AND first naturalness read in:
+  chakrit reviewed bare 8B output at the desktop, **found no grammatical fault and
+  no calque**. Step-1 conditioned comparison (Typhoon+exemplars vs Claude+skill)
+  still pending.
 
 ## Context
 
@@ -33,6 +34,19 @@ base model carries the native distribution in weights, so the lever may be
 - Explore pass on repo assets: corpus ~53 curated snippets / ~20K words,
   8 chakrit-clean review verdicts as the strongest signal (iter-8). Density
   is high, **volume is ~4–8× thin for cold SFT/DPO.**
+
+## Update 2026-06-14 — first ear-review + harness caveat
+
+- **chakrit's verdict on bare, unconditioned 8B output: no grammatical fault, no
+  calque.** Even without exemplars or register conditioning, the failure modes the
+  skill spends most rules on were absent. Strongest single data point for the
+  model route so far.
+- **Harness caveat (load-bearing):** capture Typhoon via the ollama HTTP API
+  (`POST /api/generate`, `"stream":false`), **never `ollama run`** — the CLI leaks
+  its streaming re-render into redirected output: duplicated line fragments and
+  dropped chars mid-UTF-8. First clean capture used a python urllib call to the API.
+- Step-1 next-step #1 (chakrit reviews the tmp output) is now **done**; the
+  remaining step-1 work is the conditioned 5-eval comparison vs Claude+skill.
 
 ## Decisions
 
