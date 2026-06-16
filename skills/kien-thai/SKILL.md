@@ -15,6 +15,37 @@ rules in `references/ai-tells.md` (mechanical), `references/grammar.md`
 (surface), and `references/craft.md` (taste) become applications of the
 frames — many auto-resolve once the frames are right.
 
+## Best output: draft with a Thai-native model when one is reachable
+
+Honest admission up front: **the largest lever on Thai naturalness is
+base-model choice, not this skill.** The machine-sounding Thai the frames below
+fight is mostly an artifact of English-centric models (Claude, Codex) writing
+Thai. A Thai-pretrained model — Typhoon-2, SEA-LION, OpenThaiGPT — carries the
+native distribution in its weights. Bare, unconditioned Typhoon-2 8B already
+drafts Thai that the native ear finds with no grammatical fault and no calque —
+the very failure modes most of these rules exist to catch.
+
+So when a Thai-native model is reachable, the best result comes from **drafting
+with it and then auditing with this skill**, not from drafting with the skill
+alone. The frames don't go away — they become the audit layer (the kode-thai
+loop) over a native-drafted base. When no such model is reachable, kien-thai
+drafts and audits directly, exactly as the rest of this file describes. **The
+skill stands alone; the model makes it better.**
+
+This route is a script, not an instruction to follow by hand:
+
+```sh
+# Draft with the best available model (falls back cleanly if none is up),
+# then audit the result with the kode-thai loop.
+skills/kien-thai/scripts/thai-route.sh <register> "<your prompt>"
+```
+
+`scripts/thai-route.sh` decides the route by exit code: a native draft on
+stdout (exit 0 → run kode-thai on it), or exit 3 → no model, draft with
+kien-thai directly. The ollama capture caveat and few-shot conditioning from
+`corpus/` are baked into `scripts/thai-native-draft.py`. Full rationale, status,
+and the open eval step: `scripts/README.md`.
+
 ### `f1` *(frame · all-registers · structural)*
 
 **Frame 1 — Topic-comment over subject-verb-object.** English defaults to SVO.
@@ -227,6 +258,11 @@ rules: sentence shape, verbs over nouns, openers/closings, concreteness, voice,
 ทับศัพท์, translation craft) and `references/craft.md` (soft taste rules).
 
 ## Workflow when asked to write Thai prose
+
+0. **Route first.** Run `scripts/thai-route.sh <register> "<prompt>"`. If it
+   returns a native draft (exit 0), the drafting is done by a Thai-native model
+   — skip to the audit passes (steps 3–4, or the full kode-thai loop) over that
+   draft. If it exits 3 (no model), draft it yourself via steps 1–4 below.
 
 1. **Identify register, voice, and person deixis.** ASK if any are unclear —
    wrong register is worse than rough prose.

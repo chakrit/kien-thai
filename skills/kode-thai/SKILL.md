@@ -54,6 +54,15 @@ references) plus the full target file. For long prose this compounds fast.
 Warn the user before starting on files over ~1000 words so they can decide
 whether to scope the loop to a section.
 
+## Best input: a Thai-native model draft
+
+This loop audits any Thai prose, but its highest-value use is over a draft from
+a Thai-native model (Typhoon and peers), not Claude/Codex output. See
+kien-thai's "Best output" section and `skills/kien-thai/scripts/`: run
+`thai-route.sh` to produce the draft, then run this loop on it. The route
+script handles drafting and fallback; this loop is the audit half — the part
+that is language judgment, not a scriptable transform.
+
 ## Relationship to kien-thai
 
 `kien-thai` is the rule set. `kode-thai` is the loop. `kode-thai` doesn't add
