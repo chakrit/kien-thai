@@ -61,7 +61,7 @@ Use ๆ (mai-yamok) for casual reduplication. `เรื่อย ๆ`, `ให�
 ### `mai-yamok-spacing` *(style · register-scoped · soft)*
 
 Two rules for the space before ๆ (vetted 2026-05-13, see
-[`docs/notes/chrome-session-2026-05-13.md`](../../../docs/notes/chrome-session-2026-05-13.md) §3):
+`docs/notes/chrome-session-2026-05-13.md` §3):
 
 1. **`ต่าง ๆ` always takes the space.** Near-universal across edited
    Thai — government, tech-blog, even amateur personal-blog tend to
