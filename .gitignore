@@ -27,8 +27,6 @@ corpus/raw/
 __pycache__/
 .pytest_cache/
 
-.rtk/
-!.rtk/filters.toml
 .inbox.log
 .questions.log
 .claude

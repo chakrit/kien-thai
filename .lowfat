@@ -1,0 +1,20 @@
+# lowfat project config (template) — copy to `.lowfat` at a repo root.
+# The `/lowfat` skill seeds this, tuning `level` and filters to the toolchain.
+# Format: https://github.com/zdk/lowfat/blob/main/docs/CONFIG.md
+
+# Intensity: lite (~60 lines) · full (~30) · ultra (~10). Default full.
+level=full
+
+# --- filters ---
+# Bundled plugins (git/docker/grep/find/ls/tree) are active by default. Pantry
+# plugins become active once symlinked into the lowfat home and trusted.
+#
+# `disable` (blacklist) and `filters` (whitelist) are mutually exclusive.
+#   filters = rg, cargo, gh        # whitelist: ONLY these run
+#   disable = docker               # blacklist: all but these
+
+# --- redaction (opt-in) ---
+# `redact-secrets` masks credentials but can corrupt structured output
+# (JSON/env). Enable per-pipeline only after validating against this repo's
+# machine-readable commands:
+#   pipeline.* = redact-secrets

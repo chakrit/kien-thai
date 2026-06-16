@@ -336,7 +336,3 @@ Default to this for any Thai-prose target — eval outputs under
 
 Check availability with `ls /Applications/'iA Writer.app'` if uncertain;
 fallback to terminal display only when iA Writer is missing.
-
-## RTK (token saver)
-
-Prefix every shell command with `rtk`. Full reference: [`RTK.md`](RTK.md).
