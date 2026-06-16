@@ -18,6 +18,7 @@ import json
 import subprocess
 import sys
 import time
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -25,6 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lib import (  # noqa: E402
     EVAL_REGISTER_TO_CORPUS,
     ROOT,
+    Eval,
     load_evals,
     mechanical_signals,
     next_iteration_dir,
@@ -38,8 +40,14 @@ EXEMPLARS = 3
 TIMEOUT_S = 300
 
 
-def draft(prompt: str, corpus: str) -> tuple[str, str, float]:
-    """Return (text, stderr, duration_s) from one drafter invocation."""
+@dataclass(frozen=True)
+class Draft:
+    text: str
+    stderr: str
+    duration_s: float
+
+
+def draft(prompt: str, corpus: str) -> Draft:
     cmd = [
         sys.executable, str(DRAFTER), prompt,
         "-r", corpus, "-n", str(EXEMPLARS),
@@ -47,52 +55,53 @@ def draft(prompt: str, corpus: str) -> tuple[str, str, float]:
     ]
     t0 = time.monotonic()
     proc = subprocess.run(cmd, capture_output=True, text=True, timeout=TIMEOUT_S)
-    dur = time.monotonic() - t0
+    duration_s = time.monotonic() - t0
     if proc.returncode != 0:
         raise SystemExit(
             f"drafter exited {proc.returncode} for corpus={corpus}:\n{proc.stderr}"
         )
-    return proc.stdout.strip(), proc.stderr.strip(), dur
+    return Draft(proc.stdout.strip(), proc.stderr.strip(), duration_s)
+
+
+def write_draft(out_dir: Path, eval_case: Eval, corpus: str, result: Draft) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "input-prompt.txt").write_text(eval_case.prompt, encoding="utf-8")
+    (out_dir / "output.md").write_text(wrap_markdown(result.text), encoding="utf-8")
+
+    meta = {
+        "backend": "typhoon",
+        "config": "draft",
+        "mode": "typhoon-draft",
+        "eval_id": eval_case.id,
+        "eval_name": eval_case.name,
+        "register": eval_case.register,
+        "corpus_category": corpus,
+        "model": MODEL,
+        "temperature": TEMPERATURE,
+        "exemplars": EXEMPLARS,
+        "duration_s": round(result.duration_s, 2),
+        "drafter_stderr": result.stderr,
+        "signals": asdict(mechanical_signals(result.text)),
+    }
+    (out_dir / "meta.json").write_text(
+        json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
 
 
 def main() -> None:
     iteration = next_iteration_dir()
-    skipped: list[str] = []
     ran: list[str] = []
-    for ev in load_evals():
-        corpus = EVAL_REGISTER_TO_CORPUS.get(ev.register)
+    skipped: list[str] = []
+
+    for eval_case in load_evals():
+        corpus = EVAL_REGISTER_TO_CORPUS.get(eval_case.register)
         if corpus is None:
-            skipped.append(f"{ev.name} (register {ev.register!r} — no corpus)")
+            skipped.append(f"{eval_case.name} (register {eval_case.register!r} — no corpus)")
             continue
-        print(f"drafting {ev.name} (register={ev.register} -> corpus={corpus}) ...")
-        text, stderr, dur = draft(ev.prompt, corpus)
-        out_dir = iteration / ev.name / "typhoon" / "draft"
-        out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / "input-prompt.txt").write_text(ev.prompt, encoding="utf-8")
-        (out_dir / "output.md").write_text(wrap_markdown(text), encoding="utf-8")
-        (out_dir / "meta.json").write_text(
-            json.dumps(
-                {
-                    "backend": "typhoon",
-                    "config": "draft",
-                    "mode": "typhoon-draft",
-                    "eval_id": ev.id,
-                    "eval_name": ev.name,
-                    "register": ev.register,
-                    "corpus_category": corpus,
-                    "model": MODEL,
-                    "temperature": TEMPERATURE,
-                    "exemplars": EXEMPLARS,
-                    "duration_s": round(dur, 2),
-                    "drafter_stderr": stderr,
-                    "signals": mechanical_signals(text),
-                },
-                ensure_ascii=False,
-                indent=2,
-            ),
-            encoding="utf-8",
-        )
-        ran.append(ev.name)
+        print(f"drafting {eval_case.name} (register={eval_case.register} -> corpus={corpus}) ...")
+        result = draft(eval_case.prompt, corpus)
+        write_draft(iteration / eval_case.name / "typhoon" / "draft", eval_case, corpus, result)
+        ran.append(eval_case.name)
 
     print(f"\niteration: {iteration}")
     print(f"drafted ({len(ran)}): {', '.join(ran)}")

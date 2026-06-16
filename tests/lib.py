@@ -473,10 +473,10 @@ def _scope_to_register(scope: str) -> str:
 # Maps each eval's register slug to the corpus/curated/<path> used for few-shot
 # conditioning of the Thai-native drafter (thai-native-draft.py -r). The drafter
 # Path-joins the value under corpus/curated/, so a `family/sub` value resolves to
-# the sub-register subdir. `personal-blog` has no curated category yet — None
-# means "no few-shot coverage; gate this eval until the corpus exists".
+# the sub-register subdir. A register absent from this map has no corpus coverage —
+# typhoon_pass skips it, since the drafter has no exemplars to condition on.
 
-EVAL_REGISTER_TO_CORPUS: dict[str, str | None] = {
+EVAL_REGISTER_TO_CORPUS: dict[str, str] = {
     "explainer": "tech-writing",
     "marketing-saas-sme": "marketing/saas-sme",
     "marketing-b2b-formal": "marketing/b2b-formal",
@@ -519,22 +519,32 @@ def load_forbidden_phrases() -> list[str]:
     return phrases
 
 
-def mechanical_signals(text: str) -> dict:
+@dataclass(frozen=True)
+class Signals:
     """Length-agnostic AI-tell heuristics for arm-vs-arm comparison.
 
     Advisory only (same status as test_quant) — routes a human's attention,
     never a quality verdict.
     """
+
+    chars: int
+    paragraphs: int
+    forbidden_hits: tuple[str, ...]
+    connective_density: float
+    exclamations: int
+
+
+def mechanical_signals(text: str) -> Signals:
     chars = len(text)
     connectives = sum(len(re.findall(c, text)) for c in CONNECTIVES)
-    paragraphs = [b for b in re.split(r"\n\s*\n", text.strip()) if b.strip()]
-    return {
-        "chars": chars,
-        "paragraphs": len(paragraphs),
-        "forbidden_hits": [p for p in load_forbidden_phrases() if p in text],
-        "connective_density": round(connectives / max(chars, 1) * 1000, 1),
-        "exclamations": text.count("!") + text.count("！"),
-    }
+    blocks = [b for b in re.split(r"\n\s*\n", text.strip()) if b.strip()]
+    return Signals(
+        chars=chars,
+        paragraphs=len(blocks),
+        forbidden_hits=tuple(p for p in load_forbidden_phrases() if p in text),
+        connective_density=round(connectives / max(chars, 1) * 1000, 1),
+        exclamations=text.count("!") + text.count("！"),
+    )
 
 
 def extract_known_bad() -> list[KnownBad]:
