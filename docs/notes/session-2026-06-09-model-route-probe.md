@@ -48,6 +48,29 @@ base model carries the native distribution in weights, so the lever may be
 - Step-1 next-step #1 (chakrit reviews the tmp output) is now **done**; the
   remaining step-1 work is the conditioned 5-eval comparison vs Claude+skill.
 
+## Update 2026-06-14 — route folded into the skill + scripted
+
+The finding is now a first-class recommendation in the skill, and the route runs
+as a script rather than as prose an agent has to follow:
+
+- `skills/kien-thai/SKILL.md` — new "Best output: draft with a Thai-native model"
+  section + a step-0 "route first" in the workflow. Skill still stands alone when
+  no model is reachable.
+- `skills/kode-thai/SKILL.md` — note that the audit loop's best input is a
+  native-model draft; the loop is the un-scriptable (LLM-judgment) audit half.
+- `skills/kien-thai/scripts/thai-native-draft.py` — ollama HTTP-API drafter,
+  `stream:false` caveat baked in, `--check` for availability, `--register`
+  few-shots from `corpus/`. Never fabricates Thai; conditioning pulls from the
+  vetted corpus.
+- `skills/kien-thai/scripts/thai-route.sh` — encodes the route decision (model
+  present → draft; absent → exit 3, fall back to kien-thai).
+- `skills/kien-thai/scripts/README.md` — rationale, scripted-vs-agent split,
+  caveat, status.
+
+Scriptable steps are now scripts; the kode-thai audit loop stays agent-driven
+(language judgment, not a transform). Next rung unchanged: the conditioned
+5-eval comparison, then wiring the model as a third harness backend.
+
 ## Decisions
 
 - **From-scratch pretraining: rejected.** Seven-figure, reproduces Typhoon/

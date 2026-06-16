@@ -468,6 +468,75 @@ def _scope_to_register(scope: str) -> str:
     return "explainer"
 
 
+# --- Model-route comparison (Typhoon vs Claude) -----------------------------
+#
+# Maps each eval's register slug to the corpus/curated/<path> used for few-shot
+# conditioning of the Thai-native drafter (thai-native-draft.py -r). The drafter
+# Path-joins the value under corpus/curated/, so a `family/sub` value resolves to
+# the sub-register subdir. `personal-blog` has no curated category yet — None
+# means "no few-shot coverage; gate this eval until the corpus exists".
+
+EVAL_REGISTER_TO_CORPUS: dict[str, str | None] = {
+    "explainer": "tech-writing",
+    "marketing-saas-sme": "marketing/saas-sme",
+    "marketing-b2b-formal": "marketing/b2b-formal",
+    "marketing-fintech-warm": "marketing/fintech-warm",
+    "marketing-retail-tech": "marketing/retail-tech",
+    "news": "newspaper-feature",
+    "personal-blog": "personal-blog",  # 2 Vicharn Panich diary entries (2026-06-16 sweep)
+    "academic": "scholarly",
+}
+
+_FORBIDDEN_BLOCKLIST = KIEN_THAI_DIR / "references" / "forbidden-phrases.md"
+_FORBIDDEN_BULLET_RE = re.compile(r"^- (.+)$", re.MULTILINE)
+_BACKTICK_TOKEN_RE = re.compile(r"`([^`]+)`")
+# Parentheticals hold "use this instead" suggestions and rule-slug refs
+# (`สำคัญ`, `cta-bang`), not forbidden phrases — drop them before extraction.
+_PARENTHETICAL_RE = re.compile(r"\([^)]*\)")
+
+# Formal connectives AI overuses; density per 1k chars (mirrors test_quant).
+CONNECTIVES = ("ซึ่ง", "โดย", "ทั้งนี้", "อีกทั้ง", "นอกจากนี้", "อย่างไรก็ตาม")
+
+
+def load_forbidden_phrases() -> list[str]:
+    """Literal forbidden phrases from forbidden-phrases.md (Blocklist section).
+
+    Pulls every backticked token on a `- ` bullet line; drops pattern entries
+    (those with `...`/`…` ellipsis), which aren't plain substrings.
+    """
+    if not _FORBIDDEN_BLOCKLIST.exists():
+        return []
+    text = _FORBIDDEN_BLOCKLIST.read_text(encoding="utf-8")
+    after = text.split("## Blocklist", 1)
+    body = after[1] if len(after) == 2 else text
+    phrases: list[str] = []
+    for bullet in _FORBIDDEN_BULLET_RE.findall(body):
+        bullet = _PARENTHETICAL_RE.sub("", bullet)
+        for tok in _BACKTICK_TOKEN_RE.findall(bullet):
+            tok = tok.strip()
+            if tok and "..." not in tok and "…" not in tok:
+                phrases.append(tok)
+    return phrases
+
+
+def mechanical_signals(text: str) -> dict:
+    """Length-agnostic AI-tell heuristics for arm-vs-arm comparison.
+
+    Advisory only (same status as test_quant) — routes a human's attention,
+    never a quality verdict.
+    """
+    chars = len(text)
+    connectives = sum(len(re.findall(c, text)) for c in CONNECTIVES)
+    paragraphs = [b for b in re.split(r"\n\s*\n", text.strip()) if b.strip()]
+    return {
+        "chars": chars,
+        "paragraphs": len(paragraphs),
+        "forbidden_hits": [p for p in load_forbidden_phrases() if p in text],
+        "connective_density": round(connectives / max(chars, 1) * 1000, 1),
+        "exclamations": text.count("!") + text.count("！"),
+    }
+
+
 def extract_known_bad() -> list[KnownBad]:
     """Labeled known-bad seed: (slug, the rule's own Bad example, register)."""
     items: list[KnownBad] = []

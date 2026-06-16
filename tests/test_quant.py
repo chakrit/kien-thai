@@ -14,22 +14,14 @@ from pathlib import Path
 
 import pytest
 
-from lib import latest_iteration
+from lib import CONNECTIVES, latest_iteration, load_forbidden_phrases
 
 pytestmark = pytest.mark.evaluate
 
-# Phrases that are near-canonical AI Thai filler. Add to this list as patterns
-# emerge from real outputs.
-FORBIDDEN_PHRASES = [
-    "เป็นสิ่งสำคัญที่ต้องตระหนัก",
-    "ในยุคปัจจุบัน",
-    "ในโลกปัจจุบัน",
-    "เป็นที่ทราบกันดีว่า",
-]
-
-# Formal connectives that AI overuses. Threshold is per 1000 chars to be
-# length-agnostic — tune as we see real outputs.
-CONNECTIVES = ["ซึ่ง", "โดย", "ทั้งนี้", "อีกทั้ง", "นอกจากนี้", "อย่างไรก็ตาม"]
+# Forbidden phrases and connectives are now sourced from references/ via lib so
+# this advisory check and compare_arms.py share one list — no drift. The
+# blocklist is grep-able by design (forbidden-phrases.md). Substring match is
+# advisory; the kode-thai audit handles use/mention exemption.
 CONNECTIVE_DENSITY_LIMIT = 15.0  # occurrences per 1000 chars
 
 
@@ -52,7 +44,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
 
 def test_no_forbidden_phrases(output_file: Path):
     text = output_file.read_text(encoding="utf-8")
-    hits = [p for p in FORBIDDEN_PHRASES if p in text]
+    hits = [p for p in load_forbidden_phrases() if p in text]
     assert not hits, f"forbidden filler in {output_file.parent.name}: {hits}"
 
 

@@ -31,6 +31,24 @@ free; the agent adds items as work blocks on you and removes them when you clear
 - [ ] **Decide the `mdfmt` school issue** — whether to file the `<...>`-mangling +
   non-idempotent-wrap bug against the school tracker. School sync is yours.
 
+- [ ] **Expand `personal-blog` corpus beyond one author** — sweep unblocked 2026-06-16
+  (browser extension connected); 2 Vicharn Panich walk-diary entries extracted into
+  `corpus/curated/personal-blog/` and eval-4 is now in the comparison set. But the
+  category is thin and single-author (elderly-academic diary voice). Add a 2nd author —
+  Pantip bylined long-form is the staged target — for register variety, and confirm the
+  two extracted entries' voice-notes against your ear (frontmatter `notes:` flagged
+  pending). Targets: [`notes/personal-blog-sweep-2026-06-16.md`](notes/personal-blog-sweep-2026-06-16.md)
+- [ ] **Ear-review the 5 co-generated comparisons** (batch) —
+  `workspace/iteration-14/*/comparison.md` (open in iA Writer). The canonical set —
+  supersedes the 4-eval iter-11 batch (now includes personal-essay). Each is
+  self-contained: Typhoon draft + Claude+skill (kode-thai loop) + signal table. The
+  chakrit-clean verdict per arm is the measurement. Highlights for your ear: Claude runs
+  longer throughout (marketing 1891 vs 542) with lower connective density; bare Typhoon is
+  terser and clean on forbidden phrases this sampling. NOTE Typhoon is stochastic —
+  exec-brief had 3 forbidden hits in iter-11, 0 here; single drafts are noisy. eval-4's
+  Typhoon draft was few-shot on Vicharn Panich's elderly-diary voice — judge the
+  register transfer to a young-homecoming essay. Verdicts → `iteration-14/feedback.md`.
+
 ## How this list is maintained
 
 The agent adds an item when work blocks on you, and removes it when you clear it. Keep it

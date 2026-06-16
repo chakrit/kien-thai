@@ -27,6 +27,7 @@ later analysis needs context the snippet drops.
 | `marketing/fintech-warm/` | warm-pro, consumer fintech               |
 | `marketing/retail-tech/`  | practical-direct, merchant tooling       |
 | `tech-writing/`           | first-person dev war-story / explainer   |
+| `personal-blog/`          | plain ผม daily-diary, non-tech personal essay |
 | `bank-longform/`          | educational advisory, no body particles  |
 | `newspaper-feature/`      | literary analytical long-form            |
 | `translation/`            | confident essayist, hybrid vocabulary    |
@@ -66,9 +67,18 @@ pre-2022 authors are safer ground truth.
 
 ## Curation index
 
-52 curated entries across 9 categories as of 2026-05-10. Scholarly entries
+54 curated entries across 10 categories as of 2026-06-16. Scholarly entries
 follow a different frontmatter schema (`author`, `work`, `relevance`) — see
 the per-entry files for the actual layout.
+
+### personal-blog (2)
+
+- `vicharn-panich-sriracha-walk-727740` — plain ผม walk-diary, period-light
+- `vicharn-panich-tawanron-walk-727886` — companion walk-diary; verbatim author typos noted
+
+> Thin and single-author (วิจารณ์ พานิช). Expand with a second author (Pantip
+> bylined long-form) before treating as representative — see
+> [`../docs/notes/personal-blog-sweep-2026-06-16.md`](../docs/notes/personal-blog-sweep-2026-06-16.md).
 
 ### bank-longform (5)
 
