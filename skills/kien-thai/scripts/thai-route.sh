@@ -33,5 +33,5 @@ if ! python3 "$draft" --check >/dev/null 2>&1; then
   exit 3
 fi
 
-python3 "$draft" "${reg_args[@]}" "$prompt"
+python3 "$draft" "${reg_args[@]+"${reg_args[@]}"}" "$prompt"
 echo "thai-route: native draft above. Next: audit with kode-thai (loop kien-thai to convergence)." >&2
