@@ -67,7 +67,7 @@ pre-2022 authors are safer ground truth.
 
 ## Curation index
 
-54 curated entries across 10 categories as of 2026-06-16. Scholarly entries
+55 curated entries across 10 categories as of 2026-06-16. Scholarly entries
 follow a different frontmatter schema (`author`, `work`, `relevance`) — see
 the per-entry files for the actual layout.
 

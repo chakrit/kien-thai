@@ -322,7 +322,7 @@ def _scope_register_md(text: str, register: str) -> str:
     """Keep only the active register's sections; drop the others.
 
     Always-keep `## ` sections: Quick register decision, Voice attributes,
-    Person-arity, Cross-register: when to shift, Coherence, Default.
+    Person deixis, Cross-register: when to shift, Coherence, Default if unclear.
     Per-register `## Register N — ...` sections kept only if matching.
     Marketing sub-registers (`### 2.X`) under Marketing-family kept by match.
     """

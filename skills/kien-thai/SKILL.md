@@ -344,9 +344,11 @@ Minimum checklist:
 
 Bundle order: `ai-tells.md` (mechanical), `craft.md` (soft taste),
 `examples.md` (register-tagged before/after), `forbidden-phrases.md` (audit
-blocklist), `grammar.md` (surface), `register.md` (5 register families +
-deixis + voice), `style-rules.md` (positive style). Harness scopes
-`register.md` and `examples.md` to the active register when known.
+blocklist), `grammar.md` (surface), `register.md` (6 register families +
+deixis + voice), `style-rules.md` (positive style), then `exemplars.md`
+(native corpus excerpts) pinned last so native prose sits closest to the
+task prompt. Harness scopes `register.md`, `examples.md`, and `exemplars.md`
+to the active register when known.
 
 Scholarly provenance (Iwasaki & Ingkaphirom, Smyth, Prasithrathsint,
 Takahashi, Olsson, Thai Discourse Treebank, Singnoi, Royal Institute,

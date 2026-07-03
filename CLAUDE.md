@@ -23,7 +23,8 @@ Their target is Thai prose that (1) reads as little like generic AI output as
 possible, (2) has a distinct, believably human voice, (3) is easy to read for
 native Thai readers, (4) counters training-data skew toward over-formal /
 over-polite Thai. Composition: `kien-thai` = content rules (7 frames + ai-tells
-+ grammar + craft + style-rules + register + examples + forbidden-phrases);
++ grammar + craft + style-rules + register + examples + exemplars +
+forbidden-phrases);
 `kode-thai` = audit-loop trigger that invokes kien-thai to convergence. They
 are the **work-in-progress being tested** — do **not** self-apply them to
 Claude's own Thai output. Their correctness is what evals measure; freelance
@@ -128,14 +129,17 @@ itself.
 
 ```
 skills/kien-thai/
-├── SKILL.md                 # frames + person deixis + workflow
+├── SKILL.md                 # frames + person deixis + workflow + model route
+├── scripts/                 # Thai-native model route: thai-route.sh,
+│                            #   thai-native-draft.py (Typhoon via ollama)
 └── references/
     ├── ai-tells.md          # mechanical Thai-correctness violations (hard)
     ├── grammar.md           # surface grammar (classifiers, modals, calques)
     ├── craft.md             # voice/taste preferences (soft)
     ├── style-rules.md       # positive style rules + ทับศัพท์ guide
-    ├── register.md          # 5 register families + person deixis
+    ├── register.md          # 6 register families + person deixis
     ├── examples.md          # before/after, register-tagged
+    ├── exemplars.md         # native corpus excerpts, pinned last in bundle
     └── forbidden-phrases.md # blocklist for audit pre-check
 skills/kode-thai/
 └── SKILL.md                 # audit-loop trigger over kien-thai
@@ -145,11 +149,15 @@ tests/
 ├── conftest.py              # skill_text fixture (unscoped, default)
 ├── test_sanity.py           # plumbing + bundle preprocessor coverage
 ├── test_skill_consistency.py # cross-ref + slug uniqueness checks
+├── test_skill_frontmatter.py # strict-YAML frontmatter guard
 ├── test_quant.py            # advisory heuristics, -m evaluate
+├── test_recall.py           # auditor recall on rule Bad-examples, -m recall
 └── generate/
     ├── conftest.py          # run_eval fixture, register-scoped two-tier
     ├── test_claude.py       # -m generate
-    └── test_codex.py        # -m generate
+    ├── test_codex.py        # -m generate
+    ├── typhoon_pass.py      # Typhoon draft arm (not a pytest module)
+    └── compare_arms.py      # per-eval comparison.md, Typhoon vs Claude
 workspace/                   # gitignored: iteration-N/<eval>/<backend>/<config>/
 docs/                         # durable artifacts — see docs/README.md
 ├── decisions/                # point-in-time rulings + prose-direction judgements
@@ -195,6 +203,10 @@ assertions.
   feedback file.
 - **`test_quant.py`** is advisory only — flags forbidden phrases and connective
   density. Not a quality gate.
+- **`test_recall.py`** measures auditor recall: each rule's own Bad example is a
+  labeled known-bad item that should make the audit pass cite that rule's slug.
+  Seed extraction runs free in the default suite; the LLM runner is opt-in via
+  `-m recall`.
 
 ### Commands
 
@@ -204,6 +216,7 @@ uv run pytest                            # sanity (fast, default)
 uv run pytest -m generate                # produce artifacts (slow, $$$)
 uv run pytest -m generate -n 4 -k claude # parallel, one backend
 uv run pytest -m evaluate                # advisory heuristics on latest iteration
+uv run pytest -m recall                  # auditor-recall runner (slow, $$$)
 ```
 
 Requires `ANTHROPIC_API_KEY` and `codex` logged in. Tests skip gracefully if a backend
@@ -244,9 +257,10 @@ when you need a native-voice anchor. Pull from here instead.
 
 ```
 corpus/
-├── README.md                # category map (saas-sme, b2b-formal, tech-writing,
-│                            #   bank-longform, newspaper-feature, translation,
-│                            #   scholarly, etc.)
+├── README.md                # category map (tech-writing, bank-longform,
+│                            #   marketing/<sub-register>, newspaper-feature,
+│                            #   personal-blog, scholarly, translation, etc.)
+├── RESUME.md                # resume protocol for the corpus research agent
 ├── curated/<category>/*.md  # 1–4 paragraph hand-picked snippets, with
 │                            #   frontmatter (source_url, retrieved, voice notes)
 └── raw/<category>/*.md      # full article body retained for deeper analysis

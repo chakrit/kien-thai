@@ -111,10 +111,20 @@ and the vetting pass completes.
 
 ## Framing experiments for Thai-native generation
 
-**Status (2026-05-30): committed direction**, not speculative — see
+**Status (2026-07-03): experiments #1/#2 landed in the default bundle** — no separate
+configs were needed. `references/exemplars.md` (curated native corpus excerpts) exists
+and `kien_thai_bundle` pins it last, adjacent to the task prompt (`tests/lib.py`);
+the exemplar home resolved to `skills/kien-thai/references/exemplars.md` (the
+`corpus/native-exemplars/` candidate was never created). Remaining scope: #3
+`with_skill_persona`, plus register coverage — after register-scoping, the
+`marketing-b2b-formal` / `marketing-fintech-warm` / `marketing-retail-tech` /
+`official` bundles ship no before/after pair and no native exemplar, and `news` has
+no native exemplar (TODO in `exemplars.md`). Committed direction per
 [`decisions/2026-05-30-exemplar-first-pivot.md`](decisions/2026-05-30-exemplar-first-pivot.md).
-The exemplar inversion (rules → pairs) and measurement-first sequencing are decided; what
-remains is execution per the decision record's phases.
+
+Below is the original entry for archive.
+
+---
 
 **Need.** Bundle ordering and exemplar proximity matter for shifting
 Claude's output distribution toward Thai-native prose. Literature

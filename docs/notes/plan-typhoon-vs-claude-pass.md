@@ -117,11 +117,16 @@ desktop, or points this session at a reachable ollama host.
 
 ## Results — co-generated (Typhoon draft vs Claude+skill, 2026-06-16)
 
+> **Superseded by the 5-eval regeneration** — the canonical review batch is
+> `iteration-14/*/comparison.md` (see Status). This section records the initial
+> 4-eval run and its signal table, kept for the trace.
+
 Decisions taken: ollama reachable on host → ran here; eval-4 → curate corpus first
-(skipped). Mapping resolved: `marketing-saas-sme` → `marketing/saas-sme`. The Claude
-arm (full kode-thai loop, all 4 converged to CLEAN in 1–3 passes) ran in `iteration-12`;
-review artifacts are the self-contained `iteration-11/<eval>/comparison.md` (each embeds
-both prose blocks + the signal table).
+(skipped, later folded in via the 2026-06-16 personal-blog sweep). Mapping resolved:
+`marketing-saas-sme` → `marketing/saas-sme`. The Claude arm (full kode-thai loop, all 4
+converged to CLEAN in 1–3 passes) ran in `iteration-12`; the initial review artifacts
+were the self-contained `iteration-11/<eval>/comparison.md` (each embeds both prose
+blocks + the signal table).
 
 Signals are `chars / paragraphs / connectives-per-1k / "!" / forbidden-hits`:
 

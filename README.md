@@ -80,8 +80,9 @@ skill นี้ไม่ได้เป็นแค่ checklist ของคำ
 | `references/grammar.md`         | surface grammar: ลักษณนาม modal function-word verb  |
 | `references/craft.md`           | taste/voice: headline cliché closing intensifier    |
 | `references/style-rules.md`     | กฎเชิงบวก + ทับศัพท์ 4-bucket judgment              |
-| `references/register.md`        | 5 register family + person deixis + voice attrs    |
+| `references/register.md`        | 6 register family + person deixis + voice attrs    |
 | `references/examples.md`        | ตัวอย่าง before/after register-tagged               |
+| `references/exemplars.md`       | native corpus excerpts, pinned last in bundle       |
 | `references/forbidden-phrases.md` | blocklist สำหรับ audit pre-check                 |
 
 skill โหลด `SKILL.md` เป็น context หลัก แล้วอ่าน reference อื่น ๆ เมื่อจำเป็น

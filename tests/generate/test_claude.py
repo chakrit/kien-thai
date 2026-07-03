@@ -1,4 +1,4 @@
-"""Generate artifacts using `claude --bare --disable-slash-commands -p`.
+"""Generate artifacts using `claude --disable-slash-commands --output-format json -p`.
 
 Run: `uv run pytest -m generate tests/generate/test_claude.py`
 Skipped automatically if `claude` is not on PATH.

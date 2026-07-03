@@ -9,7 +9,7 @@
 1. [`skills/kien-thai/SKILL.md`](skills/kien-thai/SKILL.md): กรอบการเรียบเรียง
    7 ข้อ + person deixis + workflow
 2. [`skills/kien-thai/references/register.md`](skills/kien-thai/references/register.md):
-   register 5 family
+   register 6 family
 3. ไฟล์ใน `references/` ที่ตรงกับประเภทกฎ: `ai-tells.md` (mechanical),
    `grammar.md` (surface), `craft.md` (taste), `style-rules.md` (positive)
 
@@ -45,6 +45,7 @@ prose ตัวอย่างเป็น register ไหน?
 - `personal-blog`: dev blog / war-story
 - `news`: ข่าว / reference doc
 - `academic`: วิชาการยาว
+- `official`: meeting minutes / government memo (provisional)
 
 ถ้า register ไม่ตรงกับที่ skill จับ แจ้งได้เลยว่าควรเป็น register ไหน หรือ skill เข้าใจผิดยังไง
 
@@ -126,8 +127,7 @@ uv run pytest                  # sanity (ฟรี)
 uv run pytest -m generate      # full eval (ใช้ API token)
 ```
 
-เก็บผลไว้ที่ `workspace/iteration-N/` แล้วเปรียบเทียบ convergence (loop_passes,
-converged) กับ baseline iteration ปัจจุบัน ถ้าระดับคุณภาพหรือจำนวน pass แย่ลงอย่างมีนัย ตัว pytest จะ flag ให้เอง
+เก็บผลไว้ที่ `workspace/iteration-N/`
 
 ทุกครั้งที่สร้าง iteration ใหม่ ให้เพิ่มแถวใน [`workspace/INDEX.md`](workspace/INDEX.md)
 (วันที่ + mode/scope, ช่อง Review = `pending`) และเมื่อ review เสร็จก็เปลี่ยนช่องนั้นเป็น

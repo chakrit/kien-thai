@@ -15,11 +15,14 @@ new awkward seam appears. Loop until clean.
 
 ## Protocol
 
-1. Load `kien-thai` in full — `SKILL.md` plus all seven references
+1. Load `kien-thai` in full — `SKILL.md` plus all eight references
    (`ai-tells.md`, `craft.md`, `grammar.md`, `style-rules.md`, `register.md`,
-   `examples.md`, `forbidden-phrases.md`). Don't skip references. Both audit and
-   fix passes need depth — this is a deep language-analysis job, not mechanical
-   scanning.
+   `examples.md`, `exemplars.md`, `forbidden-phrases.md`). Don't skip
+   references. Both audit and fix passes need depth — this is a deep
+   language-analysis job, not mechanical scanning. (The pytest harness injects
+   a leaner audit-mode bundle instead — register-scoped, draft-workflow
+   sections stripped; see the project CLAUDE.md "Two-tier injection". "In
+   full" governs interactive runs.)
 
 2. Read the target file end-to-end before editing anything. Skim-and-fix
    produces shallow passes.

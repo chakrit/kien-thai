@@ -17,6 +17,7 @@ ace.local.toml
 # Eval outputs (LLM-generated, regenerable) live under iteration-N/<eval>/.
 # Iteration meta files (feedback.md etc.) at the iteration-N root stay tracked.
 workspace/iteration-*/*/
+workspace/recall-report.md
 
 # Corpus prose may contain third-party copyrighted material. Only the index
 # (corpus/README.md) and resume protocol (corpus/RESUME.md) are tracked.
