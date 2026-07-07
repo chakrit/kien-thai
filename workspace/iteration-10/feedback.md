@@ -86,3 +86,31 @@ Two recurring signals are still worth human review:
 
 - `uv run pytest -m evaluate` — 20 passed
 - `uv run pytest` — 20 passed
+
+## Phase 1 review — chakrit's ear (2026-07-07)
+
+Outer-loop *chakrit-clean* verdicts over the skill-clean outputs. **Partial — parked after
+#5; marketing-blurb, news-feature-bts, personal-essay-homecoming, exec-brief-oss-bi-hana
+still pending chakrit's ear.**
+
+- **tech-doc-short — CLEAN-but-flawed.** Line 7:
+  `...service ที่ downstream ไม่รองรับ burst traffic` **‹sentence break›** `ส่ง request เข้า
+  bucket ได้...` — run-on; the "what it suits" clause and the "how it works" clause are
+  fused, needs a sentence break at chakrit's mark. **Sentence-segmentation** pattern.
+- **marketing-blurb — pending.**
+- **news-feature-bts — pending.**
+- **personal-essay-homecoming — pending.**
+- **exec-brief-oss-bi-hana — pending.**
+
+### Cross-cutting signal — run-on / under-segmentation
+
+The strongest emergent finding this session, recurring across backends *and* the
+skill-clean layer:
+
+- Fable-5 baseline probe F1 (see `docs/notes/2026-07-07-fable5-eval1-probe.md`).
+- iter-9 news-feature-bts ¶4 (over-dense causal chain).
+- iter-10 tech-doc-short line 7 (this finding).
+
+Worth a **recall-check against the sentence-length rule in `ai-tells.md`** — it is not
+firing on run-ons that reach the CLEAN state. Overlaps the `reads-misstructured` discourse
+axis for the whole-paragraph cases.

@@ -18,6 +18,7 @@ ace.local.toml
 # Iteration meta files (feedback.md etc.) at the iteration-N root stay tracked.
 workspace/iteration-*/*/
 workspace/recall-report.md
+workspace/probes/
 
 # Corpus prose may contain third-party copyrighted material. Only the index
 # (corpus/README.md) and resume protocol (corpus/RESUME.md) are tracked.

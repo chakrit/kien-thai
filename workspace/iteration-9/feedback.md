@@ -39,3 +39,33 @@ are `CLEAN`.
 Note: `rtk pytest` reported "No tests collected" for this repo, so verification
 used `rtk proxy uv run pytest ...` to keep the command under RTK without the
 pytest wrapper altering collection.
+
+## Phase 1 review — chakrit's ear (2026-07-07)
+
+The outer loop: these outputs are all *skill-clean* (the audit above converged to CLEAN).
+This section records the *chakrit-clean* verdict — the gap is the measurement. Findings
+here are CLEAN-but-flawed unless noted. Classifications (recall-miss vs coverage-gap) are
+chakrit-flagged spans + my provisional mapping; confirm before promoting to rules/pairs.
+
+- **tech-doc-short — CLEAN-but-flawed.** Span:
+  `คุณอยากคุมความเรียบของ traffic มากกว่าความยืดหยุ่นหรือไม่`. Bad collocation — you don't
+  `คุม ความเรียบ` in Thai; reads as an English calque ("control the smoothness of
+  traffic"). chakrit rewrite: `คุณต้องการให้ Traffic เสถียรหรือยืดหยุ่นได้แค่ไหน`
+  (`เสถียร`/`ความเรียบ` sense-shift judged immaterial here). **Provisional recall-miss**
+  against a calque/collocation rule (`grammar.md` calques); if none anchors "verb +
+  abstract-noun collocation," flips to coverage-gap → candidate pair.
+- **marketing-blurb — chakrit-clean.** Skill-clean = chakrit-clean, no gap.
+- **news-feature-bts — CLEAN-but-flawed.** Three findings:
+  - ¶4 (`การเปลี่ยนแปลงนี้เกิดพร้อมกับเมืองรอบสถานีที่แพงขึ้น...`): whole paragraph reads
+    weird — no single span. ¶1–3 are concrete (people, quotes); ¶4 snaps into an abstract
+    gentrification causal-chain (rents→push out shops→live farther→still pay fare), four
+    steps packed dense with no human anchor. Mid-piece register/texture break + over-dense
+    causal chaining. **Coverage-gap → `reads-misstructured` discourse axis** (human-queue
+    item; sentence-scoped skill structurally can't hold it).
+  - ¶5: `บริการสาธารณะพื้นฐาน หรือเป็นโครงสร้างพื้นฐาน` — `พื้นฐาน` repeated x2, reads
+    confusing/redundant (chakrit inline note `พื้นฐานซ้ำ x2 งง`). Lexical redundancy.
+  - ¶6: chakrit flagged but the inline note did not land in the regenerated output;
+    **not reconstructed** (no native verdict invented). Provisional-only suspicion: line 24
+    is a long run-on internal-monologue sentence — unconfirmed.
+- **personal-essay-homecoming — no findings** (advanced without an explicit verdict;
+  recorded as passed, not an affirmative chakrit-clean).

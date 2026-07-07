@@ -5,13 +5,16 @@ token spend. An agent cannot clear these. This is the human counterpart to
 [`work-queue.md`](work-queue.md) (agent-doable committed work). Consult it when
 free; the agent adds items as work blocks on you and removes them when you clear them.
 
-- [ ] **Decide the next agent step** — Workflow inline-driver prototype vs Phase 3
-  exemplar expansion (or the order). Direction call.
-  → [`notes/session-2026-05-30-exemplar-pivot.md`](notes/session-2026-05-30-exemplar-pivot.md)
-- [ ] **Phase 1 review** — **iter-8 done (2026-06-08)**; iter-9 / iter-10 `CLEAN` outputs
-  remain. Needs your ear: skill-clean ≠ chakrit-clean, and the gap is the measurement.
+- [x] **Decide the next agent step** — DECIDED 2026-07-07: **(A) Workflow inline-driver
+  prototype → then (B) Phase 3 exemplar expansion.** Moved to
+  [`work-queue.md`](work-queue.md) → "Next agent step".
+- [ ] **Phase 1 review** — iter-8 done (2026-06-08); **iter-9 fully reviewed (2026-07-07);
+  iter-10 partial** — `tech-doc-short` done, **`marketing-blurb` / `news-feature-bts` /
+  `personal-essay-homecoming` / `exec-brief-oss-bi-hana` still pending your ear.** Verdicts
+  landed in the feedback files. skill-clean ≠ chakrit-clean; the gap is the measurement.
   → [`spec/review-protocol.md`](spec/review-protocol.md),
-  [`../workspace/iteration-8/feedback.md`](../workspace/iteration-8/feedback.md)
+  [`../workspace/iteration-9/feedback.md`](../workspace/iteration-9/feedback.md),
+  [`../workspace/iteration-10/feedback.md`](../workspace/iteration-10/feedback.md)
 - [ ] **Decide `reads-misstructured` / discourse axis** — iter-8 surfaced a discourse-level
   finding class the sentence-scoped skill + protocol can't hold (② whole-piece restructure,
   ④ inter-sentence cohesion). A per-register macrostructure axis + a protocol verdict flag

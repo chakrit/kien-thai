@@ -7,6 +7,28 @@ incl. prose-direction judgements). Items here are committed scope — the questi
 
 ---
 
+## Next agent step — Workflow inline-driver, then exemplar expansion ← ordered 2026-07-07
+
+**Decided (chakrit, 2026-07-07).** Order set for the two candidate next steps from the
+exemplar-first pivot: **(A) Workflow inline-driver prototype first, then (B) Phase 3
+exemplar expansion.** Rationale (per
+[`notes/session-2026-05-30-exemplar-pivot.md`](notes/session-2026-05-30-exemplar-pivot.md)):
+the inline-driver infra makes running and measuring exemplar batches cheaper, so B gets
+cheaper after A.
+
+- **A — Workflow inline-driver prototype.** Session-driven iteration via the `Workflow`
+  tool, reusing the bundle preprocessor + prompt templates instead of the subprocess CLIs.
+  Spec: [`spec/inline-iteration.md`](spec/inline-iteration.md).
+- **B — Phase 3 exemplar expansion.** Sweep `corpus/curated/` for anchor exemplars, lift
+  short register-tagged excerpts, stage as **candidate before/after pairs** in
+  `references/examples.md` / `exemplars.md`, hand chakrit an approve/cull list (agent
+  stages, native ear ratifies). Then the wider arc: exemplar inversion + SKILL.md/reference
+  reframing around pairs.
+
+**Block.** None. A is the immediate next build.
+
+---
+
 ## Thai-aware markdown wrap tooling
 
 **Need.** Enforce the CLAUDE.md hard-wrap-90 rule on Thai-heavy markdown.
