@@ -39,7 +39,7 @@ free; the agent adds items as work blocks on you and removes them when you clear
   `docs/decisions/` entry (supersede or revise). Same pass: promote the locked
   no-LLM-judge ruling into `docs/decisions/` — it is cited as authoritative in three
   docs but recorded nowhere in-repo.
-  → [`notes/session-2026-06-09-model-route-probe.md`](notes/session-2026-06-09-model-route-probe.md),
+  → [`scratch/session-2026-06-09-model-route-probe.md`](scratch/session-2026-06-09-model-route-probe.md),
   [`decisions/2026-05-30-exemplar-first-pivot.md`](decisions/2026-05-30-exemplar-first-pivot.md)
 - [ ] **Resolve the `ด้วย` conflict + pick one connective budget** — `register.md`
   (Marketing common) budgets `ด้วย` as an overused connective while `f4/duai-additive`
@@ -50,7 +50,7 @@ free; the agent adds items as work blocks on you and removes them when you clear
 - [ ] **Act on the AWS-Thailand b2b-formal re-vet** — flagged suspect (likely
   AI-drafted; `คงปฏิเสธไม่ได้ว่า` opener) with downgrade/remove action items, but all
   three `aws-thailand-*` files still sit in `corpus/curated/marketing/b2b-formal/`.
-  → [`notes/source-vetting-2026-05-13.md`](notes/source-vetting-2026-05-13.md)
+  → [`scratch/source-vetting-2026-05-13.md`](scratch/source-vetting-2026-05-13.md)
 
 - [ ] **Expand `personal-blog` corpus beyond one author** — sweep unblocked 2026-06-16
   (browser extension connected); 2 Vicharn Panich walk-diary entries extracted into
@@ -58,7 +58,7 @@ free; the agent adds items as work blocks on you and removes them when you clear
   category is thin and single-author (elderly-academic diary voice). Add a 2nd author —
   Pantip bylined long-form is the staged target — for register variety, and confirm the
   two extracted entries' voice-notes against your ear (frontmatter `notes:` flagged
-  pending). Targets: [`notes/personal-blog-sweep-2026-06-16.md`](notes/personal-blog-sweep-2026-06-16.md)
+  pending). Targets: [`scratch/personal-blog-sweep-2026-06-16.md`](scratch/personal-blog-sweep-2026-06-16.md)
 - [ ] **Ear-review the 5 co-generated comparisons** (batch) —
   `workspace/iteration-14/*/comparison.md` (open in iA Writer). The canonical set —
   supersedes the 4-eval iter-11 batch (now includes personal-essay). Each is

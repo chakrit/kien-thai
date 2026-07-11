@@ -18,7 +18,7 @@ chakrit tired. This is the resume breadcrumb.
     personal-essay-homecoming, exec-brief-oss-bi-hana** (review files #6–9).
 - **Fable-5 baseline probe** (side quest) — one generation pass, eval-1, no skill, no loop,
   to see raw Fable-5 Thai. chakrit's 10 native corrections (F1–F10) captured in
-  `docs/notes/2026-07-07-fable5-eval1-probe.md`. Raw draft: `workspace/probes/` (gitignored).
+  `docs/scratch/2026-07-07-fable5-eval1-probe.md`. Raw draft: `workspace/probes/` (gitignored).
 
 ## Where we stopped / next `/ace`
 

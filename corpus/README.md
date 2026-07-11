@@ -78,7 +78,7 @@ the per-entry files for the actual layout.
 
 > Thin and single-author (วิจารณ์ พานิช). Expand with a second author (Pantip
 > bylined long-form) before treating as representative — see
-> [`../docs/notes/personal-blog-sweep-2026-06-16.md`](../docs/notes/personal-blog-sweep-2026-06-16.md).
+> [`../docs/scratch/personal-blog-sweep-2026-06-16.md`](../docs/scratch/personal-blog-sweep-2026-06-16.md).
 
 ### bank-longform (5)
 

@@ -107,7 +107,7 @@ still pending chakrit's ear.**
 The strongest emergent finding this session, recurring across backends *and* the
 skill-clean layer:
 
-- Fable-5 baseline probe F1 (see `docs/notes/2026-07-07-fable5-eval1-probe.md`).
+- Fable-5 baseline probe F1 (see `docs/scratch/2026-07-07-fable5-eval1-probe.md`).
 - iter-9 news-feature-bts ¶4 (over-dense causal chain).
 - iter-10 tech-doc-short line 7 (this finding).
 

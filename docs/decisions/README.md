@@ -28,7 +28,7 @@ cluttered with "we chose the obvious thing" entries makes the actual
 load-bearing decisions harder to find.
 
 If your artifact is research, a survey, a draft, a transcript, or any
-exploratory write-up — that's notes, not a decision. Use `../notes/`. If
+exploratory write-up — that's scratch, not a decision. Use `../scratch/`. If
 it's forward-looking design, use `../spec/`.
 
 ## Prose-direction judgements

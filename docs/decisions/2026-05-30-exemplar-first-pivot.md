@@ -17,7 +17,7 @@ One-shot generation is a welcome side-effect, not the goal.
 Three of our own artifacts, read together, say the current architecture invests in the
 weaker bet:
 
-- The framing investigation (`docs/notes/framing-investigation-2026-05-21.md`) ranks native
+- The framing investigation (`docs/scratch/framing-investigation-2026-05-21.md`) ranks native
   exemplars near the task as the highest-impact lever and English rules as a mitigation.
 - The idiomatic-edges judgement
   (`docs/decisions/2026-05-11-frame-rules-have-idiomatic-edges.md`) concludes the long

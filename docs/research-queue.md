@@ -56,7 +56,7 @@ shape note. The `reads-misstructured` **protocol-flag decision is chakrit's** �
 ## ๆ-spacing as register-scoped style ✅ resolved 2026-05-13
 
 **Resolution.** Browser-vetted across 5 registers (see
-[`notes/chrome-session-2026-05-13.md`](notes/chrome-session-2026-05-13.md) §3).
+[`scratch/chrome-session-2026-05-13.md`](scratch/chrome-session-2026-05-13.md) §3).
 Two-rule shape:
 
 1. **`ต่าง ๆ` is near-universally spaced** in edited Thai across
@@ -149,7 +149,7 @@ pain-point assertion vs hedging.
 
 **Reframed 2026-05-13** — animacy hypothesis (see archive below) was
 falsified by browser vetting in
-[`notes/chrome-session-2026-05-13.md`](notes/chrome-session-2026-05-13.md) §4.
+[`scratch/chrome-session-2026-05-13.md`](scratch/chrome-session-2026-05-13.md) §4.
 Native Thai *does* apply `ทนรับ` and `เครียด` to system subjects in
 gaming/community register (`เซิร์ฟเวอร์ทนรับ … ไม่ไหว`,
 `เซิร์ฟเวอร์เครียด`, both attested with substantial Google hits).
@@ -181,7 +181,7 @@ is wrong).
 
 **Draft text ready.** Slug `register-leak-emotional-verb`, full
 landing-ready section in
-[`notes/proposals-2026-05-13.md`](notes/proposals-2026-05-13.md) §
+[`scratch/proposals-2026-05-13.md`](scratch/proposals-2026-05-13.md) §
 Proposal A. Drop in when the gating condition (iter-8+ recurrence,
 or retroactive 2nd instance in iter-1..7 codex/baseline review) is
 met.
@@ -218,7 +218,7 @@ heuristic rule may be needed.
 ## Vet non-tech personal-blog source candidates ✅ resolved 2026-05-13
 
 **Resolution.** Vetted via Claude-in-Chrome MCP. Full notes in
-[`notes/source-vetting-2026-05-13.md`](notes/source-vetting-2026-05-13.md).
+[`scratch/source-vetting-2026-05-13.md`](scratch/source-vetting-2026-05-13.md).
 Outcome applied to [`skills/kien-thai/references/register.md`](../skills/kien-thai/references/register.md):
 
 - **Promoted to Model (verified):** Vicharn Panich on GotoKnow
@@ -275,7 +275,7 @@ features than authors of personal essays.
 **Scope to investigate (next pass — chakrit-driven or different fetch tool).**
 
 1. Paste 2-3 verbatim paragraphs from a GotoKnow educator reflection and a
-   Minimore/Storylog personal essay into a working note under `notes/`.
+   Minimore/Storylog personal essay into a working note under `scratch/`.
 2. Assess each for: first-person discipline, classifier accuracy, calque
    density, sentence-rhythm shape, period frequency.
 3. Either confirm the Model/Reference tier as listed, or reclassify.
@@ -322,7 +322,7 @@ file under `skills/`. Pick after seeing more instances.
 ## Fictionlog / Tunwalai serial-fiction register ✅ resolved 2026-05-13
 
 **Resolution.** Out-of-scope. Vetted via Claude-in-Chrome MCP (see
-[`notes/chrome-session-2026-05-13.md`](notes/chrome-session-2026-05-13.md) §1).
+[`scratch/chrome-session-2026-05-13.md`](scratch/chrome-session-2026-05-13.md) §1).
 Fictionlog Thai bestsellers are uniformly cultivation/wuxia with
 archaic pronouns and Chinese-genre lexicon; Tunwalai is dominated by
 romance/erotica genre fiction. Even paid-out experienced authors
@@ -344,7 +344,7 @@ they enter the source list as a new fiction / web-novel register
 slot, distinct from the current 5 register families?
 
 **Provenance.** chakrit raised during 2026-05-13 vetting pass. See
-[`notes/source-vetting-2026-05-13.md`](notes/source-vetting-2026-05-13.md).
+[`scratch/source-vetting-2026-05-13.md`](scratch/source-vetting-2026-05-13.md).
 
 **Scope to investigate.**
 

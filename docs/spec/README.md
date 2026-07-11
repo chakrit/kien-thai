@@ -8,7 +8,7 @@ should always reflect present intent, not history.
 
 If it's a ruling on a question that came up, that's a decision — use
 `../decisions/`. If it's research, exploration, or a draft, use
-`../notes/`.
+`../scratch/`.
 
 ## Format
 

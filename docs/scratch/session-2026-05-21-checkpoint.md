@@ -32,13 +32,13 @@ Single-day session. Committed cleanly; working tree clean.
 
    All Register 6 rules tagged **provisional** in the section preamble
    pending corpus validation. Per-rule application trail lives in
-   [`docs/notes/feedback-2026-05-21-application.md`](feedback-2026-05-21-application.md).
+   [`docs/scratch/feedback-2026-05-21-application.md`](feedback-2026-05-21-application.md).
 
 3. **Researched agent-framing techniques** for shifting Claude toward
    Thai-native generation. Literature pass (English-accent paper,
    multilingual ICL, persona-effect, multilingual CoT) plus first-
    principles analysis. Conclusion in
-   [`docs/notes/framing-investigation-2026-05-21.md`](framing-investigation-2026-05-21.md).
+   [`docs/scratch/framing-investigation-2026-05-21.md`](framing-investigation-2026-05-21.md).
 
    Key updates to the prior "Act as Thai writer" intuition: (a) few-shot
    exemplars near the task are the bigger lever than persona; (b) bundle
@@ -97,8 +97,8 @@ Ordered by priority:
 - `skills/kien-thai/references/grammar.md`
 - `skills/kien-thai/references/craft.md`
 - `tests/lib.py`
-- `docs/notes/feedback-2026-05-21-application.md` (new)
-- `docs/notes/framing-investigation-2026-05-21.md` (new)
+- `docs/scratch/feedback-2026-05-21-application.md` (new)
+- `docs/scratch/framing-investigation-2026-05-21.md` (new)
 - `feedback.md` (deleted; content preserved in application trail file)
 - `docs/work-queue.md` (entry to be added during this checkpoint)
-- `docs/notes/session-2026-05-21-checkpoint.md` (this file)
+- `docs/scratch/session-2026-05-21-checkpoint.md` (this file)

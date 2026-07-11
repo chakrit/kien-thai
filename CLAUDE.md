@@ -160,22 +160,25 @@ tests/
     └── compare_arms.py      # per-eval comparison.md, Typhoon vs Claude
 workspace/                   # gitignored: iteration-N/<eval>/<backend>/<config>/
 docs/                         # durable artifacts — see docs/README.md
-├── decisions/                # point-in-time rulings + prose-direction judgements
-├── spec/                     # current-intent protocol/design docs
-├── notes/                    # impermanent: research dumps, session checkpoints
+├── decisions/                # dated rulings + prose-direction judgements (frozen)
+├── spec/                     # our design / how-it-works / own surface (living)
+├── guides/                   # task-oriented how-to (operate the repo / use output)
+├── vendor/                   # third-party lookup we keep reaching for (link-first)
+├── scratch/                  # unsettled exploration: research dumps, session checkpoints
 ├── work-queue.md             # agent-doable committed work
 ├── research-queue.md         # speculative items awaiting evidence
 └── human-tasks-queue.md      # tasks needing chakrit (ear, Thai, decisions)
 ```
 
-**Durable artifacts** live in [`docs/`](docs/), sorted by permanence: `decisions/`
-(point-in-time rulings + prose-direction judgements), `spec/` (current-intent
-design/protocol), `notes/` (impermanent). Three live backlogs sit at `docs/` root:
+**Durable artifacts** live in [`docs/`](docs/), filed by the single routing gate in
+[`docs/README.md`](docs/README.md): a ruling → `decisions/` (dated, frozen); third-party
+lookup → `vendor/`; a how-to → `guides/`; our own design/surface → `spec/`; unsettled
+exploration → `scratch/` (residual — opened with a "not spec/decision because ___" line,
+never a default). Three live backlogs sit at `docs/` root, outside the gate:
 `work-queue.md` (agent-doable), `research-queue.md` (speculative, needs evidence),
 `human-tasks-queue.md` (needs chakrit's ear/decision/token-spend). **Task discovery
 reads all three** — `/ace`, or any "what's next" — not just `work-queue.md`; agent
-threads routinely gate on a `human-tasks-queue.md` decision, so one queue is never
-enough. Default new artifacts to `notes/`; see [`docs/README.md`](docs/README.md).
+threads routinely gate on a `human-tasks-queue.md` decision, so one queue is never enough.
 
 ### Eval strategy
 
@@ -271,7 +274,7 @@ them **short** (fair-use sized) and cite the corpus file path in an HTML
 comment above the block.
 
 Gaps (registers with no curated entry yet) are tracked in
-`docs/notes/source-vetting-2026-05-13.md` and the work-queue. If a register has no
+`docs/scratch/source-vetting-2026-05-13.md` and the work-queue. If a register has no
 corpus file, surface that — don't paper over it with synthesized prose.
 
 ## Markdown style for this repo
@@ -321,16 +324,20 @@ entirely and can mangle inline-code such as `<skill>`.
 
 ## Load these skills
 
-School skills only (per "Two skill sources" above) — narrows ACE auto-load:
+School skills only (per "Two skill sources" above) — narrows ACE auto-load. The active
+set resolved by `ace skills`:
 
-- `general-coding` — Python edits in `tests/`, eval harness work.
-- `markdown-writing` — primary deliverables are Markdown (`SKILL.md`,
-  `references/*.md`, eval feedback). Hard-wrap-90 + table-align rules apply.
-- `skill-creator` — this repo *is* a skill (the kien-thai/kode-thai artifact);
-  iteration follows skill-creator doctrine (two-stage evals, human review).
-- `shell` — `uv` / pytest / eval harness shell glue.
-- `ace`, `ace-audit`, `ace-docs`, `ace-realign`, `ace-save`, `ace-school` —
-  ACE workflow + school-PR flow.
+- `general-coding` — Python edits in `tests/`, eval harness work (project-declared).
+- `copywriting` — marketing-register eval prose (project-declared).
+- `ace-*` family — `ace`, `ace-afk`, `ace-audit`, `ace-connect`, `ace-docs`, `ace-init`,
+  `ace-realign`, `ace-save`, `ace-school`: ACE workflow + school-PR flow.
+- User-global includes also active here: `fact-check`, `find-skills`, `lowfat-pantry`,
+  `visualise`.
+
+`markdown-writing`, `skill-creator`, and `shell` are no longer shipped by the school —
+their doctrines survive inline: the markdown hard-wrap-90 + table-align rules under
+"Markdown style for this repo" below, and skill-creator's two-stage-eval doctrine under
+"Eval strategy". Run `ace skills` for the live resolved set.
 
 ## Opening files for review or markdown editing
 

@@ -271,7 +271,7 @@ Chrome session ends here per chakrit's session boundary.
 
 **Working tree at session end (uncommitted):**
 
-- `docs/notes/chrome-session-2026-05-13.md` (new — this file)
+- `docs/scratch/chrome-session-2026-05-13.md` (new — this file)
 - `docs/research-queue.md` (resolved 2 entries, reframed 1)
 - `skills/kien-thai/references/register.md` (Fictionlog/Tunwalai
   → dropped list; Minimore citation added)

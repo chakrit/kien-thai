@@ -183,7 +183,7 @@ and the additions are additive — not displacing research-grounded rules.
 - `tests/lib.py` — `REGISTER_HEADERS` entry for `official`.
 - `feedback.md` — deleted after application; this trail file now subsumes
   its role.
-- `docs/notes/framing-investigation-2026-05-21.md` — separate investigation file
+- `docs/scratch/framing-investigation-2026-05-21.md` — separate investigation file
   (the agent-framing question; not part of this trail).
 
-Trail file: this one (`docs/notes/feedback-2026-05-21-application.md`).
+Trail file: this one (`docs/scratch/feedback-2026-05-21-application.md`).

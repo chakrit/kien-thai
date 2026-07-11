@@ -383,7 +383,7 @@ def kien_thai_bundle(register: str | None = None, mode: BundleMode = BundleMode.
 
     exemplars.md is pinned last regardless of alphabetical order — proximity
     to the task prompt is the whole point of that file (see
-    docs/notes/framing-investigation-2026-05-21.md).
+    docs/scratch/framing-investigation-2026-05-21.md).
     """
     skill = SKILL_PATH.read_text(encoding="utf-8")
     skill = _strip_frontmatter(skill)

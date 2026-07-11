@@ -12,7 +12,7 @@ incl. prose-direction judgements). Items here are committed scope — the questi
 **Decided (chakrit, 2026-07-07).** Order set for the two candidate next steps from the
 exemplar-first pivot: **(A) Workflow inline-driver prototype first, then (B) Phase 3
 exemplar expansion.** Rationale (per
-[`notes/session-2026-05-30-exemplar-pivot.md`](notes/session-2026-05-30-exemplar-pivot.md)):
+[`scratch/session-2026-05-30-exemplar-pivot.md`](scratch/session-2026-05-30-exemplar-pivot.md)):
 the inline-driver infra makes running and measuring exemplar batches cheaper, so B gets
 cheaper after A.
 
@@ -88,7 +88,7 @@ unverifiable.
 ## Browser tooling for Thai source vetting ✅ unblocked 2026-05-13
 
 **Status.** Claude-in-Chrome MCP wired up. Used for the 2026-05-13 vetting
-pass — see [`notes/source-vetting-2026-05-13.md`](notes/source-vetting-2026-05-13.md).
+pass — see [`scratch/source-vetting-2026-05-13.md`](scratch/source-vetting-2026-05-13.md).
 Worked well for GotoKnow, readthecloud.co, storyloggroup.com, Pantip.
 Minimore continues to return empty body even via Chrome (same JS-render
 block as WebFetch); use Wayback / paste-in for those.
@@ -173,7 +173,7 @@ investigation:
 **Findings so far.** Literature lens, recommended ordering, and the
 "don't force Thai-language CoT for mid-resource languages" caveat
 captured in
-[`notes/framing-investigation-2026-05-21.md`](notes/framing-investigation-2026-05-21.md).
+[`scratch/framing-investigation-2026-05-21.md`](scratch/framing-investigation-2026-05-21.md).
 
 **Open design choices.**
 

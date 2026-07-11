@@ -14,13 +14,13 @@ work committed; no uncommitted state.
      Minimore citation added.
    - `research-queue.md` — resolved 2 entries, reframed 1
      (animacy → register-leak).
-   - New `docs/notes/chrome-session-2026-05-13.md` documenting the
+   - New `docs/scratch/chrome-session-2026-05-13.md` documenting the
      browser-vetting evidence.
 
 2. **Wrote proposals note** (`2fbb2e1`,
    `notes: skill-change proposals from 2026-05-13 chrome-session
    follow-up`):
-   - `docs/notes/proposals-2026-05-13.md` — three items: Proposal A
+   - `docs/scratch/proposals-2026-05-13.md` — three items: Proposal A
      (`register-leak-emotional-verb` rule for `register.md`,
      deferred until iter-8+ recurrence with full landing-ready
      draft text); Proposal B (sharpen `CLAUDE.md` iteration
@@ -40,7 +40,7 @@ work committed; no uncommitted state.
 
 ## What's next
 
-- **Chakrit reviews** `docs/notes/proposals-2026-05-13.md` to decide if
+- **Chakrit reviews** `docs/scratch/proposals-2026-05-13.md` to decide if
   Proposals A and B should land. Proposal B has no gating
   requirement; Proposal A waits for iter-8+ recurrence (or a
   retroactive 2nd instance in the unreviewed iter-7 codex/baseline

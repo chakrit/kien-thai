@@ -112,5 +112,5 @@ Scriptable steps are now scripts; the kode-thai audit loop stays agent-driven
 - `/tmp/typhoon-test.md` — bare Typhoon 8B output (ephemeral, unreviewed).
 - `evals/evals.json` — the 5 eval prompts that are the real test set.
 - `corpus/` — ~53 curated native snippets; the training-data asset (thin).
-- `docs/notes/session-2026-06-08-iter8-review.md` — the chakrit-clean verdicts
+- `docs/scratch/session-2026-06-08-iter8-review.md` — the chakrit-clean verdicts
   that would seed DPO preference pairs.

@@ -68,6 +68,6 @@ swap them in the same way.
 This is a validated *direction*, not a closed eval result. The ear-clean verdict
 is one register, unconditioned. The conditioned 5-eval comparison (Typhoon +
 exemplars vs Claude + skill, judged by chakrit) is the open step — see
-`docs/notes/session-2026-06-09-model-route-probe.md`. Wiring the model into the
+`docs/scratch/session-2026-06-09-model-route-probe.md`. Wiring the model into the
 pytest harness as a third backend (`tests/lib.py` BACKENDS) is the measurement
 path, gated on that comparison.

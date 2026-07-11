@@ -189,7 +189,7 @@ Edits to `craft.md`:
 - Provisional note citing corpus gap.
 
 Corpus gap (no curated operational/system-spec material) logged in
-`docs/notes/source-vetting-2026-05-13.md` with candidate source directions.
+`docs/scratch/source-vetting-2026-05-13.md` with candidate source directions.
 
 Method note: native-checked one of the Good forms by probe-generating
 candidate pairs and getting per-item correction. Pair-4 form
@@ -231,4 +231,4 @@ plausible vector for AI-influenced phrasing — large-vendor Thai marketing
 output increasingly drafted with LLM assistance. AWS Thailand corpus
 entries should not be treated as gold-standard native for blocklist-
 calibration purposes; they may themselves reflect AI-shaped Thai. Flagged
-in `docs/notes/source-vetting-2026-05-13.md` for a re-vet pass.
+in `docs/scratch/source-vetting-2026-05-13.md` for a re-vet pass.
