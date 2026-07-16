@@ -257,14 +257,13 @@ Don't translate dev jargon.
 
 - *Dev / war-story (verified):* Thanaphoom Babparn (tpbabparn.medium.com),
   Somkiat Puisungnoen (somkiat.cc), Nutta, Rath Panyowat (rath.asia).
-- *Plain-diary personal essay (verified — vetted 2026-05-13, see
-  `docs/scratch/source-vetting-2026-05-13.md`):*
+- *Plain-diary personal essay (verified):*
   Vicharn Panich's `ชีวิตที่พอเพียง` series on GotoKnow.org. Plain ผม
   voice, daily-diary register, period-light Thai-comma flow. **Author-
   scoped — not GotoKnow as a platform.** Other GotoKnow authors
   range from pedagogy-listicle (out-of-scope) to literary-memoir
   (sub-register; don't lift into plain-blog).
-- *Adult-amateur personal blog (verified — vetted 2026-05-13):* Pantip
+- *Adult-amateur personal blog (verified):* Pantip
   long-form rooms (Blueplanet for travel, Klai Baan for home/
   lifestyle, Greenzone, similar). **Bylined posters with multi-post
   voice consistency only** (e.g., settembre, tuk-tuk@korat,
@@ -282,40 +281,13 @@ Don't translate dev jargon.
   authentic but unpolished (writers often students, no editorial
   pass). Useful as baseline for "what unedited Thai personal essay
   sounds like" — *the opposite of AI-polished output* — but not as
-  a Model. Live site renders empty in current tooling; for full text
-  use archive snapshots or paste. Sample evidence:
-  [`#อายุมากขึ้นเราจะมีความสุขน้อยลง?`](https://web.archive.org/web/20230605160331/https://minimore.com/b/yqkoe/8)
-  by พอกลอน ซาเสียง (visible amateur tells: closing-line typo
-  `ความผิดชอบ`, code-mixed `support` as Thai verb, self-help
-  cliché kicker; see
-  `docs/scratch/chrome-session-2026-05-13.md`).
+  a Model.
 - Pantip long-form anonymous posts and short-form rooms (outside the
   bylined Model carve-out above). Grammar varies.
 
-**Dropped from source list (verified 2026-05-13):**
-
-- *readthecloud.co* — site pivoted to "CloudPang"; live editorial
-  prose shows AI-assist tells (em-dash aphorisms, internal factual
-  contradictions, repeated emphatic adverbs, kicker-line structure).
-  Original Read The Cloud archive may still merit per-article
-  citation if recoverable, but the live platform cannot stand in.
-- *Storylog.co* — defunct as a personal-essay platform. Redirects to
-  corporate `storyloggroup.com`; story pages 404. Company pivoted to
-  serial-fiction products (Fictionlog, Tunwalai, Pinto).
-- *Readery / Bookmoby* — primary medium is podcast and bookshop, not
-  long-form blog. Featured as subjects of profile pieces, rarely as
-  authors of long-form essay.
-- *Fictionlog / Tunwalai* — popular-fiction / web-novel register,
-  out-of-scope for the kien-thai brief. Vetted 2026-05-13 (see
-  `docs/scratch/chrome-session-2026-05-13.md`):
-  Fictionlog Thai-original 7-day bestsellers are uniformly
-  cultivation/wuxia (`กำลังภายใน`/`แฟนตาซี`) with archaic pronouns
-  (`ข้า`/`เจ้า`) and Chinese-genre lexicon; Tunwalai is dominated
-  by `รักวัยรุ่น`/`รักโรแมนติก`/`อีโรติก`. Genre conventions don't
-  generalize to any non-fiction register the skill targets. Even
-  paid-out authors inhabit the conventions; an "experienced
-  author" filter wouldn't fix the structural mismatch. Do not
-  add as Register-6 — would create dead scaffolding.
+<!-- Sources vetted and dropped from this list (readthecloud.co, Storylog,
+     Readery/Bookmoby, Fictionlog/Tunwalai):
+     docs/decisions/2026-05-13-register3-source-list-vetting.md -->
 
 ## Register 4 — News / reference
 
@@ -388,12 +360,10 @@ government register. News/reference register cousin but distinct — minutes
 carry agenda items, action commitments, and procedural references that News
 does not.
 
-**Provisional** (added 2026-05-21): synthesized from a single drafting session
-(ป.ป.ท. / Samarterware minutes). Application trail with the original
-correction pairs lives in
-`docs/scratch/feedback-2026-05-21-application.md`.
-Awaiting broader corpus validation — apply the session-derived examples below
-as anchors, not as authority.
+**Provisional** — synthesized from a single drafting session, awaiting broader
+corpus validation. Apply the examples below as anchors, not as authority.
+<!-- trail: docs/scratch/feedback-2026-05-21-application.md (ป.ป.ท. / Samarterware
+     minutes, 2026-05-21) -->
 
 **Particles**: zero. ครับ/ค่ะ banned. No closure particles in body.
 

@@ -104,7 +104,7 @@ ask whether 2–3 enumerated cases would carry more information.
 
 ### `positive-capability-framing` *(craft · scoped · soft · provisional)*
 
-Earlier framing of this rule conflated two distinct issues. Split:
+This rule splits into two distinct issues:
 
 **(a) `บังคับ` on inanimate system subject — animacy issue.** `ระบบบังคับ
 ให้...` reads wrong because `บังคับ` (coerce/force) carries an agentive,
@@ -117,9 +117,8 @@ to `ai-tells.md` territory than craft.
 
 **(b) Sequencing-pivot choice in operational register.** Native operational
 Thai uses `ถึงจะ` as the "only-then" marker: `ต้อง Y ก่อน X ถึงจะ Z ได้` /
-`เมื่อ Y แล้ว X ถึงจะ Z ได้`. The temporal chain itself is native and
-fine — the earlier claim that enforcement chains read as English-projection
-was wrong; `ต้อง...ก่อนถึงจะ...ได้` is standard Thai.
+`เมื่อ Y แล้ว X ถึงจะ Z ได้`. The temporal chain itself is native —
+`ต้อง...ก่อนถึงจะ...ได้` is standard Thai.
 
 `ก็ต่อเมื่อ` also exists but skews legal / contract / formal-policy
 register and reads heavy in operational UX spec.
@@ -136,10 +135,10 @@ specs where the intent is auto-execution on condition, use `ถึงจะ` or
 temporal fronting (`เมื่อ Y แล้ว ระบบจะ X ให้`). `+ ได้` is not a free
 swap for `จะ` in this position.
 
-**Provisional**: corpus has no curated operational/system-spec register;
-this rule reasons across registers we haven't sourced. `ก็ต่อเมื่อ` traces
-to one corpus instance in translation register only. Revisit when
-operational corpus exists.
+<!-- provisional: corpus has no curated operational/system-spec register; this
+     rule reasons across registers we haven't sourced. `ก็ต่อเมื่อ` traces to one
+     corpus instance in translation register only. Revisit when operational
+     corpus exists. -->
 
 ## See also
 

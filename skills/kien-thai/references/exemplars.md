@@ -60,6 +60,3 @@ copyright ของผู้เขียนต้นทาง อ้างอิ
 > หากไม่สำลักฝุ่นสลบไปเสียก่อนจะเขียนมาใหม่
 >
 > ช่วยตัวเองเมื่อน้ำท่วม ช่วยตัวเองเมื่อฝุ่นควันพิษปกคลุม ช่วยตัวเองเมื่อสารหนูปนเปื้อนแม่น้ำ
-
-<!-- TODO: news register has no curated corpus entry yet. Add when a
-     vetted news-register source lands in corpus/curated/. -->

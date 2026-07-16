@@ -60,8 +60,7 @@ Use ๆ (mai-yamok) for casual reduplication. `เรื่อย ๆ`, `ให�
 
 ### `mai-yamok-spacing` *(style · register-scoped · soft)*
 
-Two rules for the space before ๆ (vetted 2026-05-13, see
-`docs/scratch/chrome-session-2026-05-13.md` §3):
+Two rules for the space before ๆ:
 
 1. **`ต่าง ๆ` always takes the space.** Near-universal across edited
    Thai — government, tech-blog, even amateur personal-blog tend to
@@ -73,12 +72,11 @@ Two rules for the space before ๆ (vetted 2026-05-13, see
    `ง่าย ๆ`). Tech-news (Register-4 Blognone-style) is mixed within
    publication — pick one and stay consistent within a piece.
 
-Evidence: Pantip Blueplanet (settembre) and GotoKnow plain-diary
-(Vicharn Panich) drop the space on non-`ต่าง ๆ` reduplications
-(7/7 samples). Bank of Thailand keeps the space (2/2). Blognone
-homepage mixes within publication (4 no-space casual + 6 spaced
-`ต่าง ๆ` instances). Small-N (~20 samples); phrase as default,
-not hard check.
+Small-N evidence — treat rule 2 as a default, not a hard check.
+<!-- evidence (vetted 2026-05-13, docs/scratch/chrome-session-2026-05-13.md §3):
+     Pantip Blueplanet (settembre) + GotoKnow plain-diary (Vicharn Panich) drop
+     the space on non-`ต่าง ๆ` reduplications 7/7; Bank of Thailand keeps it 2/2;
+     Blognone homepage mixes within publication. ~20 samples total. -->
 
 ### `baeb-hedger` *(style · scoped · soft)*
 

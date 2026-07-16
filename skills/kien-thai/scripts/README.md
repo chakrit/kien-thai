@@ -4,10 +4,11 @@ The honest finding behind these scripts: **the single biggest lever on Thai
 naturalness is base-model choice, not harness depth.** The machine-sounding
 Thai that kien-thai's frames fight is largely an artifact of English-centric
 models (Claude, Codex) writing Thai. A Thai-pretrained model carries the native
-distribution in its weights. In the 2026-06-09 probe, bare Typhoon-2 8B —
-unconditioned, no exemplars — produced Thai that chakrit's native ear found
-with **no grammatical fault and no calque**, the failure modes kien-thai spends
-most of its rules on. That is the strongest single signal in the repo.
+distribution in its weights. In a native-ear probe
+(`docs/scratch/session-2026-06-09-model-route-probe.md`), bare Typhoon-2 8B —
+unconditioned, no exemplars — produced Thai with **no grammatical fault and no
+calque**, the failure modes kien-thai spends most of its rules on. That is the
+strongest single signal in the repo.
 
 So when a Thai-native model is reachable, the best output comes from **drafting
 with it and auditing with kien-thai**, not from drafting with kien-thai alone.
@@ -65,9 +66,7 @@ swap them in the same way.
 
 ## Status
 
-This is a validated *direction*, not a closed eval result. The ear-clean verdict
-is one register, unconditioned. The conditioned 5-eval comparison (Typhoon +
-exemplars vs Claude + skill, judged by chakrit) is the open step — see
-`docs/scratch/session-2026-06-09-model-route-probe.md`. Wiring the model into the
-pytest harness as a third backend (`tests/lib.py` BACKENDS) is the measurement
-path, gated on that comparison.
+A validated *direction*, not a closed eval result — the ear-clean verdict is one
+register, unconditioned. The conditioned Typhoon-vs-Claude comparison and the
+third-backend harness wiring it gates are tracked in
+`docs/human-tasks-queue.md`.

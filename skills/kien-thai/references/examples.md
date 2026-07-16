@@ -145,7 +145,7 @@ CTA แบบสั่งให้ซื้อสินค้า
 <!-- register: marketing-saas-sme -->
 ## Example 6: `ตัวเลข` + cognitive verb + `ทีไร` closure
 
-จาก iteration-7 marketing-blurb review. ประเด็นสองชั้น: verb-object
+ประเด็นสองชั้น: verb-object
 collocation ผิด register และ frame `ทีไร` ไม่ปิด.
 
 ### Before (AI-Thai)
@@ -170,7 +170,7 @@ per-instance closure: `ไม่เคย…สักที` / `ไม่เค�
 <!-- register: marketing-saas-sme -->
 ## Example 7: hedge-stack collapse + person-deixis continuity
 
-จาก iteration-7 marketing-blurb review. ปัญหาคนละชั้น: hedge ซ้อนหลายตัว
+ปัญหาคนละชั้น: hedge ซ้อนหลายตัว
 ใน marketing register และ person-deixis ขาดต่อเนื่อง.
 
 ### Before (AI-Thai)
@@ -198,7 +198,7 @@ register marketing-SME ใช้.
 <!-- register: marketing-saas-sme -->
 ## Example 8: constitutive vs causal `ก็` + frame closures
 
-จาก iteration-7 marketing-blurb review. ปัญหาคู่: `ก็` ใช้ผิด relation type
+ปัญหาคู่: `ก็` ใช้ผิด relation type
 และ closure-binding scope ของหลาย frame ในประโยคเดียว.
 
 ### Before (AI-Thai)
