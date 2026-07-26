@@ -15,9 +15,13 @@ See CLAUDE.md → "Workspace outputs are evidence, not artifacts".
 |    6 |          — | No record (workspace not committed)                   | —        | —                                       |
 |    7 | 2026-05-12 | Harness, 3 evals × 2 backends × 2 configs; first BTS  | reviewed | [feedback.md](iteration-7/feedback.md)  |
 |    8 | 2026-05-22 | Inline (subagent), 4 `with_skill` configs to CLEAN    | reviewed | [feedback.md](iteration-8/feedback.md)  |
-|    9 | 2026-05-22 | Inline (codex), 4 evals × 2 configs, converged pass 1 | pending  | [feedback.md](iteration-9/feedback.md)  |
-|   10 | 2026-05-30 | Inline (codex), 5 evals × 2 configs                   | pending  | [feedback.md](iteration-10/feedback.md) |
+|    9 | 2026-05-22 | Inline (codex), 4 evals × 2 configs, converged pass 1 | reviewed | [feedback.md](iteration-9/feedback.md)  |
+|   10 | 2026-05-30 | Inline (codex), 5 evals × 2 configs                   | partial  | [feedback.md](iteration-10/feedback.md) |
 |   11 | 2026-06-16 | Typhoon route — 4 evals, draft vs Claude+skill diff   | pending  | —                                       |
 |   12 | 2026-06-16 | Claude+skill arm (kode-thai) for iter-11 compare      | —        | —                                       |
 |   13 | 2026-06-16 | Claude+skill arm — personal-essay (eval-4 pair)       | —        | —                                       |
 |   14 | 2026-06-16 | Typhoon route — all 5 evals, full compare set         | pending  | —                                       |
+
+Review: `pending` (untouched by chakrit's ear) · `partial` (some evals verdicted,
+rest queued in `docs/human-tasks-queue.md`) · `reviewed` (all evals verdicted) ·
+`—` (no generation run — resume or single-arm rows).

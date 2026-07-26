@@ -2,5 +2,4 @@ school = "prod9/school"
 skills = [
   "general-coding",
   "copywriting",
-  "markdown-writing",
 ]

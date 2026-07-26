@@ -29,6 +29,7 @@ corpus/raw/
 __pycache__/
 .pytest_cache/
 
-.inbox.log
-.questions.log
+# ACE session trail + agent logs (ace-save, ace-connect, ace-afk).
+/.ace/
+
 .claude
