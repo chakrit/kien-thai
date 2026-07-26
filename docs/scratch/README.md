@@ -28,3 +28,10 @@ it was written). No template; write whatever shape fits.
 Disposable. Edit, rewrite, or delete freely. When exploration settles into a ruling or a
 design, promote the durable claim up to `../decisions/` or `../spec/`; what remains here is
 the raw working material. Nothing else should depend on a scratch file continuing to exist.
+
+**Two carve-outs.** A note a frozen `../decisions/` ruling cites as provenance is retained
+— the toll governs new filing, not deletion of already-cited material. And when notes pile
+up on one theme, collapse them into [`prior-art.md`](prior-art.md): one section per source
+note, cross-linked to the live doc it fed, absorbed notes dropped. That digest is the one
+undated file here. Session breadcrumbs no longer land in this folder at all — that role
+belongs to `.ace/save.md`, which holds current truth only.

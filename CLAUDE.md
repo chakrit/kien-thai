@@ -156,7 +156,8 @@ its way; if something is not reachable from here, that is a bug in this file.
 | [`docs/vendor/model-backends.md`](docs/vendor/model-backends.md) | claude / codex / ollama surface + the Thai-corrupting `ollama run` trap. |
 | [`docs/decisions/`](docs/decisions/README.md) | Dated rulings — 7 so far. Frozen; supersede, never edit. |
 | [`docs/decisions/2026-05-30-exemplar-first-pivot.md`](docs/decisions/2026-05-30-exemplar-first-pivot.md) | **Current direction.** Read this before proposing rule work. |
-| [`docs/scratch/`](docs/scratch/README.md) | Research dumps + session checkpoints. Residual; disposable. |
+| [`docs/scratch/`](docs/scratch/README.md) | Research dumps + investigations. Residual; disposable. |
+| [`docs/scratch/prior-art.md`](docs/scratch/prior-art.md) | Digest of absorbed session notes — what each session did, where it landed. |
 | [`docs/work-queue.md`](docs/work-queue.md) | Agent-doable committed work. |
 | [`docs/research-queue.md`](docs/research-queue.md) | Speculative, awaiting evidence. |
 | [`docs/human-tasks-queue.md`](docs/human-tasks-queue.md) | Needs chakrit — ear, Thai authoring, rulings, token spend. |
