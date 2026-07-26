@@ -8,10 +8,11 @@
   the conditioned 5-eval comparison — Typhoon-8B (native draft, few-shot) vs
   Claude + kien-thai skill (the kode-thai loop) — with an automated mechanical diff,
   then chakrit's ear for the naturalness verdict.
-- **Status:** all 5 evals done — `iteration-14/*/comparison.md` is the canonical
-  review batch (Typhoon draft vs Claude+skill, self-contained). eval-4 folded in after
-  the 2026-06-16 personal-blog corpus sweep. Supersedes the 4-eval iter-11 set.
-  Remaining: chakrit's per-arm verdicts → `iteration-14/feedback.md`. See "Results".
+- **Status (superseded 2026-07-27):** this pass produced `iteration-14`, which was
+  **not co-generated** — its Claude arms came from iterations 12–13, so the pairing
+  never isolated the drafter. `iteration-15` re-ran both arms under one iteration pin
+  and is the canonical review batch. Everything below describes how the comparison was
+  designed, which still holds; the iteration numbers in it do not.
 
 ## What "compare" means here — two layers
 

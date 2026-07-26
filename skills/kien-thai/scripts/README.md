@@ -72,7 +72,7 @@ swap them in the same way.
 
 ## Status
 
-A validated *direction*, not a closed eval result — the ear-clean verdict is one
-register, unconditioned. The conditioned Typhoon-vs-Claude comparison and the
-third-backend harness wiring it gates are tracked in
-`docs/human-tasks-queue.md`.
+A *direction* under test, not a closed eval result — the ear-clean verdict is one
+register, unconditioned, never replicated. A co-generated five-eval comparison against
+Claude+skill now exists and is awaiting the native ear; until those verdicts land,
+neither correctness nor voice is settled.

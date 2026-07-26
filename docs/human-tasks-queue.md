@@ -43,7 +43,14 @@ free; the agent adds items as work blocks on you and removes them when you clear
   → [`../workspace/iteration-8/feedback.md`](../workspace/iteration-8/feedback.md)
 - [ ] **Reframe the two Thai docs** to the new direction — `README.md` (`หลักคิดของ skill`,
   `วินัยการเพิ่มกฎ`, `Eval ทำงานยังไง`) and `CONTRIBUTING.md` (§1, §5, §6). Thai authoring is
-  yours; the agent flags spans but won't write final Thai.
+  yours; the agent flags spans but won't write final Thai. **Stale spans found
+  2026-07-27**, both factual rather than directional: the command lists
+  (`README.md` L98–101, `CONTRIBUTING.md` L126–127) predate the `recall` marker and the
+  `EVAL_ITERATION` pin, and neither doc mentions the Typhoon arm at all — so a
+  contributor following either produces an un-pinned, claude-only run. English
+  equivalents are current in
+  [`guides/running-evals.md`](guides/running-evals.md); it is the Thai that needs your
+  hand.
 - [ ] **Green-light the full `-m recall` baseline** (~74 claude calls) for the
   before-number. Token spend is your call.
   → [`../tests/test_recall.py`](../tests/test_recall.py)
@@ -52,7 +59,8 @@ free; the agent adds items as work blocks on you and removes them when you clear
 - [x] **Rule on the model route vs the exemplar-first premise** — RULED 2026-07-26:
   **revise**, not supersede. Native model is the preferred drafter where reachable
   (it wins on correctness); kien-thai is the audit-and-voice layer; "no escape hatch"
-  narrows to voice, which stays unproven until iter-14 is reviewed. no-LLM-judge
+  narrows to voice, which stays unproven until the comparison set is reviewed — that
+  set is now **iteration-15**, not the contaminated iter-14. no-LLM-judge
   recorded in the same pass.
   → [`decisions/2026-07-26-model-route-revises-exemplar-first.md`](decisions/2026-07-26-model-route-revises-exemplar-first.md),
   [`decisions/2026-07-26-no-llm-judge.md`](decisions/2026-07-26-no-llm-judge.md),

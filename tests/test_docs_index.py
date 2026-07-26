@@ -14,12 +14,13 @@ Free — pure filesystem and string work, no LLM, runs in the default suite.
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 
 import pytest
 
-from lib import ROOT
+from lib import EVALS_FILE, ROOT
 
 _LINK_RE = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")
 
@@ -62,6 +63,22 @@ def test_every_doc_is_indexed():
 def test_root_instructions_link_entry_point(entry: str):
     assert entry in CLAUDE_MD.read_text(encoding="utf-8"), (
         f"CLAUDE.md does not reference {entry} — a fresh session cannot discover it"
+    )
+
+
+def test_claude_md_eval_count_matches_the_eval_set():
+    """A hand-maintained count in prose rots the moment the set changes.
+
+    CLAUDE.md's decision count did exactly that (said 7, were 9) and was deleted
+    rather than corrected. The eval counts earn their place — they tell a reader
+    the scale of the test set — so they get a guard instead.
+    """
+    evals = json.loads(EVALS_FILE.read_text(encoding="utf-8"))["evals"]
+    registers = {e["register"] for e in evals}
+    claimed = f"{len(evals)} eval prompts across {len(registers)} registers"
+
+    assert claimed in CLAUDE_MD.read_text(encoding="utf-8"), (
+        f"CLAUDE.md no longer states the true eval scale — expected {claimed!r}"
     )
 
 

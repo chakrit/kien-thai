@@ -206,7 +206,9 @@ live" open question below as closed). Remaining scope: #3
 `with_skill_persona`, plus register coverage — after register-scoping, the
 `marketing-b2b-formal` / `marketing-fintech-warm` / `marketing-retail-tech` /
 `official` bundles ship no before/after pair and no native exemplar, and `news` has
-no native exemplar (TODO in `exemplars.md`). Committed direction per
+no native exemplar — `exemplars.md` covers `explainer`, `marketing-saas-sme`, `academic`,
+and `personal-blog` only (the TODO comment that used to record this is gone; the gap is
+not). Committed direction per
 [`decisions/2026-05-30-exemplar-first-pivot.md`](decisions/2026-05-30-exemplar-first-pivot.md).
 
 Below is the original entry for archive.

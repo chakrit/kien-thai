@@ -1,6 +1,7 @@
 # The model route — who drafts, who audits
 
-**Status:** accepted (target state; the harness wiring in step 4 is not built yet)
+**Status:** accepted (target state; Typhoon is not a `BACKENDS` entry, so step 4 measures
+via `typhoon_pass.py` + `compare_arms.py` rather than the standard matrix)
 
 How Thai prose gets produced in this repo, after
 [`../decisions/2026-07-26-model-route-revises-exemplar-first.md`](../decisions/2026-07-26-model-route-revises-exemplar-first.md).

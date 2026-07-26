@@ -156,7 +156,7 @@ its way; if something is not reachable from here, that is a bug in this file.
 | [`docs/vendor/model-backends.md`](docs/vendor/model-backends.md) | claude / codex / ollama surface + the Thai-corrupting `ollama run` trap. |
 | [`docs/vendor/thai-orthography-standards.md`](docs/vendor/thai-orthography-standards.md) | Royal Society standards — spacing, ทับศัพท์, spelling. Mechanics only, never voice. |
 | [`docs/vendor/thai-reference-grammars.md`](docs/vendor/thai-reference-grammars.md) | Descriptive grammars — what a structural claim in `grammar.md` should cite. |
-| [`docs/decisions/`](docs/decisions/README.md) | Dated rulings — 7 so far. Frozen; supersede, never edit. |
+| [`docs/decisions/`](docs/decisions/README.md) | Dated rulings. Frozen; supersede, never edit. |
 | [`docs/decisions/2026-05-30-exemplar-first-pivot.md`](docs/decisions/2026-05-30-exemplar-first-pivot.md) | **Current direction.** Read this before proposing rule work. |
 | [`docs/scratch/`](docs/scratch/README.md) | Research dumps + investigations. Residual; disposable. |
 | [`docs/scratch/prior-art.md`](docs/scratch/prior-art.md) | Digest of absorbed session notes — what each session did, where it landed. |
