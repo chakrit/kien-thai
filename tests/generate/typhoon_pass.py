@@ -29,7 +29,7 @@ from lib import (  # noqa: E402
     Eval,
     load_evals,
     mechanical_signals,
-    next_iteration_dir,
+    resolve_iteration_dir,
     wrap_markdown,
 )
 
@@ -89,7 +89,7 @@ def write_draft(out_dir: Path, eval_case: Eval, corpus: str, result: Draft) -> N
 
 
 def main() -> None:
-    iteration = next_iteration_dir()
+    iteration = resolve_iteration_dir()
     ran: list[str] = []
     skipped: list[str] = []
 

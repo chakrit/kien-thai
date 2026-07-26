@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Build the Typhoon-vs-Claude comparison artifact per eval.
 
-For each Typhoon draft in the target iteration, finds the most-recent Claude
-`with_skill` output (the kode-thai loop) for the same eval — across all
-iterations, since the two arms may not be co-generated — and writes a
-comparison.md: a mechanical-signal table + both prose blocks side by side.
+For each Typhoon draft in the target iteration, finds the Claude `with_skill`
+output (the kode-thai loop) to pair it with — the same iteration when the run was
+co-generated, the newest one anywhere otherwise — and writes a comparison.md: a
+mechanical-signal table + both prose blocks side by side. A pair that is not
+co-generated says so, since it does not isolate the drafter.
 
 The signals are advisory (forbidden-phrase hits, connective density, exclamation
 count, length). They route chakrit's ear; they are NOT a quality verdict.
@@ -19,24 +20,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from lib import WORKSPACE, Signals, latest_iteration, mechanical_signals  # noqa: E402
-
-
-def most_recent_claude(eval_name: str) -> Path | None:
-    """Highest-numbered iteration with a NON-EMPTY claude/with_skill output.
-
-    Empty outputs exist (failed/timed-out generations, e.g. iter-7 marketing is
-    0 bytes) — skip them so the comparison falls back to the last real one.
-    """
-    candidates = WORKSPACE.glob(f"iteration-*/{eval_name}/claude/with_skill/output.md")
-    found = [
-        (int(p.parents[3].name.split("-")[1]), p)
-        for p in candidates
-        if p.read_text(encoding="utf-8").strip()
-    ]
-    if not found:
-        return None
-    return max(found, key=lambda item: item[0])[1]
+from lib import (  # noqa: E402
+    WORKSPACE,
+    ArmRef,
+    Signals,
+    claude_arm,
+    latest_iteration,
+    mechanical_signals,
+)
 
 
 def signal_row(label: str, sig: Signals) -> str:
@@ -51,16 +42,21 @@ def _rel(path: Path) -> str:
     return str(path.relative_to(WORKSPACE.parent))
 
 
-def _source_lines(typ_out: Path, claude_path: Path | None) -> list[str]:
-    if claude_path is None:
+def _source_lines(typ_out: Path, arm: ArmRef | None) -> list[str]:
+    if arm is None:
         return [
             f"- **Typhoon draft:** `{_rel(typ_out)}`",
             "- **Claude + skill:** NONE — no with_skill output for this eval yet",
         ]
+    provenance = (
+        "  (co-generated — same iteration, same skill state; the pair isolates the drafter)"
+        if arm.co_generated
+        else "  (NOT co-generated — most-recent existing output; rerun for a clean pair)"
+    )
     return [
         f"- **Typhoon draft:** `{_rel(typ_out)}`",
-        f"- **Claude + skill:** `{_rel(claude_path)}`",
-        "  (NOT co-generated — most-recent existing output; rerun for a clean pair)",
+        f"- **Claude + skill:** `{_rel(arm.path)}`",
+        provenance,
     ]
 
 
@@ -68,13 +64,13 @@ def render_comparison(typ_out: Path) -> str:
     """Markdown for one eval: source header, signal table, both prose blocks."""
     eval_name = typ_out.parents[2].name
     typ_text = typ_out.read_text(encoding="utf-8")
-    claude_path = most_recent_claude(eval_name)
-    claude_text = claude_path.read_text(encoding="utf-8") if claude_path else ""
+    arm = claude_arm(eval_name, typ_out.parents[3])
+    claude_text = arm.path.read_text(encoding="utf-8") if arm else ""
 
     rows = [signal_row("typhoon-draft", mechanical_signals(typ_text))]
-    if claude_path:
+    if arm:
         rows.append(signal_row("claude+skill", mechanical_signals(claude_text)))
-    claude_block = claude_text.strip() if claude_path else "_(no Claude output yet)_"
+    claude_block = claude_text.strip() if arm else "_(no Claude output yet)_"
 
     sections = [
         f"# Comparison: {eval_name}",

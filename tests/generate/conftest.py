@@ -20,7 +20,7 @@ from lib import (
     audit_prompt,
     kien_thai_bundle,
     load_evals,
-    next_iteration_dir,
+    resolve_iteration_dir,
     skill_prompt,
     wrap_markdown,
     wrap_skill,
@@ -32,7 +32,7 @@ TIMEOUT_S = 300
 
 @pytest.fixture(scope="session")
 def iteration_dir() -> Path:
-    return next_iteration_dir()
+    return resolve_iteration_dir()
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):

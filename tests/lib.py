@@ -131,6 +131,64 @@ def next_iteration_dir() -> Path:
     return next_dir
 
 
+ITERATION_ENV = "EVAL_ITERATION"
+_ITERATION_NAME_RE = re.compile(r"iteration-\d+")
+
+
+def resolve_iteration_dir() -> Path:
+    """The iteration every arm of this run writes into.
+
+    Unpinned, each caller mints its own directory — which is how a comparison
+    ends up pairing arms generated weeks apart, and how xdist workers split one
+    matrix across N trees. `EVAL_ITERATION=15` (or `iteration-15`) pins them all
+    to one tree, which is what makes a run co-generated.
+    """
+    pinned = os.environ.get(ITERATION_ENV, "").strip()
+    if not pinned:
+        return next_iteration_dir()
+    name = pinned if pinned.startswith("iteration-") else f"iteration-{pinned}"
+    if not _ITERATION_NAME_RE.fullmatch(name):
+        raise ValueError(f"{ITERATION_ENV}={pinned!r} is not an iteration number or name")
+    pinned_dir = WORKSPACE / name
+    pinned_dir.mkdir(parents=True, exist_ok=True)
+    return pinned_dir
+
+
+@dataclass(frozen=True)
+class ArmRef:
+    """A Claude arm paired against a Typhoon draft, and whether the pair is honest."""
+
+    path: Path
+    co_generated: bool
+
+
+def claude_arm(eval_name: str, iteration: Path) -> ArmRef | None:
+    """The Claude `with_skill` output to compare a Typhoon draft against.
+
+    Prefer the same iteration: that pair ran at one commit under one skill state,
+    so the comparison isolates the drafter. Otherwise fall back to the newest
+    real output anywhere and mark the pair contaminated — iterations 11-14 were
+    built that way and the caveat is what keeps the ear off a dirty comparison.
+
+    Empty outputs are skipped; failed generations leave 0-byte files behind.
+    """
+    def written(path: Path) -> bool:
+        return path.is_file() and bool(path.read_text(encoding="utf-8").strip())
+
+    same = iteration / eval_name / "claude" / "with_skill" / "output.md"
+    if written(same):
+        return ArmRef(same, co_generated=True)
+
+    elsewhere = [
+        (int(p.parents[3].name.split("-")[1]), p)
+        for p in WORKSPACE.glob(f"iteration-*/{eval_name}/claude/with_skill/output.md")
+        if written(p)
+    ]
+    if not elsewhere:
+        return None
+    return ArmRef(max(elsewhere, key=lambda found: found[0])[1], co_generated=False)
+
+
 def enabled_backends() -> set[Backend]:
     """Backends opted in for this run. Default: claude only.
 
