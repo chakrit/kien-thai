@@ -82,9 +82,10 @@ free; the agent adds items as work blocks on you and removes them when you clear
   Pantip bylined long-form is the staged target — for register variety, and confirm the
   two extracted entries' voice-notes against your ear (frontmatter `notes:` flagged
   pending). Targets: [`scratch/personal-blog-sweep-2026-06-16.md`](scratch/personal-blog-sweep-2026-06-16.md)
-- [ ] **Ear-review the 5 co-generated comparisons — `workspace/iteration-15/*/comparison.md`**
-  (open in iA Writer, one at a time). **This is the clean set**, generated 2026-07-27:
-  both arms in one iteration at one commit under one skill state, so the pair isolates
+- [ ] **Ear-review the 5 co-generated comparisons** —
+  `workspace/iteration-15/*/comparison.md` (open in iA Writer, one at a time). **This
+  is the clean set**, generated 2026-07-27: both arms in one iteration at one commit
+  under one skill state, so the pair isolates
   the drafter. It supersedes the iter-11/14 batches, which every `comparison.md` there
   declares NOT co-generated — do not spend the ear on those. Each file is
   self-contained: Typhoon draft + Claude+skill (kode-thai loop) + advisory signal table.

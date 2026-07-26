@@ -17,10 +17,11 @@ their job. What follows is drift on top of a sound layout, plus one unfiled arti
    `scratch/2026-07-17-skill-self-talk-audit.md`, queue the open half in `work-queue.md`,
    repoint the decision.
 
-2. **`workspace/probes/` is undiscoverable.** Gitignored, holds `fable5-eval1-baseline.md`,
-   `runon-recall.json`, `thai-authorities.md` — all cited from scratch notes as evidence.
-   Named in neither the CLAUDE.md repo map nor `workspace/INDEX.md`. A fresh session
-   reading a probe note cannot find what it refers to.
+2. **`workspace/probes/` is undiscoverable.** Gitignored, holds
+   `fable5-eval1-baseline.md`, `runon-recall.json`, and `thai-authorities.md` — all
+   cited from scratch notes as evidence, and named in neither the CLAUDE.md repo map
+   nor `workspace/INDEX.md`. A fresh session reading a probe note cannot find what it
+   refers to.
 
 3. **CLAUDE.md's `tests/` tree is stale.** Missing `test_docs_index.py`,
    `probe_runon_recall.py`, `probe_thai_authorities.py`. `test_docs_index.py` enforces
@@ -29,7 +30,8 @@ their job. What follows is drift on top of a sound layout, plus one unfiled arti
 4. **No guide covers the Typhoon arm.** `guides/running-evals.md` documents claude and
    codex only. `thai-route.sh`, `thai-native-draft.py`, `typhoon_pass.py`, and
    `compare_arms.py` — the exact machinery the repo's one open question turns on — are
-   documented nowhere operational. `spec/model-route.md` describes the design, not the run.
+   documented nowhere operational. `spec/model-route.md` describes the design, not
+   the run.
 
 ## Stale text
 
@@ -57,9 +59,9 @@ their job. What follows is drift on top of a sound layout, plus one unfiled arti
 
 9. **Queue archive bloat.** `research-queue.md` is 374 lines, of which roughly 200 are
    "Below is the original entry for archive" under items resolved back in May (ๆ-spacing,
-   personal-blog vetting, Fictionlog). `work-queue.md` carries the same pattern for browser
-   tooling and framing experiments. A resolved item wants one line and a link to where the
-   resolution landed; the archive body is what git history is for.
+   personal-blog vetting, Fictionlog). `work-queue.md` carries the same pattern for
+   browser tooling and framing experiments. A resolved item wants one line and a link
+   to where the resolution landed; the archive body is what git history is for.
 
 10. **Two hand-synced lists of the same scratch files.** `scratch/prior-art.md` §"Still
     standalone in scratch" and the scratch table in `docs/README.md`. Only the latter is

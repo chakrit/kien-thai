@@ -23,6 +23,11 @@ See CLAUDE.md → "Workspace outputs are evidence, not artifacts".
 |   14 | 2026-06-16 | Typhoon route — all 5 evals, full compare set         | pending  | —                                       |
 |   15 | 2026-07-27 | **Co-generated** Typhoon vs Claude+skill, 5 evals     | pending  | —                                       |
 
+Iteration-15 detail: Typhoon drafted all five (no corpus skips); the Claude arm reached
+skill-clean on all five (passes to CLEAN — personal-essay 1, marketing/tech-doc 2,
+news/exec-brief 3). Both arms under `EVAL_ITERATION=15`, so every `comparison.md` reads
+*co-generated*.
+
 Review: `pending` (untouched by chakrit's ear) · `partial` (some evals verdicted,
 rest queued in `docs/human-tasks-queue.md`) · `reviewed` (all evals verdicted) ·
 `—` (nothing for the ear to judge — a resume row with no prose, or an arm generated

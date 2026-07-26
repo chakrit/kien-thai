@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 
 import lib
-from lib import ITERATION_ENV, claude_arm, resolve_iteration_dir
+from lib import ITERATION_ENV, claude_arm, render_comparison, resolve_iteration_dir
 
 
 @pytest.fixture
@@ -69,16 +69,21 @@ class TestResolveIterationDir:
         monkeypatch.setenv(ITERATION_ENV, "15")
         assert resolve_iteration_dir() == resolve_iteration_dir()
 
-    @pytest.mark.parametrize("pin", ["../escape", "iteration-x", "7/../../etc", ""])
+    @pytest.mark.parametrize("pin", ["../escape", "iteration-x", "7/../../etc", "15 16"])
     def test_rejects_a_pin_that_is_not_an_iteration_name(
         self, workspace: Path, monkeypatch: pytest.MonkeyPatch, pin: str
     ):
         monkeypatch.setenv(ITERATION_ENV, pin)
-        if pin == "":  # empty means unset, not invalid
-            assert resolve_iteration_dir().name.startswith("iteration-")
-            return
         with pytest.raises(ValueError, match=ITERATION_ENV):
             resolve_iteration_dir()
+
+    @pytest.mark.parametrize("pin", ["", "   "])
+    def test_a_blank_pin_means_unset_not_invalid(
+        self, workspace: Path, monkeypatch: pytest.MonkeyPatch, pin: str
+    ):
+        (workspace / "iteration-4").mkdir()
+        monkeypatch.setenv(ITERATION_ENV, pin)
+        assert resolve_iteration_dir().name == "iteration-5"
 
 
 class TestClaudeArm:
@@ -121,3 +126,42 @@ class TestClaudeArm:
     def test_pairs_per_eval_not_across_evals(self, workspace: Path):
         _claude_output(workspace, 15, "marketing-blurb", "คนละ eval")
         assert claude_arm("tech-doc-short", workspace / "iteration-15") is None
+
+
+class TestRenderComparison:
+    """The artifact chakrit actually reads. Rendering must survive every arm state."""
+
+    def test_co_generated_pair_declares_itself_clean(self, workspace: Path):
+        draft = _typhoon_draft(workspace, 15, "tech-doc-short")
+        _claude_output(workspace, 15, "tech-doc-short", "ข้อความจาก Claude")
+
+        page = render_comparison(draft)
+
+        assert "co-generated — same iteration" in page
+        assert "NOT co-generated" not in page
+        assert "ข้อความจาก Claude" in page
+
+    def test_cross_iteration_pair_carries_the_caveat(self, workspace: Path):
+        draft = _typhoon_draft(workspace, 15, "tech-doc-short")
+        _claude_output(workspace, 13, "tech-doc-short", "คนละรุ่น")
+
+        page = render_comparison(draft)
+
+        assert "NOT co-generated" in page
+
+    def test_renders_with_no_claude_arm_at_all(self, workspace: Path):
+        draft = _typhoon_draft(workspace, 15, "tech-doc-short")
+
+        page = render_comparison(draft)
+
+        assert "no with_skill output for this eval yet" in page
+        assert "no Claude output yet" in page
+
+    def test_both_arms_get_a_signal_row(self, workspace: Path):
+        draft = _typhoon_draft(workspace, 15, "tech-doc-short")
+        _claude_output(workspace, 15, "tech-doc-short", "ข้อความ")
+
+        page = render_comparison(draft)
+
+        assert "typhoon-draft" in page
+        assert "claude+skill" in page
