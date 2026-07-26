@@ -15,6 +15,14 @@ free; the agent adds items as work blocks on you and removes them when you clear
   → [`spec/review-protocol.md`](spec/review-protocol.md),
   [`../workspace/iteration-9/feedback.md`](../workspace/iteration-9/feedback.md),
   [`../workspace/iteration-10/feedback.md`](../workspace/iteration-10/feedback.md)
+- [ ] **Rule on the run-on probe result** (2026-07-26) — the probe answered the recall
+  question and raised two calls only you can make: (a) which slug owns run-ons —
+  `mid-paragraph-period`, where the auditor already files them, or
+  `conceptual-seam-break`, where we assumed; (b) `skill-clean` turned out
+  backend-dependent — claude found 4 issues in prose codex terminated as CLEAN, so the
+  protocol needs to name the auditing backend or take the union. Also owed: the "after"
+  for the iter-10 line-7 break so it can land as a pair.
+  → [`scratch/2026-07-26-runon-recall-probe.md`](scratch/2026-07-26-runon-recall-probe.md)
 - [ ] **Decide `reads-misstructured` / discourse axis** — iter-8 surfaced a discourse-level
   finding class the sentence-scoped skill + protocol can't hold (② whole-piece restructure,
   ④ inter-sentence cohesion). A per-register macrostructure axis + a protocol verdict flag
