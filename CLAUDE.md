@@ -188,8 +188,8 @@ skills/kode-thai/
 └── SKILL.md                 # audit-loop trigger over kien-thai
 evals/evals.json             # 5 eval prompts across 4 registers
 tests/
-├── lib.py                   # bundle preprocessor, BACKENDS, parsers,
-│                            #   iteration pinning + arm pairing
+├── lib.py                   # bundle preprocessor, BACKENDS, parsers, iteration
+│                            #   pinning, arm pairing, comparison rendering
 ├── conftest.py              # skill_text fixture (unscoped, default)
 ├── test_sanity.py           # plumbing + bundle preprocessor coverage
 ├── test_iteration.py        # EVAL_ITERATION pinning + co-generated pairing

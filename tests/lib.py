@@ -626,7 +626,10 @@ def _signal_row(label: str, signals: Signals) -> str:
 def _source_lines(draft: Path, arm: ArmRef | None) -> list[str]:
     draft_line = f"- **Typhoon draft:** `{draft.relative_to(WORKSPACE.parent)}`"
     if arm is None:
-        return [draft_line, "- **Claude + skill:** NONE — no with_skill output for this eval yet"]
+        return [
+            draft_line,
+            "- **Claude + skill:** NONE — no with_skill output for this eval yet",
+        ]
 
     return [
         draft_line,
