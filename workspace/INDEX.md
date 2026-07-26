@@ -21,7 +21,13 @@ See CLAUDE.md → "Workspace outputs are evidence, not artifacts".
 |   12 | 2026-06-16 | Claude+skill arm (kode-thai) for iter-11 compare      | —        | —                                       |
 |   13 | 2026-06-16 | Claude+skill arm — personal-essay (eval-4 pair)       | —        | —                                       |
 |   14 | 2026-06-16 | Typhoon route — all 5 evals, full compare set         | pending  | —                                       |
+|   15 | 2026-07-27 | **Co-generated** Typhoon vs Claude+skill, 5 evals     | pending  | —                                       |
 
 Review: `pending` (untouched by chakrit's ear) · `partial` (some evals verdicted,
 rest queued in `docs/human-tasks-queue.md`) · `reviewed` (all evals verdicted) ·
-`—` (no generation run — resume or single-arm rows).
+`—` (nothing for the ear to judge — a resume row with no prose, or an arm generated
+only to pair against another iteration's).
+
+**Iterations 11–14 are not co-generated.** Each `comparison.md` there pairs a Typhoon
+draft against a Claude arm from a different iteration and skill state, so it does not
+isolate the drafter. Iteration-15 is the clean pair set; spend the ear there.

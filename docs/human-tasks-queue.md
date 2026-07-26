@@ -74,20 +74,19 @@ free; the agent adds items as work blocks on you and removes them when you clear
   Pantip bylined long-form is the staged target — for register variety, and confirm the
   two extracted entries' voice-notes against your ear (frontmatter `notes:` flagged
   pending). Targets: [`scratch/personal-blog-sweep-2026-06-16.md`](scratch/personal-blog-sweep-2026-06-16.md)
-- [ ] **Ear-review the 5 Typhoon-vs-Claude comparisons** (batch) — **hold: rerun them
-  co-generated first.** Every `comparison.md` declares "NOT co-generated — most-recent
-  existing output"; the Claude arms are from iterations 12–13, so the pairing is
-  contaminated and the ear time would be spent on a dirty comparison. The rerun is
-  local and cheap (agent-doable, queued in `work-queue.md`). Original entry below —
-  `workspace/iteration-14/*/comparison.md` (open in iA Writer). The canonical set —
-  supersedes the 4-eval iter-11 batch (now includes personal-essay). Each is
-  self-contained: Typhoon draft + Claude+skill (kode-thai loop) + signal table. The
-  chakrit-clean verdict per arm is the measurement. Highlights for your ear: Claude runs
-  longer throughout (marketing 1891 vs 542) with lower connective density; bare Typhoon is
-  terser and clean on forbidden phrases this sampling. NOTE Typhoon is stochastic —
-  exec-brief had 3 forbidden hits in iter-11, 0 here; single drafts are noisy. eval-4's
-  Typhoon draft was few-shot on Vicharn Panich's elderly-diary voice — judge the
-  register transfer to a young-homecoming essay. Verdicts → `iteration-14/feedback.md`.
+- [ ] **Ear-review the 5 co-generated comparisons — `workspace/iteration-15/*/comparison.md`**
+  (open in iA Writer, one at a time). **This is the clean set**, generated 2026-07-27:
+  both arms in one iteration at one commit under one skill state, so the pair isolates
+  the drafter. It supersedes the iter-11/14 batches, which every `comparison.md` there
+  declares NOT co-generated — do not spend the ear on those. Each file is
+  self-contained: Typhoon draft + Claude+skill (kode-thai loop) + advisory signal table.
+  **The chakrit-clean verdict per arm is the measurement**, and it settles the open
+  question in [`spec/model-route.md`](spec/model-route.md) §Open — whether the native
+  drafter wins on voice, or at all. Two standing cautions: Typhoon is stochastic, so a
+  single draft is noisy (exec-brief had 3 forbidden hits in iter-11, 0 in iter-14); and
+  eval-4's Typhoon draft is few-shot on Vicharn Panich's elderly-diary voice, so judge
+  the register transfer to a young-homecoming essay. Verdicts →
+  `iteration-15/feedback.md`, then flip the INDEX row.
 
 ## How this list is maintained
 

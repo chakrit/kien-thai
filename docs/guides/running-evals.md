@@ -43,12 +43,51 @@ silently dropped, so a typo fails loudly.
 EVAL_BACKENDS=claude,codex uv run pytest -m generate
 ```
 
-**Do not pass `-n >1`.** `iteration_dir` is a session-scoped fixture, and under
-pytest-xdist each worker gets its own session — so each worker mints a *separate*
-iteration directory and the matrix lands split across them. Iteration-7 was
-generated this way and had to be merged by hand. Tracked in
-[`../work-queue.md`](../work-queue.md) → "Eval harness: xdist splits iteration
-directory across workers". Until it is fixed, run serial or expect to merge.
+**Do not pass `-n >1` unpinned.** `iteration_dir` is a session-scoped fixture, and
+under pytest-xdist each worker gets its own session — so each worker mints a
+*separate* iteration directory and the matrix lands split across them. Iteration-7
+was generated this way and had to be merged by hand. `EVAL_ITERATION` (below) pins
+every worker to one tree and avoids it; unpinned, run serial or expect to merge.
+Tracked in [`../work-queue.md`](../work-queue.md) → "Eval harness: xdist splits
+iteration directory across workers".
+
+## Pinning the iteration — `EVAL_ITERATION`
+
+Unset, every entry point mints its own fresh iteration. That is right for a single
+self-contained run and wrong for everything else: two arms of one comparison land in
+two trees, and a resumed or extended run starts a third.
+
+```sh
+EVAL_ITERATION=15 uv run pytest -m generate     # write into iteration-15
+EVAL_ITERATION=iteration-15 ...                 # same thing, spelled out
+```
+
+The pin creates the directory if absent and is rejected loudly if it is not an
+iteration name. Every writer honours it — the pytest matrix and `typhoon_pass.py`
+alike — which is what makes a co-generated run possible.
+
+## Generate — the Typhoon arm and the comparison
+
+The model-route arm (`spec/model-route.md`) drafts with Typhoon-2 8B over the ollama
+HTTP API, few-shot conditioned from `corpus/curated/<register>/`. Local and free; it
+needs `ollama` running with `scb10x/llama3.1-typhoon2-8b-instruct` pulled. It is a
+single native draft, **not** a kode-thai loop.
+
+```sh
+EVAL_ITERATION=15 uv run python tests/generate/typhoon_pass.py
+EVAL_ITERATION=15 EVAL_BACKENDS=claude uv run pytest -m generate -k "claude and with_skill"
+uv run python tests/generate/compare_arms.py iteration-15
+```
+
+Both arms under one pin, at one commit, under one skill state — that is what
+"co-generated" means, and it is the only pairing that isolates the drafter.
+`compare_arms.py` writes `workspace/iteration-N/<eval>/comparison.md`: a mechanical
+signal table plus both prose blocks. It labels the pair honestly — when it cannot find
+a same-iteration Claude arm it falls back to the newest one anywhere and prints **NOT
+co-generated**. Iterations 11–14 all carry that caveat; do not spend the ear on them.
+
+Evals whose register has no corpus category are skipped and reported by name — the
+drafter has no exemplars to condition on, and synthesizing them is forbidden.
 
 ## Generate — inline mode
 

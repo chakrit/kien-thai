@@ -136,7 +136,7 @@ its way; if something is not reachable from here, that is a bug in this file.
 | [`skills/kode-thai/`](skills/kode-thai/SKILL.md) | Audit-loop trigger over kien-thai. |
 | [`evals/evals.json`](evals/evals.json) | The 5 eval prompts — the real test set. |
 | [`tests/`](tests/) | Eval harness + sanity suite. Tree below. |
-| [`workspace/`](workspace/) | Generation runs. Eval subdirs gitignored; `feedback.md` tracked. |
+| [`workspace/`](workspace/) | Generation runs + `probes/`. Eval subdirs gitignored; `feedback.md` tracked. |
 | [`workspace/INDEX.md`](workspace/INDEX.md) | **The iteration ledger** — what exists, what's reviewed. |
 | [`corpus/`](corpus/README.md) | Vetted native-Thai source material. Prose gitignored; see below. |
 | [`docs/`](docs/README.md) | Durable artifacts, single routing gate. Index below. |
@@ -188,13 +188,18 @@ skills/kode-thai/
 └── SKILL.md                 # audit-loop trigger over kien-thai
 evals/evals.json             # 5 eval prompts across 4 registers
 tests/
-├── lib.py                   # bundle preprocessor, BACKENDS, parsers
+├── lib.py                   # bundle preprocessor, BACKENDS, parsers,
+│                            #   iteration pinning + arm pairing
 ├── conftest.py              # skill_text fixture (unscoped, default)
 ├── test_sanity.py           # plumbing + bundle preprocessor coverage
+├── test_iteration.py        # EVAL_ITERATION pinning + co-generated pairing
+├── test_docs_index.py       # every doc reachable from an index
 ├── test_skill_consistency.py # cross-ref + slug uniqueness checks
 ├── test_skill_frontmatter.py # strict-YAML frontmatter guard
 ├── test_quant.py            # advisory heuristics, -m evaluate
 ├── test_recall.py           # auditor recall on rule Bad-examples, -m recall
+├── probe_runon_recall.py    # one-off probes (not pytest modules); evidence
+├── probe_thai_authorities.py #   lands in workspace/probes/
 └── generate/
     ├── conftest.py          # run_eval fixture, register-scoped two-tier
     ├── test_claude.py       # -m generate
@@ -202,6 +207,8 @@ tests/
     ├── typhoon_pass.py      # Typhoon draft arm (not a pytest module)
     └── compare_arms.py      # per-eval comparison.md, Typhoon vs Claude
 workspace/                   # gitignored: iteration-N/<eval>/<backend>/<config>/
+└── probes/                  # gitignored one-off probe evidence, cited from
+                             #   docs/scratch/ notes
 ```
 
 **Durable artifacts** live in [`docs/`](docs/README.md), filed by the single routing gate

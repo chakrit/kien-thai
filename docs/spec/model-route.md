@@ -70,15 +70,18 @@ problems need no Thai judgment: the marketing draft emits outline labels instead
 prose, and the exec-brief opens with a greeting. Length runs consistently shorter
 (marketing 542 vs 1891 chars) — terseness or under-delivery, undetermined.
 
-**The comparison set is also contaminated.** Every `workspace/iteration-14/*/comparison.md`
-declares "NOT co-generated — most-recent existing output"; the Claude arms come from
-iterations 12–13. Rerunning the five pairs co-generated is cheap and local, and should
-happen before any ear time is spent.
+**The clean pair set now exists — iteration-15 (2026-07-27).** Iterations 11–14 were
+contaminated: every `comparison.md` there declares "NOT co-generated", pairing a Typhoon
+draft against a Claude arm from a different iteration and skill state. Iteration-15 ran
+both arms under one `EVAL_ITERATION` pin at one commit, so the pair isolates the drafter.
+It is generated and **awaiting chakrit's ear**; until those verdicts land, everything
+above stands.
 
 So this spec claims **neither** correctness nor voice as settled. The route is the
-direction under test; `compare_arms.py` plus chakrit's ear on a clean pair set is what
-would settle it.
+direction under test, and the review of iteration-15 is what settles it — not further
+argument.
 
-Not yet built: Typhoon as a third entry in `tests/lib.py:BACKENDS`, which is what a
-measured cross-iteration comparison needs. Tracked in
-[`../work-queue.md`](../work-queue.md).
+Not yet built: Typhoon as a third entry in `tests/lib.py:BACKENDS`. `typhoon_pass.py`
+writes into the same iteration tree and `compare_arms.py` reads both arms uniformly, so
+a co-generated comparison no longer needs it; a *measured cross-iteration* one still
+does. Tracked in [`../work-queue.md`](../work-queue.md).

@@ -97,7 +97,9 @@ same change that adds the file.
 | [`plan-typhoon-vs-claude-pass.md`](scratch/plan-typhoon-vs-claude-pass.md) | Plan for the comparison arms. |
 | [`2026-07-07-fable5-eval1-probe.md`](scratch/2026-07-07-fable5-eval1-probe.md) | Fable-5 baseline probe; 10 native corrections. |
 | [`2026-07-26-runon-recall-probe.md`](scratch/2026-07-26-runon-recall-probe.md) | Run-on recall result; backend-dependent skill-clean. |
+| [`2026-07-17-skill-self-talk-audit.md`](scratch/2026-07-17-skill-self-talk-audit.md) | Self-talk findings in the distributed skills; kode-thai half open. |
 | [`2026-07-26-thai-authority-candidates.md`](scratch/2026-07-26-thai-authority-candidates.md) | Typhoon bibliography output, flagged unverified. |
+| [`2026-07-26-docs-audit.md`](scratch/2026-07-26-docs-audit.md) | Documentation-pass findings: gaps, stale text, duplication. |
 | [`scratch/README.md`](scratch/README.md) | What belongs in scratch, and the two carve-outs. |
 
 ### Queues — working state, rewritten continuously

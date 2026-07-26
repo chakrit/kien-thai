@@ -7,10 +7,16 @@ incl. prose-direction judgements). Items here are committed scope — the questi
 
 ---
 
-## Next agent step — Workflow inline-driver, then exemplar expansion ← ordered 2026-07-07
+## Next agent step — inline-driver, then exemplar expansion ← reordered 2026-07-27
+
+**Reordered (chakrit, 2026-07-27).** The co-generated comparison run went first and is
+now iteration-15, awaiting the ear. The 2026-07-07 ordering below predates the
+model-route ruling that made that run the gating evidence, and the run turned out to
+need no new driver — only an iteration pin. A and B resume once iteration-15 is
+reviewed, since its verdict decides what the driver is measuring.
 
 **Decided (chakrit, 2026-07-07).** Order set for the two candidate next steps from the
-exemplar-first pivot: **(A) Workflow inline-driver prototype first, then (B) Phase 3
+exemplar-first pivot: **(A) inline-driver prototype first, then (B) Phase 3
 exemplar expansion.** Rationale (per
 [`scratch/session-2026-05-30-exemplar-pivot.md`](scratch/session-2026-05-30-exemplar-pivot.md)):
 the inline-driver infra makes running and measuring exemplar batches cheaper, so B gets
@@ -42,26 +48,48 @@ cheaper after A.
 
 ---
 
-## Rerun the Typhoon-vs-Claude comparisons co-generated ← added 2026-07-26
+## Rerun the Typhoon-vs-Claude comparisons co-generated ← ran 2026-07-27 as iteration-15
 
-**Need.** Every `workspace/iteration-14/*/comparison.md` carries the line "NOT
-co-generated — most-recent existing output; rerun for a clean pair". The Claude arms
-come from iterations 12–13, generated at a different time under a different skill state,
-so the pairing does not isolate the drafter. The human queue describes this set as
-"5 co-generated comparisons" — it is not, and chakrit's ear should not be spent on it
-until it is.
+**Status.** Token spend approved (chakrit, 2026-07-27) and the run is iteration-15 — both
+arms, all five evals, one iteration tree, one skill state. This also reordered the
+2026-07-07 call that put the inline driver first: that ordering predates the model-route
+ruling that made this run the gating evidence, and the run needed no new driver.
 
-**Scope.** Regenerate both arms in one run per eval, all five, then rebuild
-`comparison.md` via `tests/generate/compare_arms.py`. Typhoon is local and free; the
-Claude arm costs API tokens (5 evals × the kode-thai loop).
+The harness could not co-generate before this: `typhoon_pass.py` and the pytest
+`iteration_dir` fixture each minted their own directory, so the arms always landed apart.
+`lib.resolve_iteration_dir()` now honours `EVAL_ITERATION`, both callers use it, and
+`lib.claude_arm()` prefers the same-iteration arm and marks the pair co-generated —
+`compare_arms.py` only prints the contamination caveat when it is earned. The pin also
+removes the xdist split below, since workers share it.
 
-**Why it matters now.** This is the evidence that decides the open question in
+**Left to do.** Chakrit's ear on the five `workspace/iteration-15/*/comparison.md`;
+verdicts → `iteration-15/feedback.md`; flip the INDEX row. That settles the open question
+in
 [`decisions/2026-07-26-model-route-revises-exemplar-first.md`](decisions/2026-07-26-model-route-revises-exemplar-first.md)
-— whether the native drafter wins on voice, or at all. The 2026-07-26 evidence audit
-found the standing case for Typhoon is a single unreplicated native-ear reading, with
-mechanical signals since leaning the other way.
+and `spec/model-route.md` §Open — whether the native drafter wins on voice, or at all.
 
-**Block.** The Claude arm's token spend is chakrit's call.
+---
+
+## Finish the self-talk sweep — kode-thai + the distribution boundary ← added 2026-07-27
+
+**Need.** The 2026-07-17 audit of the *distributed* skill bodies was applied to kien-thai
+only (`793bd2d`). Its kode-thai findings and every distribution-boundary finding are
+still open, and until 2026-07-27 the finding-list itself was an untracked file at the
+repo root. Now filed:
+[`scratch/2026-07-17-skill-self-talk-audit.md`](scratch/2026-07-17-skill-self-talk-audit.md).
+
+**Scope.** `skills/kode-thai/SKILL.md`: the two-tier-injection aside and the "follow the
+iteration discipline in the project `CLAUDE.md`" line both point at maintainer files a
+consumer never receives; the `skills/kien-thai/scripts/` path reaches into the sibling
+skill's internals and should reduce to a skill-name handoff. Separately, decide the
+in-body provenance convention — a defined confidence tag (cf. de-slop's
+Empirical/Curated/Field legend) instead of dated session refs.
+
+**Out of scope by design.** The `corpus/` references in kien-thai are *functional* —
+`thai-native-draft.py` reads `corpus/curated/<register>/` at runtime. Those paths are not
+narration.
+
+**Block.** None. School sync stays chakrit's.
 
 ---
 
@@ -173,7 +201,8 @@ and the vetting pass completes.
 configs were needed. `references/exemplars.md` (curated native corpus excerpts) exists
 and `kien_thai_bundle` pins it last, adjacent to the task prompt (`tests/lib.py`);
 the exemplar home resolved to `skills/kien-thai/references/exemplars.md` (the
-`corpus/native-exemplars/` candidate was never created). Remaining scope: #3
+`corpus/native-exemplars/` candidate was never created — treat the "where do exemplars
+live" open question below as closed). Remaining scope: #3
 `with_skill_persona`, plus register coverage — after register-scoping, the
 `marketing-b2b-formal` / `marketing-fintech-warm` / `marketing-retail-tech` /
 `official` bundles ship no before/after pair and no native exemplar, and `news` has
@@ -224,7 +253,17 @@ captured in
 
 ---
 
-## Eval harness: xdist splits iteration directory across workers
+## Eval harness: xdist splits iteration directory across workers ✅ workaround 2026-07-27
+
+**Status.** `EVAL_ITERATION=N` pins every caller to one tree
+(`lib.resolve_iteration_dir()`), which is what the fix candidates below were reaching
+for — workers no longer each mint their own. Unpinned runs still split, so the guidance
+stands: either pin or run serial. Closing this properly means resolving the dir in the
+controller pre-fork so the default is safe too.
+
+Below is the original entry for archive.
+
+---
 
 **Need.** `tests/generate/conftest.py` exposes `iteration_dir` as a
 session-scoped pytest fixture that calls `next_iteration_dir()`. Under

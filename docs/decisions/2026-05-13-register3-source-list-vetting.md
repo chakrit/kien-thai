@@ -5,7 +5,8 @@
 - **Status:** accepted
 
 Extracted 2026-07-17 from `skills/kien-thai/references/register.md`, where this
-record originally lived inline (self-talk sweep, `review.md` 2026-07-17). Session
+record originally lived inline (self-talk sweep,
+`docs/scratch/2026-07-17-skill-self-talk-audit.md`). Session
 trail: `docs/scratch/source-vetting-2026-05-13.md`,
 `docs/scratch/chrome-session-2026-05-13.md`.
 

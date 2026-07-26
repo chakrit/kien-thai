@@ -14,10 +14,13 @@ which is current-truth-only and overwritten each save — these notes were its p
 
 ## Still standalone in `scratch/`
 
-Cited from live surfaces, so they keep their own file:
+Not an index — [`../README.md`](../README.md) holds the complete, test-enforced list of
+every doc. This table records only *why* these notes survive: something live cites them,
+so the scratch lifecycle's "delete freely" does not apply.
 
 | Note | Cited by |
 | ------------------------------------------------------------------------------ | ------------------------------------- |
+| [`2026-07-17-skill-self-talk-audit.md`](2026-07-17-skill-self-talk-audit.md) | the Register-3 decision, `work-queue.md` |
 | [`source-vetting-2026-05-13.md`](source-vetting-2026-05-13.md) | CLAUDE.md, the Register-3 decision, both queues |
 | [`chrome-session-2026-05-13.md`](chrome-session-2026-05-13.md) | `style-rules.md`, the Register-3 decision |
 | [`proposals-2026-05-13.md`](proposals-2026-05-13.md) | `research-queue.md` |

@@ -29,7 +29,7 @@ audit/probe and review material, not cross-iteration bundle-effect measurements.
 
 ## Drivers
 
-Three ways to run the inline loop. All share the bundle preprocessor, prompt templates,
+Two ways to run the inline loop. Both share the bundle preprocessor, prompt templates,
 and artifact layout below — only the generator differs.
 
 ### The binding constraint — harness-agnostic or it does not ship
@@ -55,7 +55,7 @@ no proprietary agent-spawning machinery, whatever convenience it offers.
 > would have provided is still required — see
 > [`../work-queue.md`](../work-queue.md) item A, re-specced as plain Python.
 
-### 2. Manual subagent (chat-Claude)
+### 1. Manual subagent (chat-Claude)
 
 Chat-Claude spawns a fresh subagent per pass via the Agent tool and writes artifacts to
 disk itself. The driving session computes the bundle, constructs the prompt, spawns the
@@ -63,7 +63,7 @@ subagent, writes the output, and drives the audit/fix loop (one subagent per pas
 subagent gets only the bundle + prompt — no conversation history — the closest
 approximation to cold-Claude without shelling out.
 
-### 3. Manual Codex (chakrit-driven)
+### 2. Manual Codex (chakrit-driven)
 
 The same procedure by hand: compute the bundle, paste the constructed prompt into a fresh
 `codex` session, save the output to the right path; for the audit loop, paste the audit
