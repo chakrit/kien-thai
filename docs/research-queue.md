@@ -26,17 +26,17 @@ ruleset is structurally blind to. See
 sentence-to-paragraph. The frames' "structural" tag means *clause* structure;
 `style-rules.md §Structure` caps at single-paragraph. There is no per-register
 macrostructure (news arc, essay shape) and no discourse-level finding class — the only
-holistic verdict is `reads-flat` (voice). ②'s `news-feature-bts` was chakrit-clean: no on a
-**whole-piece restructure** (Dao's flag) that no slot can hold. Does kien-thai need a
+holistic verdict is `reads-flat` (voice). ②'s `news-feature-bts` was chakrit-clean: no
+on a **whole-piece restructure** (Dao's flag) that no slot can hold. Does kien-thai need a
 per-register macrostructure axis and a `reads-misstructured` verdict flag in the protocol?
 
 **Question (b) — inter-sentence cohesion.** Finer than (a): ④'s `ที่ยังเหมือนเดิมก็มี` was
 a connective error *between adjacent sentences* — additive `ก็มี` used where the discourse
 move is contrast against the prior sentence's `เปลี่ยน`. Fix mirrored the prior verb
 (`ไม่เปลี่ยนแปลง`) to license the marker. No slug covers cross-sentence connective-choice
-logic; every connective rule (`connective-budget`, `seam-connective-missing`, `doi-sprawl`)
-is within-sentence. Is inter-sentence cohesion a distinct rule class, or does it fold into
-the macrostructure axis above?
+logic; every connective rule (`connective-budget`, `seam-connective-missing`,
+`doi-sprawl`) is within-sentence. Is inter-sentence cohesion a distinct rule class, or
+does it fold into the macrostructure axis above?
 
 **Hypothesis.** (a) and (b) are the same axis at two scales — discourse cohesion the skill
 has never modeled because generation/audit operate a sentence at a time. Likely a real
@@ -48,7 +48,8 @@ signatures (lede/nut-graf in news-feature, turn-structure in personal essay) and
 inter-sentence contrast/continuation marker choice. Tabulate whether native writing has a
 consistent shape worth encoding vs being too author-variable to rule.
 
-**Landing place.** Pairs first into `references/examples.md` (the ④ cohesion pair is ready:
+**Landing place.** Pairs first into `references/examples.md` (the ④ cohesion pair is
+ready:
 `ที่ยังเหมือนเดิมก็มี` → `ที่ยังเหมือนเดิมไม่เปลี่ยนแปลงก็มี`, register `personal-blog`).
 Macrostructure → possibly a new `references/structure.md` or a `register.md` per-family
 shape note. The `reads-misstructured` **protocol-flag decision is chakrit's** — tracked in

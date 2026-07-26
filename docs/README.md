@@ -1,7 +1,7 @@
 # docs
 
-Durable artifacts. **File by the gate below** — walk it top to bottom and stop at the first
-yes. The bottom (`scratch/`) charges a toll, so nothing lands there by default.
+Durable artifacts. **File by the gate below** — walk it top to bottom and stop at the
+first yes. The bottom (`scratch/`) charges a toll, so nothing lands there by default.
 
 ## Where does this go?
 

@@ -45,7 +45,7 @@ trace ก่อนแก้ทุกจุด วนใหม่จนกว่�
 หรือใช้ skill `kode-thai` (โคตรไทย) ที่เก็บคำสั่งนี้ไว้ให้แล้ว เรียกผ่าน
 `/kode-thai` หรือบอกเป็นภาษาไทยว่า "ตรวจวนๆ จนกว่าจะหมดที่ผิด" ก็ได้
 
-ระวัง audit loop กิน token หนัก skill มี SKILL.md + 7 reference รวมหลายหมื่น token
+ระวัง audit loop กิน token หนัก skill มี SKILL.md + 8 reference รวมหลายหมื่น token
 ถ้าตรวจงานเขียนยาว ๆ หลายรอบ ค่าใช้จ่ายบวมเร็ว เตรียมงบ context ไว้ให้พอ
 (harness scope register ก่อนยิง เพื่อตัดส่วนที่ไม่ใช้ออก เหลือประมาณครึ่งหนึ่ง)
 
@@ -90,8 +90,10 @@ skill โหลด `SKILL.md` เป็น context หลัก แล้วอ�
 
 ## Eval ทำงานยังไง
 
-repo นี้ไม่ได้มากับกฎอย่างเดียว มี eval harness ด้วย ใช้ pytest ผูก `claude` กับ
-`codex` ใน bare mode คู่กัน เพื่อเทียบผลก่อนกับหลัง inject skill
+repo นี้ไม่ได้มากับกฎอย่างเดียว แต่มาพร้อม harness ที่ใช้ pytest ผูก `claude` กับ
+`codex` ใน bare mode รันคู่กันเพื่อเทียบผลก่อนกับหลัง inject skill อีกขาหนึ่งเป็น
+Typhoon โมเดลที่เทรนภาษาไทยมาแต่ต้น รันในเครื่องผ่าน ollama ให้ร่างต้นฉบับออกมา
+แล้วเอามาวางเทียบกับขาของ `claude`
 
 ```bash
 uv sync
@@ -99,7 +101,16 @@ uv run pytest                       # sanity เร็ว ๆ ไม่เรี
 uv run pytest -m generate           # ยิงจริง ใช้ token จริง
 uv run pytest -m generate -k claude # เลือก backend เดียว
 uv run pytest -m evaluate           # ตรวจหยาบเชิงปริมาณ (เป็นแค่สัญญาณ)
+uv run pytest -m recall             # วัด recall ของ auditor (ช้า ใช้ token)
+
+# ขา Typhoon + สร้างไฟล์เทียบสองขา
+EVAL_ITERATION=15 uv run python tests/generate/typhoon_pass.py
+uv run python tests/generate/compare_arms.py iteration-15
 ```
+
+เวลารันหลายขาพร้อมกัน ให้ตั้ง environment variable `EVAL_ITERATION` เพื่อ pin ให้
+ทุกขาเขียนลง iteration เดียวกัน ถ้าไม่ตั้ง แต่ละขาจะสร้าง iteration ของตัวเองแยกกัน
+พอเป็นคนละรอบคนละสถานะ skill ก็เอามาเทียบกันไม่ได้
 
 artifact จะลงที่ `workspace/iteration-N/<eval>/<backend>/<config>/`
 จากนั้นดูผลกับ Claude ใน chat ได้เลย ไม่มี viewer แยกต่างหาก
@@ -140,9 +151,10 @@ eval ออกมาไม่ดี ขั้นตอนคือ:
 
 ## สถานะ
 
-iteration ต้น ๆ skill เพิ่งปรับโครงสร้างใหม่ตามกรอบการเรียบเรียง 7 ข้อ แต่ทั้งกรอบ
-และกฎปลีกย่อยยังไม่ผ่าน eval หลายรอบ priority กับ wording ก็เลยต้องปรับตามผลแต่ละ
-iteration ไป
+ตอนนี้รันมาถึง iteration ที่ 15 กรอบการเรียบเรียง 7 ข้อกับกฎปลีกย่อยผ่าน eval
+มาหลายรอบแล้ว คำถามที่ยังเปิดค้างอยู่คือ ระหว่างให้โมเดลที่เทรนไทยมาร่างก่อน
+กับให้ Claude ร่างพร้อม skill อันไหนได้น้ำเสียงเป็นธรรมชาติกว่ากัน และคำตอบต้อง
+ตัดสินด้วยหูของเจ้าของภาษา ไม่ใช่ตัวเลข
 
 ใครเจอกฎที่พลาดหรือผิด เปิด issue หรือ PR ได้ ดูขั้นตอน + รูปแบบ slug ใน
 [`CONTRIBUTING.md`](CONTRIBUTING.md)

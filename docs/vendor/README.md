@@ -23,5 +23,5 @@ wrong, re-read upstream — you cannot fix the rot by editing here.
 
 ## Format
 
-One file per subject: `<slug>.md` (no date prefix — describes a thing, not a moment). Favor
-tables and lists; keep entries skimmable.
+One file per subject: `<slug>.md` (no date prefix — describes a thing, not a moment).
+Favor tables and lists; keep entries skimmable.

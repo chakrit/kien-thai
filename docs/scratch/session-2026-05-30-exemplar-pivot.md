@@ -6,8 +6,8 @@ Phase-2 auditor-recall instrument.
 
 ## What was decided
 
-Pivot to **exemplar-first, auditor-recall-measured**, with **inline as the default
-mode**. Full rationale + eight decisions:
+Pivot to **exemplar-first, auditor-recall-measured**, with **inline as the default mode**.
+Full rationale + eight decisions:
 [`decisions/2026-05-30-exemplar-first-pivot.md`](../decisions/2026-05-30-exemplar-first-pivot.md).
 Core: the kode-thai loop converges to *skill-clean* (ruleset finds nothing), never
 *chakrit-clean* (native ear finds nothing); the binding constraint is **auditor recall**,
@@ -48,8 +48,8 @@ resort.
 **Live decision (unanswered when session paused):** next agent step —
 
 1. Workflow inline-driver prototype (small token cost), or
-2. Phase 3 exemplar expansion — lift candidate exemplars from `corpus/curated/` for chakrit
-   to approve/cull.
+2. Phase 3 exemplar expansion — lift candidate exemplars from `corpus/curated/` for
+   chakrit to approve/cull.
 
 Recommended 1 first (infra makes 2 cheaper to run and measure). Later phases: 3 (exemplar
 inversion + SKILL.md/references framing), 4 (provenance frontmatter field, plateau

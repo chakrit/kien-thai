@@ -127,6 +127,10 @@ uv run pytest                  # sanity (ฟรี)
 uv run pytest -m generate      # full eval (ใช้ API token)
 ```
 
+นอกจาก pytest สองคำสั่งหลัก ถ้าจะรันหลายขาเทียบกันอย่าลืม pin ด้วย
+`EVAL_ITERATION` ขั้นตอนเต็มดูได้ที่
+[`docs/guides/running-evals.md`](docs/guides/running-evals.md)
+
 เก็บผลไว้ที่ `workspace/iteration-N/`
 
 ทุกครั้งที่สร้าง iteration ใหม่ ให้เพิ่มแถวใน [`workspace/INDEX.md`](workspace/INDEX.md)

@@ -16,8 +16,8 @@ need no new driver — only an iteration pin. A and B resume once iteration-15 i
 reviewed, since its verdict decides what the driver is measuring.
 
 **Decided (chakrit, 2026-07-07).** Order set for the two candidate next steps from the
-exemplar-first pivot: **(A) inline-driver prototype first, then (B) Phase 3
-exemplar expansion.** Rationale (per
+exemplar-first pivot: **(A) inline-driver prototype first, then (B) Phase 3 exemplar
+expansion.** Rationale (per
 [`scratch/session-2026-05-30-exemplar-pivot.md`](scratch/session-2026-05-30-exemplar-pivot.md)):
 the inline-driver infra makes running and measuring exemplar batches cheaper, so B gets
 cheaper after A.
@@ -41,10 +41,10 @@ cheaper after A.
 - **B — Phase 3 exemplar expansion.** Sweep `corpus/curated/` for anchor exemplars, lift
   short register-tagged excerpts, stage as **candidate before/after pairs** in
   `references/examples.md` / `exemplars.md`, hand chakrit an approve/cull list (agent
-  stages, native ear ratifies). Then the wider arc: exemplar inversion + SKILL.md/reference
-  reframing around pairs.
+  stages, native ear ratifies). Then the wider arc: exemplar inversion +
+  SKILL.md/reference reframing around pairs.
 
-**Block.** None. A is the immediate next build.
+**Block.** Iteration-15's review. A is the next build once that verdict lands.
 
 ---
 
@@ -73,9 +73,9 @@ and `spec/model-route.md` §Open — whether the native drafter wins on voice, o
 ## Finish the self-talk sweep — kode-thai + the distribution boundary ← added 2026-07-27
 
 **Need.** The 2026-07-17 audit of the *distributed* skill bodies was applied to kien-thai
-only (`793bd2d`). Its kode-thai findings and every distribution-boundary finding are
-still open, and until 2026-07-27 the finding-list itself was an untracked file at the
-repo root. Now filed:
+only (`793bd2d`). Its kode-thai findings and every distribution-boundary finding are still
+open, and until 2026-07-27 the finding-list itself was an untracked file at the repo root.
+Now filed:
 [`scratch/2026-07-17-skill-self-talk-audit.md`](scratch/2026-07-17-skill-self-talk-audit.md).
 
 **Scope.** `skills/kode-thai/SKILL.md`: the two-tier-injection aside and the "follow the
@@ -198,17 +198,17 @@ and the vetting pass completes.
 ## Framing experiments for Thai-native generation
 
 **Status (2026-07-03): experiments #1/#2 landed in the default bundle** — no separate
-configs were needed. `references/exemplars.md` (curated native corpus excerpts) exists
-and `kien_thai_bundle` pins it last, adjacent to the task prompt (`tests/lib.py`);
-the exemplar home resolved to `skills/kien-thai/references/exemplars.md` (the
+configs were needed. `references/exemplars.md` (curated native corpus excerpts) exists and
+`kien_thai_bundle` pins it last, adjacent to the task prompt (`tests/lib.py`); the
+exemplar home resolved to `skills/kien-thai/references/exemplars.md` (the
 `corpus/native-exemplars/` candidate was never created — treat the "where do exemplars
-live" open question below as closed). Remaining scope: #3
-`with_skill_persona`, plus register coverage — after register-scoping, the
-`marketing-b2b-formal` / `marketing-fintech-warm` / `marketing-retail-tech` /
-`official` bundles ship no before/after pair and no native exemplar, and `news` has
-no native exemplar — `exemplars.md` covers `explainer`, `marketing-saas-sme`, `academic`,
-and `personal-blog` only (the TODO comment that used to record this is gone; the gap is
-not). Committed direction per
+live" open question below as closed). Remaining scope: #3 `with_skill_persona`, plus
+register coverage — after register-scoping, the `marketing-b2b-formal` /
+`marketing-fintech-warm` / `marketing-retail-tech` / `official` bundles ship no
+before/after pair and no native exemplar, and `news` has no native exemplar —
+`exemplars.md` covers `explainer`, `marketing-saas-sme`, `academic`, and `personal-blog`
+only (the TODO comment that used to record this is gone; the gap is not). Committed
+direction per
 [`decisions/2026-05-30-exemplar-first-pivot.md`](decisions/2026-05-30-exemplar-first-pivot.md).
 
 Below is the original entry for archive.
@@ -237,9 +237,8 @@ investigation:
 3. `with_skill_persona` — register-keyed Thai-language persona prepend
    naming a specific publication/voice. Tested against #1+#2.
 
-**Findings so far.** Literature lens, recommended ordering, and the
-"don't force Thai-language CoT for mid-resource languages" caveat
-captured in
+**Findings so far.** Literature lens, recommended ordering, and the "don't force
+Thai-language CoT for mid-resource languages" caveat captured in
 [`scratch/framing-investigation-2026-05-21.md`](scratch/framing-investigation-2026-05-21.md).
 
 **Open design choices.**

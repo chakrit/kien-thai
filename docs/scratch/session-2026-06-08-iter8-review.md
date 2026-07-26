@@ -36,8 +36,8 @@ Surfaced this session, awaiting chakrit:
 
 1. **Ambiguous classification — ①'s `หน้าต่างเวลา`.** Recorded as coverage-gap
    (noun-compound calque, "time window" rendered literally). But it could be a recall-miss
-   against an existing calque slug. Confirmed `time-period` does NOT cover it (that slug is
-   ใน-vs-ของ for periods). Decide at exemplar-promotion: new noun-compound-calque slug, or
+   against an existing calque slug. Confirmed `time-period` does NOT cover it (that
+   slug is ใน-vs-ของ for periods). Decide at exemplar-promotion: new noun-compound-calque slug, or
    fold into an existing calque entry. Strongest exemplar candidate of the whole walk.
 2. **Ambiguous classification — ③'s `กินทุนเงียบ`.** Recorded as coverage-gap
    (failed/opaque coinage; ทุน = capital/cost, NOT margin; not a calque). Could instead be
@@ -46,8 +46,8 @@ Surfaced this session, awaiting chakrit:
 3. **`reads-misstructured` / discourse axis (item R).** The big takeaway. Sentence-scoped
    skill + protocol are structurally blind to discourse cohesion — ② needs whole-piece
    restructure (Dao), ④ had an inter-sentence cohesion-marker error (`ก็มี` additive where
-   contrast was meant). Protocol-flag decision is chakrit's; corpus-evidence half is queued
-   for the agent. Gate any rule on attested native macrostructure per register.
+   contrast was meant). Protocol-flag decision is chakrit's; corpus-evidence half is
+   queued for the agent. Gate any rule on attested native macrostructure per register.
 4. **Owed "after" rewrites** (block pair-graduation): ② `amenity`-ทับศัพท์ + `พอ`/`ภาษาพูด`
    register slips + `และ` overuse; ④ flags A/B/C (`เหมือนเข้าบ้านเพื่อน…` incoherent simile,
    `ทอนเงิน` wrong verb-sense, `อะไรที่เรียกไม่ถูก` empty-profundity filler).

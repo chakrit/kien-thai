@@ -5,8 +5,8 @@ One-off probe: how does **Fable 5** write Thai? Single generation pass on eval-1
 injected, no kode-thai loop**. Raw Fable-5 voice.
 
 - Prompt: eval id `1` in `evals/evals.json`.
-- Draft: `workspace/probes/fable5-eval1-baseline.md` (gitignored; corrections below are the
-  durable record).
+- Draft: `workspace/probes/fable5-eval1-baseline.md` (gitignored; corrections below are
+  the durable record).
 - Comparable to iter-9 / iter-10 `tech-doc-short` (same register + topic).
 
 > **Deferred:** run the **kode-thai loop** on this Fable-5 draft before judging it against

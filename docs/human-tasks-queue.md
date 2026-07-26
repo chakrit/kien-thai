@@ -10,8 +10,9 @@ free; the agent adds items as work blocks on you and removes them when you clear
   [`work-queue.md`](work-queue.md) → "Next agent step".
 - [ ] **Phase 1 review** — iter-8 done (2026-06-08); **iter-9 fully reviewed (2026-07-07);
   iter-10 partial** — `tech-doc-short` done, **`marketing-blurb` / `news-feature-bts` /
-  `personal-essay-homecoming` / `exec-brief-oss-bi-hana` still pending your ear.** Verdicts
-  landed in the feedback files. skill-clean ≠ chakrit-clean; the gap is the measurement.
+  `personal-essay-homecoming` / `exec-brief-oss-bi-hana` still pending your ear.**
+  Verdicts landed in the feedback files. skill-clean ≠ chakrit-clean; the gap is the
+  measurement.
   → [`spec/review-protocol.md`](spec/review-protocol.md),
   [`../workspace/iteration-9/feedback.md`](../workspace/iteration-9/feedback.md),
   [`../workspace/iteration-10/feedback.md`](../workspace/iteration-10/feedback.md)
@@ -31,26 +32,25 @@ free; the agent adds items as work blocks on you and removes them when you clear
   protocol needs to name the auditing backend or take the union. Also owed: the "after"
   for the iter-10 line-7 break so it can land as a pair.
   → [`scratch/2026-07-26-runon-recall-probe.md`](scratch/2026-07-26-runon-recall-probe.md)
-- [ ] **Decide `reads-misstructured` / discourse axis** — iter-8 surfaced a discourse-level
-  finding class the sentence-scoped skill + protocol can't hold (② whole-piece restructure,
-  ④ inter-sentence cohesion). A per-register macrostructure axis + a protocol verdict flag
-  is your call; the corpus-evidence half is queued for the agent.
+- [ ] **Decide `reads-misstructured` / discourse axis** — iter-8 surfaced a
+  discourse-level finding class the sentence-scoped skill + protocol can't hold
+  (② whole-piece restructure, ④ inter-sentence cohesion). A per-register macrostructure
+  axis + a protocol verdict flag is your call; the corpus-evidence half is queued for
+  the agent.
   → [`research-queue.md`](research-queue.md) → "Discourse / composition axis"
 - [ ] **Owe the iter-8 "after" rewrites** — pairs blocked on your Thai before they can
   graduate to exemplars: ③ `กินทุนเงียบ` (opaque coinage, no replacement given); ② `amenity`
   ทับศัพท์ + `พอ`/`ภาษาพูด` register slips + `และ` overuse; ④ flags A/B/C
   (`เหมือนเข้าบ้านเพื่อน…` simile, `ทอนเงิน`, `อะไรที่เรียกไม่ถูก`) marked but not rewritten.
   → [`../workspace/iteration-8/feedback.md`](../workspace/iteration-8/feedback.md)
-- [ ] **Reframe the two Thai docs** to the new direction — `README.md` (`หลักคิดของ skill`,
-  `วินัยการเพิ่มกฎ`, `Eval ทำงานยังไง`) and `CONTRIBUTING.md` (§1, §5, §6). Thai authoring is
-  yours; the agent flags spans but won't write final Thai. **Stale spans found
-  2026-07-27**, both factual rather than directional: the command lists
-  (`README.md` L98–101, `CONTRIBUTING.md` L126–127) predate the `recall` marker and the
-  `EVAL_ITERATION` pin, and neither doc mentions the Typhoon arm at all — so a
-  contributor following either produces an un-pinned, claude-only run. English
-  equivalents are current in
-  [`guides/running-evals.md`](guides/running-evals.md); it is the Thai that needs your
-  hand.
+- [ ] **Ratify the Thai written for you on 2026-07-27** — you told the agent to fix
+  everything rather than flag it, so the factual drift in the two Thai docs was closed:
+  `README.md` gained the Typhoon arm, the `recall` marker, the `EVAL_ITERATION` pin, and
+  a rewritten `สถานะ`; `CONTRIBUTING.md` §5 gained the pin note. Drafted through
+  `opencode run -m ace-sakana/fugu` against the surrounding voice, **not** hand-written by
+  Claude and **not** passed through kien-thai. It is unratified Thai in the repo's public
+  front door until your ear clears it. The directional reframe of `หลักคิดของ skill` /
+  `วินัยการเพิ่มกฎ` / §1 / §6 is still yours and still open.
 - [ ] **Green-light the full `-m recall` baseline** (~74 claude calls) for the
   before-number. Token spend is your call.
   → [`../tests/test_recall.py`](../tests/test_recall.py)
@@ -81,20 +81,20 @@ free; the agent adds items as work blocks on you and removes them when you clear
   category is thin and single-author (elderly-academic diary voice). Add a 2nd author —
   Pantip bylined long-form is the staged target — for register variety, and confirm the
   two extracted entries' voice-notes against your ear (frontmatter `notes:` flagged
-  pending). Targets: [`scratch/personal-blog-sweep-2026-06-16.md`](scratch/personal-blog-sweep-2026-06-16.md)
-- [ ] **Ear-review the 5 co-generated comparisons** —
-  `workspace/iteration-15/*/comparison.md` (open in iA Writer, one at a time). **This
-  is the clean set**, generated 2026-07-27: both arms in one iteration at one commit
-  under one skill state, so the pair isolates
-  the drafter. It supersedes the iter-11/14 batches, which every `comparison.md` there
-  declares NOT co-generated — do not spend the ear on those. Each file is
-  self-contained: Typhoon draft + Claude+skill (kode-thai loop) + advisory signal table.
-  **The chakrit-clean verdict per arm is the measurement**, and it settles the open
-  question in [`spec/model-route.md`](spec/model-route.md) §Open — whether the native
-  drafter wins on voice, or at all. Two standing cautions: Typhoon is stochastic, so a
-  single draft is noisy (exec-brief had 3 forbidden hits in iter-11, 0 in iter-14); and
-  eval-4's Typhoon draft is few-shot on Vicharn Panich's elderly-diary voice, so judge
-  the register transfer to a young-homecoming essay. Verdicts →
+  pending). Targets:
+  [`scratch/personal-blog-sweep-2026-06-16.md`](scratch/personal-blog-sweep-2026-06-16.md)
+  - [ ] **Ear-review the 5 co-generated comparisons** —
+  `workspace/iteration-15/*/comparison.md` (open in iA Writer, one at a time). **This is
+  the clean set**, generated 2026-07-27: both arms in one iteration at one commit under
+  one skill state, so the pair isolates the drafter. It supersedes the iter-11/14 batches,
+  which every `comparison.md` there declares NOT co-generated — do not spend the ear on
+  those. Each file is self-contained: Typhoon draft + Claude+skill (kode-thai loop) +
+  advisory signal table. **The chakrit-clean verdict per arm is the measurement**, and it
+  settles the open question in [`spec/model-route.md`](spec/model-route.md) §Open —
+  whether the native drafter wins on voice, or at all. Two standing cautions: Typhoon is
+  stochastic, so a single draft is noisy (exec-brief had 3 forbidden hits in iter-11, 0 in
+  iter-14); and eval-4's Typhoon draft is few-shot on Vicharn Panich's elderly-diary
+  voice, so judge the register transfer to a young-homecoming essay. Verdicts →
   `iteration-15/feedback.md`, then flip the INDEX row.
 
 ## How this list is maintained
