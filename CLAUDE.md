@@ -154,6 +154,8 @@ its way; if something is not reachable from here, that is a bug in this file.
 | [`docs/spec/inline-iteration.md`](docs/spec/inline-iteration.md) | Session-driven generation without the subprocess CLIs. |
 | [`docs/guides/running-evals.md`](docs/guides/running-evals.md) | How to produce an iteration and what to update after. |
 | [`docs/vendor/model-backends.md`](docs/vendor/model-backends.md) | claude / codex / ollama surface + the Thai-corrupting `ollama run` trap. |
+| [`docs/vendor/thai-orthography-standards.md`](docs/vendor/thai-orthography-standards.md) | Royal Society standards — spacing, ทับศัพท์, spelling. Mechanics only, never voice. |
+| [`docs/vendor/thai-reference-grammars.md`](docs/vendor/thai-reference-grammars.md) | Descriptive grammars — what a structural claim in `grammar.md` should cite. |
 | [`docs/decisions/`](docs/decisions/README.md) | Dated rulings — 7 so far. Frozen; supersede, never edit. |
 | [`docs/decisions/2026-05-30-exemplar-first-pivot.md`](docs/decisions/2026-05-30-exemplar-first-pivot.md) | **Current direction.** Read this before proposing rule work. |
 | [`docs/scratch/`](docs/scratch/README.md) | Research dumps + investigations. Residual; disposable. |

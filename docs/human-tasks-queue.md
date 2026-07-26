@@ -15,6 +15,14 @@ free; the agent adds items as work blocks on you and removes them when you clear
   → [`spec/review-protocol.md`](spec/review-protocol.md),
   [`../workspace/iteration-9/feedback.md`](../workspace/iteration-9/feedback.md),
   [`../workspace/iteration-10/feedback.md`](../workspace/iteration-10/feedback.md)
+- [ ] **Verify the Thai authority candidates** — two vendor cribs are staged from
+  training-data recall and are **unverified**; nothing in them is provenance until a
+  title resolves to a real catalogue record. Highest value first: `หลักภาษาไทย`
+  (กำชัย ทองหล่อ) and Iwasaki & Ingkaphirom. The Typhoon-generated list is separately
+  flagged as likely confabulated. `WebFetch` is blocked on Thai sites — browser MCP.
+  → [`vendor/thai-orthography-standards.md`](vendor/thai-orthography-standards.md),
+  [`vendor/thai-reference-grammars.md`](vendor/thai-reference-grammars.md),
+  [`scratch/2026-07-26-thai-authority-candidates.md`](scratch/2026-07-26-thai-authority-candidates.md)
 - [ ] **Rule on the run-on probe result** (2026-07-26) — the probe answered the recall
   question and raised two calls only you can make: (a) which slug owns run-ons —
   `mid-paragraph-period`, where the auditor already files them, or
