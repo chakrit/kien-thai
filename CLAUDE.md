@@ -125,6 +125,46 @@ External contributors follow the same logic via [`CONTRIBUTING.md`](CONTRIBUTING
 Everything below is about *how we build and iterate the skill*, not about Thai prose
 itself.
 
+### Repo map — everything, linked
+
+Every top-level entry. A fresh session should need nothing beyond this table to find
+its way; if something is not reachable from here, that is a bug in this file.
+
+| Path | What it is |
+| ------------------------------------------------ | --------------------------------------------- |
+| [`skills/kien-thai/`](skills/kien-thai/) | The artifact under test — content rules. Tree below. |
+| [`skills/kode-thai/`](skills/kode-thai/SKILL.md) | Audit-loop trigger over kien-thai. |
+| [`evals/evals.json`](evals/evals.json) | The 5 eval prompts — the real test set. |
+| [`tests/`](tests/) | Eval harness + sanity suite. Tree below. |
+| [`workspace/`](workspace/) | Generation runs. Eval subdirs gitignored; `feedback.md` tracked. |
+| [`workspace/INDEX.md`](workspace/INDEX.md) | **The iteration ledger** — what exists, what's reviewed. |
+| [`corpus/`](corpus/README.md) | Vetted native-Thai source material. Prose gitignored; see below. |
+| [`docs/`](docs/README.md) | Durable artifacts, single routing gate. Index below. |
+| [`README.md`](README.md) | Public front door (Thai). |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Public-facing iteration discipline for outside contributors. |
+| `.ace/` | Session trail (`save.md`, `save.ledger.md`) + agent logs. Gitignored; read it when resuming. |
+| `ace.toml` | ACE config — school + the skill set auto-loaded here. |
+
+### Durable docs — the full index
+
+| Doc | Answers |
+| --------------------------------------------------------------------- | ------------------------------ |
+| [`docs/README.md`](docs/README.md) | **The routing gate.** Where does this go? |
+| [`docs/spec/review-protocol.md`](docs/spec/review-protocol.md) | The outer loop: skill-clean → chakrit-clean, and what the numbers mean. |
+| [`docs/spec/inline-iteration.md`](docs/spec/inline-iteration.md) | Session-driven generation without the subprocess CLIs. |
+| [`docs/guides/running-evals.md`](docs/guides/running-evals.md) | How to produce an iteration and what to update after. |
+| [`docs/vendor/model-backends.md`](docs/vendor/model-backends.md) | claude / codex / ollama surface + the Thai-corrupting `ollama run` trap. |
+| [`docs/decisions/`](docs/decisions/README.md) | Dated rulings — 7 so far. Frozen; supersede, never edit. |
+| [`docs/decisions/2026-05-30-exemplar-first-pivot.md`](docs/decisions/2026-05-30-exemplar-first-pivot.md) | **Current direction.** Read this before proposing rule work. |
+| [`docs/scratch/`](docs/scratch/README.md) | Research dumps + session checkpoints. Residual; disposable. |
+| [`docs/work-queue.md`](docs/work-queue.md) | Agent-doable committed work. |
+| [`docs/research-queue.md`](docs/research-queue.md) | Speculative, awaiting evidence. |
+| [`docs/human-tasks-queue.md`](docs/human-tasks-queue.md) | Needs chakrit — ear, Thai authoring, rulings, token spend. |
+
+**Task discovery reads all three queues** — `/ace`, or any "what's next" — not just
+`work-queue.md`. Agent threads routinely gate on a `human-tasks-queue.md` decision, so
+one queue is never enough.
+
 ### Layout
 
 ```
@@ -143,7 +183,7 @@ skills/kien-thai/
     └── forbidden-phrases.md # blocklist for audit pre-check
 skills/kode-thai/
 └── SKILL.md                 # audit-loop trigger over kien-thai
-evals/evals.json             # eval prompts (tech doc + marketing)
+evals/evals.json             # 5 eval prompts across 4 registers
 tests/
 ├── lib.py                   # bundle preprocessor, BACKENDS, parsers
 ├── conftest.py              # skill_text fixture (unscoped, default)
@@ -159,26 +199,15 @@ tests/
     ├── typhoon_pass.py      # Typhoon draft arm (not a pytest module)
     └── compare_arms.py      # per-eval comparison.md, Typhoon vs Claude
 workspace/                   # gitignored: iteration-N/<eval>/<backend>/<config>/
-docs/                         # durable artifacts — see docs/README.md
-├── decisions/                # dated rulings + prose-direction judgements (frozen)
-├── spec/                     # our design / how-it-works / own surface (living)
-├── guides/                   # task-oriented how-to (operate the repo / use output)
-├── vendor/                   # third-party lookup we keep reaching for (link-first)
-├── scratch/                  # unsettled exploration: research dumps, session checkpoints
-├── work-queue.md             # agent-doable committed work
-├── research-queue.md         # speculative items awaiting evidence
-└── human-tasks-queue.md      # tasks needing chakrit (ear, Thai, decisions)
 ```
 
-**Durable artifacts** live in [`docs/`](docs/), filed by the single routing gate in
-[`docs/README.md`](docs/README.md): a ruling → `decisions/` (dated, frozen); third-party
-lookup → `vendor/`; a how-to → `guides/`; our own design/surface → `spec/`; unsettled
-exploration → `scratch/` (residual — opened with a "not spec/decision because ___" line,
-never a default). Three live backlogs sit at `docs/` root, outside the gate:
-`work-queue.md` (agent-doable), `research-queue.md` (speculative, needs evidence),
-`human-tasks-queue.md` (needs chakrit's ear/decision/token-spend). **Task discovery
-reads all three** — `/ace`, or any "what's next" — not just `work-queue.md`; agent
-threads routinely gate on a `human-tasks-queue.md` decision, so one queue is never enough.
+**Durable artifacts** live in [`docs/`](docs/README.md), filed by the single routing gate
+in [`docs/README.md`](docs/README.md): a ruling → `decisions/` (dated, frozen);
+third-party lookup → `vendor/`; a how-to → `guides/`; our own design/surface → `spec/`;
+unsettled exploration → `scratch/` (residual — opened with a "not spec/decision
+because ___" line, never a default). Nothing defaults to `scratch/`. Every file is
+linked from the index above; **decide a doc's target folder at plan time, not when
+filing it.**
 
 ### Eval strategy
 
@@ -217,15 +246,21 @@ assertions.
 uv sync                                  # one-time deps
 uv run pytest                            # sanity (fast, default)
 uv run pytest -m generate                # produce artifacts (slow, $$$)
-uv run pytest -m generate -n 4 -k claude # parallel, one backend
+uv run pytest -m generate -k claude      # one backend
 uv run pytest -m evaluate                # advisory heuristics on latest iteration
 uv run pytest -m recall                  # auditor-recall runner (slow, $$$)
 ```
 
 Requires `ANTHROPIC_API_KEY` and `codex` logged in. Tests skip gracefully if a backend
-is missing.
+is missing. **Never `-m generate -n >1`** — xdist gives each worker its own session, so
+the matrix lands split across separate iteration directories (bit us on iteration-7).
+Full procedure, traps, and what to update after a run:
+[`docs/guides/running-evals.md`](docs/guides/running-evals.md). Backend flags and the
+`ollama run` Thai-corruption trap:
+[`docs/vendor/model-backends.md`](docs/vendor/model-backends.md).
 
-**Inline alternative**: `docs/spec/inline-iteration.md` documents a session-driven
+**Inline alternative**: [`docs/spec/inline-iteration.md`](docs/spec/inline-iteration.md)
+documents a session-driven
 iteration mode that reuses the bundle preprocessor and prompt templates but
 generates via subagent (or codex driven manually) instead of subprocess CLIs.
 Saves API tokens; outputs marked `mode: "inline"` in meta.json. Use for
