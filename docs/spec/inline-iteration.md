@@ -32,32 +32,28 @@ audit/probe and review material, not cross-iteration bundle-effect measurements.
 Three ways to run the inline loop. All share the bundle preprocessor, prompt templates,
 and artifact layout below — only the generator differs.
 
-### 1. Workflow tool — recommended for the claude-inline half (proposed)
+### The binding constraint — harness-agnostic or it does not ship
 
-The Workflow tool is the cleanest inline driver: deterministic JS orchestrates fresh
-subagents, the LLM is reduced to generate + audit, evals fan out in parallel, and the
-audit verdict returns as validated structured output (no fragile first-line string
-check). Shape:
+**The question is not "which tool can drive this loop". It is "how do we build a
+harness-agnostic one".** That is the starting constraint on every driver here, not a
+preference to trade off.
 
-```
-pipeline(evals,
-  eval  => agent(draftPrompt(eval), {schema: PROSE}),        // pass-0, fresh subagent
-  draft => auditFixLoop(draft, eval),                        // audit -> fix until CLEAN
-)
-// auditFixLoop: while !clean && i < 5 { audit (schema: VERDICT); if clean break; fix }
-```
+The eval loop is how this skill gets built, validated, and iterated. Bind it to one
+vendor's agent harness and the skill is bound too — however portable its rule content
+looks, nobody outside that harness can evolve or re-validate it. A driver that only
+runs inside one product is not a driver, it is a lock-in.
 
-Caveats, stated honestly:
+So: plain Python, shell, and ordinary test harnesses. No harness-native orchestration,
+no proprietary agent-spawning machinery, whatever convenience it offers.
 
-- **Claude-only.** Workflow agents are Claude subagents; it cannot spawn Codex. It drives
-  the claude-inline half; the Codex half stays chakrit-driven (driver 3).
-- **No file I/O in scripts.** The workflow returns structured results; the session writes
-  the `workspace/iteration-N/...` artifacts from them.
-- **Opt-in + token cost.** Subagents consume tokens (but no external API key / CLI). It is
-  also the substrate the automated gradient will later run on — the audit stage becomes
-  the hill-climb once a metric exists.
-
-Tracked in [`../work-queue.md`](../work-queue.md); prototype when ready.
+> **Superseded 2026-07-26.** This section previously recommended Claude Code's
+> `Workflow` tool as the cleanest inline driver — deterministic orchestration, parallel
+> fan-out, schema-validated audit verdicts. Rejected by chakrit: *"your workflow tool is
+> tied to your proprietary harness. i don't want it… this is exactly the harness-lock-in
+> problem that using the workflow would produce and then locking this skill into claude
+> code entirely."* The convenience was real and it does not matter. The capability it
+> would have provided is still required — see
+> [`../work-queue.md`](../work-queue.md) item A, re-specced as plain Python.
 
 ### 2. Manual subagent (chat-Claude)
 

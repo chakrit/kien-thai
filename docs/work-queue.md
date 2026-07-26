@@ -20,13 +20,18 @@ cheaper after A.
   bundle preprocessor + prompt templates instead of the subprocess CLIs. Spec:
   [`spec/inline-iteration.md`](spec/inline-iteration.md).
 
-  **Re-specced 2026-07-26.** The original entry named Claude Code's `Workflow` tool as
-  the driver; chakrit rejected the dependency — *"your workflow tool is tied to your
-  proprietary harness. i don't want it."* Build it as plain Python alongside the existing
-  harness, no proprietary orchestration. The eval capability itself is **not** optional:
+  **Re-specced 2026-07-26. The question to build against is "we need an eval loop —
+  how do we build a harness-agnostic one?"** Not which available tool can drive it.
+  The original entry named Claude Code's `Workflow` tool; chakrit rejected it —
+  *"your workflow tool is tied to your proprietary harness. i don't want it… this is
+  exactly the harness-lock-in problem that using the workflow would produce and then
+  locking this skill into claude code entirely."*
+
+  The eval loop is how this skill is built, validated, and iterated, so binding it to
+  one vendor's harness binds the skill itself, however portable the rule content looks.
+  Plain Python, shell, ordinary test harnesses. The capability is **not** optional —
   the repo's premise is that agent-generated Thai *without this skill* is bad, so
-  measurement is the product. Same constraint applies to any future driver — portable or
-  it does not ship.
+  measurement is the product — but it ships portable or it does not ship.
 - **B — Phase 3 exemplar expansion.** Sweep `corpus/curated/` for anchor exemplars, lift
   short register-tagged excerpts, stage as **candidate before/after pairs** in
   `references/examples.md` / `exemplars.md`, hand chakrit an approve/cull list (agent
