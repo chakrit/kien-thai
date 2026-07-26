@@ -33,20 +33,19 @@ free; the agent adds items as work blocks on you and removes them when you clear
   → [`../tests/test_recall.py`](../tests/test_recall.py)
 - [ ] **Decide the `mdfmt` school issue** — whether to file the `<...>`-mangling +
   non-idempotent-wrap bug against the school tracker. School sync is yours.
-- [ ] **Rule on the model route vs the exemplar-first premise** — the shipped Typhoon
-  route (SKILL.md step-0, `skills/kien-thai/scripts/`) reverses the pivot's stated
-  premise ("no better-model escape hatch") but lives only in notes; needs a dated
-  `docs/decisions/` entry (supersede or revise). Same pass: promote the locked
-  no-LLM-judge ruling into `docs/decisions/` — it is cited as authoritative in three
-  docs but recorded nowhere in-repo.
-  → [`scratch/session-2026-06-09-model-route-probe.md`](scratch/session-2026-06-09-model-route-probe.md),
-  [`decisions/2026-05-30-exemplar-first-pivot.md`](decisions/2026-05-30-exemplar-first-pivot.md)
-- [ ] **Resolve the `ด้วย` conflict + pick one connective budget** — `register.md`
-  (Marketing common) budgets `ด้วย` as an overused connective while `f4/duai-additive`
-  and `dangling-additive-frame` require it to close additive frames; and the connective
-  budget is defined five different ways (token sets, per-sentence vs per-paragraph)
-  across SKILL.md / `style-rules.md` / `register.md` / `ai-tells.md` / `test_quant.py`.
-  Thai rule content — your ruling; the agent applies it afterward.
+- [x] **Rule on the model route vs the exemplar-first premise** — RULED 2026-07-26:
+  **revise**, not supersede. Native model is the preferred drafter where reachable
+  (it wins on correctness); kien-thai is the audit-and-voice layer; "no escape hatch"
+  narrows to voice, which stays unproven until iter-14 is reviewed. no-LLM-judge
+  recorded in the same pass.
+  → [`decisions/2026-07-26-model-route-revises-exemplar-first.md`](decisions/2026-07-26-model-route-revises-exemplar-first.md),
+  [`decisions/2026-07-26-no-llm-judge.md`](decisions/2026-07-26-no-llm-judge.md),
+  [`spec/model-route.md`](spec/model-route.md)
+- [x] **Resolve the `ด้วย` conflict + pick one connective budget** — RULED 2026-07-26:
+  `ด้วย` is not budgeted (closure particle, not formal connective; weird closure means
+  rebuild the sentence, not count the token). Budget unit is **per paragraph** over
+  ซึ่ง / โดย / ดังนั้น. Applied across SKILL.md, `style-rules.md`, `register.md`; the
+  harness density check is relabelled a separate advisory scale.
 - [ ] **Act on the AWS-Thailand b2b-formal re-vet** — flagged suspect (likely
   AI-drafted; `คงปฏิเสธไม่ได้ว่า` opener) with downgrade/remove action items, but all
   three `aws-thailand-*` files still sit in `corpus/curated/marketing/b2b-formal/`.

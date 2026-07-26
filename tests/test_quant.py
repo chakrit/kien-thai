@@ -22,6 +22,13 @@ pytestmark = pytest.mark.evaluate
 # this advisory check and compare_arms.py share one list — no drift. The
 # blocklist is grep-able by design (forbidden-phrases.md). Substring match is
 # advisory; the kode-thai audit handles use/mention exemption.
+# NOT the `connective-budget` rule. That rule is per-paragraph over a three-token
+# set (ซึ่ง / โดย / ดังนั้น) and is what a drafter follows; this is a whole-document
+# density over a wider set, and exists only to flag a document trending formal.
+# Deliberately separate measures — do not "reconcile" them by matching the numbers
+# (chakrit, 2026-07-26: budget unit is per paragraph; the harness scale stays
+# advisory). Closure particles are never counted here; see the scope note on
+# `connective-budget` in style-rules.md.
 CONNECTIVE_DENSITY_LIMIT = 15.0  # occurrences per 1000 chars
 
 

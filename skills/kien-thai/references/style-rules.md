@@ -23,11 +23,19 @@ fragment and end the paragraph at the natural snap (`...hot key เริ่ม�
 
 ### `connective-budget` *(style · all-registers · soft)*
 
-In a 100-word paragraph: at most one ซึ่ง, one โดย, one ดังนั้น. Drop "however"
+Per paragraph: at most one ซึ่ง, one โดย, one ดังนั้น. Drop "however"
 in roughly half its English occurrences. Test every connective: would a Thai
 reader notice it missing? If no, delete. See `chueung-stacking`, `doi-sprawl`,
 `yangrai-kotam-overuse`, `formal-connective-stack` for the audit-time bans on
 each.
+
+**Scope: formal connectives only — never closure particles.** The budget targets
+imported discourse markers, the ones that make prose read assembled. Particles
+doing native closure work (ด้วย, แล้ว, ไป, อยู่, เลย) are outside it and are
+never capped. If a closure particle reads weird, the sentence is mis-built —
+rebuild it; counting the token suppresses the symptom and leaves the bad
+structure. See `f4/duai-additive` and `dangling-additive-frame`, which *require*
+the particle the budget must not police.
 
 ### `topic-comment-fronting` *(style · all-registers · soft)*
 

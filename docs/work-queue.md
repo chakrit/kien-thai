@@ -16,9 +16,17 @@ exemplar expansion.** Rationale (per
 the inline-driver infra makes running and measuring exemplar batches cheaper, so B gets
 cheaper after A.
 
-- **A — Workflow inline-driver prototype.** Session-driven iteration via the `Workflow`
-  tool, reusing the bundle preprocessor + prompt templates instead of the subprocess CLIs.
-  Spec: [`spec/inline-iteration.md`](spec/inline-iteration.md).
+- **A — Inline-driver prototype (harness-neutral).** Session-driven iteration reusing the
+  bundle preprocessor + prompt templates instead of the subprocess CLIs. Spec:
+  [`spec/inline-iteration.md`](spec/inline-iteration.md).
+
+  **Re-specced 2026-07-26.** The original entry named Claude Code's `Workflow` tool as
+  the driver; chakrit rejected the dependency — *"your workflow tool is tied to your
+  proprietary harness. i don't want it."* Build it as plain Python alongside the existing
+  harness, no proprietary orchestration. The eval capability itself is **not** optional:
+  the repo's premise is that agent-generated Thai *without this skill* is bad, so
+  measurement is the product. Same constraint applies to any future driver — portable or
+  it does not ship.
 - **B — Phase 3 exemplar expansion.** Sweep `corpus/curated/` for anchor exemplars, lift
   short register-tagged excerpts, stage as **candidate before/after pairs** in
   `references/examples.md` / `exemplars.md`, hand chakrit an approve/cull list (agent

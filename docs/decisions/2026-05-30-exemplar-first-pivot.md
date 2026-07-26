@@ -1,6 +1,15 @@
 # 2026-05-30 — Pivot: exemplar-first, auditor-recall-measured
 
-**Status:** Accepted · 2026-05-30
+**Status:** Revised · 2026-05-30, revised 2026-07-26 by
+[`2026-07-26-model-route-revises-exemplar-first.md`](2026-07-26-model-route-revises-exemplar-first.md)
+
+> **Revision (2026-07-26).** The "no better model escape hatch" premise in Context
+> below is narrowed to *voice*. A Thai-native model is now the preferred drafter where
+> reachable, because it wins on correctness; kien-thai is the audit-and-voice layer over
+> it. Decisions 1–8 stand unchanged. Read the revision before acting on the Context
+> paragraph. Also stale: the last Consequences bullet names Claude Code's `Workflow`
+> tool as a candidate inline driver — rejected 2026-07-26 as harness lock-in. The
+> inline driver stays; it is built harness-neutral.
 
 **Scope:** how we build and measure kien-thai / kode-thai. This does not rewrite the
 skill's rule content — it changes what we invest in, what counts as progress, and the

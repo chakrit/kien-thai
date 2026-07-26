@@ -299,8 +299,8 @@ rules: sentence shape, verbs over nouns, openers/closings, concreteness, voice,
 
 3. **Self-edit pass.** Scan for AI tells:
    - `forbidden-phrases.md` blocklist.
-   - Connective budget: ≤1 ซึ่ง / ≤1 โดย / ≤1 ดังนั้น per ~100 words
-     (`connective-budget`).
+   - Connective budget: ≤1 ซึ่ง / ≤1 โดย / ≤1 ดังนั้น per paragraph
+     (`connective-budget`). Closure particles are not budgeted.
    - Period audit: drop mid-paragraph periods (`mid-paragraph-period`).
    - Closure audit: `ไม่ได้...อย่างเดียว` / `ไม่ใช่แค่...` need a closure
      particle (`dangling-additive-frame`).

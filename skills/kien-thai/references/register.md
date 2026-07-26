@@ -141,7 +141,9 @@ distinct corpus voices. Pick the sub-register, then apply its conventions.
 - **Openers**: prefer reader's pain symptom or question hook over definition-first
   (`X คือ...`). Definition-first is the SEO default but reads as homogenized — use
   only when the term genuinely needs defining for the audience.
-- **Connectives**: tight budget. One `ซึ่ง`, one `ด้วย`, one `โดย` max per paragraph.
+- **Connectives**: tight budget per `connective-budget` — one `ซึ่ง`, one `โดย`, one
+  `ดังนั้น` max per paragraph. `ด้วย` is **not** budgeted here: it is a closure
+  particle, not a formal connective, and `f4/duai-additive` requires it.
 - **`cta-bang`, `generic-reassurance`** (banning `รีบสมัครเลย!` and generic emotional
   reassurance) apply at *bank-explainer* strictness for B2B-formal and fintech-warm,
   but relax in SaaS-SME and retail-tech as noted below.
