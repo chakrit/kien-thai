@@ -74,7 +74,11 @@ free; the agent adds items as work blocks on you and removes them when you clear
   Pantip bylined long-form is the staged target — for register variety, and confirm the
   two extracted entries' voice-notes against your ear (frontmatter `notes:` flagged
   pending). Targets: [`scratch/personal-blog-sweep-2026-06-16.md`](scratch/personal-blog-sweep-2026-06-16.md)
-- [ ] **Ear-review the 5 co-generated comparisons** (batch) —
+- [ ] **Ear-review the 5 Typhoon-vs-Claude comparisons** (batch) — **hold: rerun them
+  co-generated first.** Every `comparison.md` declares "NOT co-generated — most-recent
+  existing output"; the Claude arms are from iterations 12–13, so the pairing is
+  contaminated and the ear time would be spent on a dirty comparison. The rerun is
+  local and cheap (agent-doable, queued in `work-queue.md`). Original entry below —
   `workspace/iteration-14/*/comparison.md` (open in iA Writer). The canonical set —
   supersedes the 4-eval iter-11 batch (now includes personal-essay). Each is
   self-contained: Typhoon draft + Claude+skill (kode-thai loop) + signal table. The

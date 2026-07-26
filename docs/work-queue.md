@@ -37,6 +37,29 @@ cheaper after A.
 
 ---
 
+## Rerun the Typhoon-vs-Claude comparisons co-generated ← added 2026-07-26
+
+**Need.** Every `workspace/iteration-14/*/comparison.md` carries the line "NOT
+co-generated — most-recent existing output; rerun for a clean pair". The Claude arms
+come from iterations 12–13, generated at a different time under a different skill state,
+so the pairing does not isolate the drafter. The human queue describes this set as
+"5 co-generated comparisons" — it is not, and chakrit's ear should not be spent on it
+until it is.
+
+**Scope.** Regenerate both arms in one run per eval, all five, then rebuild
+`comparison.md` via `tests/generate/compare_arms.py`. Typhoon is local and free; the
+Claude arm costs API tokens (5 evals × the kode-thai loop).
+
+**Why it matters now.** This is the evidence that decides the open question in
+[`decisions/2026-07-26-model-route-revises-exemplar-first.md`](decisions/2026-07-26-model-route-revises-exemplar-first.md)
+— whether the native drafter wins on voice, or at all. The 2026-07-26 evidence audit
+found the standing case for Typhoon is a single unreplicated native-ear reading, with
+mechanical signals since leaning the other way.
+
+**Block.** The Claude arm's token spend is chakrit's call.
+
+---
+
 ## Thai-aware markdown wrap tooling
 
 **Need.** Enforce the CLAUDE.md hard-wrap-90 rule on Thai-heavy markdown.

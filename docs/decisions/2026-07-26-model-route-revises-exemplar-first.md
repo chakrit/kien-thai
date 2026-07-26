@@ -7,6 +7,21 @@
 **Scope:** what drafts Thai, and what kien-thai is *for*. Does not change the rule
 content, the review protocol, or the measurement.
 
+> **Addendum, same day — the evidence base is thinner than this entry implies.**
+> Written before the prior evidence was audited. What exists for Typhoon is **one**
+> native-ear reading, one register, unconditioned, never replicated. The comparison
+> runs since are unreviewed, and their mechanical signals cut against on connective
+> density (higher than Claude+skill on three of five evals, 8.7 vs 1.5 per 1k on
+> news), with instruction-following lapses visible without any Thai judgment. The
+> comparison files also declare themselves **not co-generated**, so even that
+> unreviewed signal is contaminated.
+>
+> Decision 1 below ("preferred drafter, not an experiment") overstates what is
+> established. Read it as the *direction* this repo is testing, conditional on the
+> iteration-14 review. Nothing here is retracted — the reasoning about the two
+> failure modes stands on its own — but the confidence is downgraded, and that is
+> exactly why this was a revise and not a supersede.
+
 ## Context
 
 The pivot opens with a premise stated as fact: *"There is no 'better model' escape

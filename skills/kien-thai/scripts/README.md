@@ -1,14 +1,20 @@
 # kien-thai scripts — the Thai-native model route
 
-The honest finding behind these scripts: **the single biggest lever on Thai
-naturalness is base-model choice, not harness depth.** The machine-sounding
-Thai that kien-thai's frames fight is largely an artifact of English-centric
-models (Claude, Codex) writing Thai. A Thai-pretrained model carries the native
-distribution in its weights. In a native-ear probe
-(`docs/scratch/session-2026-06-09-model-route-probe.md`), bare Typhoon-2 8B —
-unconditioned, no exemplars — produced Thai with **no grammatical fault and no
-calque**, the failure modes kien-thai spends most of its rules on. That is the
-strongest single signal in the repo.
+The idea behind these scripts: **base-model choice may be a bigger lever on Thai
+naturalness than harness depth.** The machine-sounding Thai that kien-thai's
+frames fight is largely an artifact of English-centric models (Claude, Codex)
+writing Thai. A Thai-pretrained model carries the native distribution in its
+weights rather than translating into it.
+
+**Evidence status: one data point, unreplicated.** In a single native-ear
+reading, bare Typhoon-2 8B — unconditioned, no exemplars — produced Thai with
+no grammatical fault and no calque, the failure modes kien-thai spends most of
+its rules on. One register, one draft, never repeated. The comparison runs
+generated since have **not** been ear-reviewed, and their mechanical signals cut
+both ways: the native draft carries higher formal-connective density on three of
+five evals, runs much shorter throughout, and has emitted outline scaffolding
+instead of prose. The route is a promising direction under test, not a settled
+result — do not cite it as one.
 
 So when a Thai-native model is reachable, the best output comes from **drafting
 with it and auditing with kien-thai**, not from drafting with kien-thai alone.

@@ -17,13 +17,21 @@ frames — many auto-resolve once the frames are right.
 
 ## Best output: draft with a Thai-native model when one is reachable
 
-Honest admission up front: **the largest lever on Thai naturalness is
-base-model choice, not this skill.** The machine-sounding Thai the frames below
-fight is mostly an artifact of English-centric models (Claude, Codex) writing
-Thai. A Thai-pretrained model — Typhoon-2, SEA-LION, OpenThaiGPT — carries the
-native distribution in its weights. Bare, unconditioned Typhoon-2 8B already
-drafts Thai that the native ear finds with no grammatical fault and no calque —
-the very failure modes most of these rules exist to catch.
+Honest admission up front: **base-model choice may be a larger lever on Thai
+naturalness than this skill.** The machine-sounding Thai the frames below fight
+is mostly an artifact of English-centric models (Claude, Codex) writing Thai. A
+Thai-pretrained model — Typhoon-2, SEA-LION, OpenThaiGPT — carries the native
+distribution in its weights rather than translating into it.
+
+**How strong is that claim? Not very, yet.** In one native-ear reading, bare
+unconditioned Typhoon-2 8B drafted Thai with no grammatical fault and no calque
+— the failure modes most of these rules exist to catch. That result is a single
+register, a single draft, and has not been replicated. Mechanical comparison
+since then is mixed: on some registers the native draft carries *more* formal
+connectives than this skill's output, and it has shown instruction-following
+lapses (emitting outline labels instead of prose) that the frames never address.
+
+Treat the route as promising and unsettled, not as a known win.
 
 So when a Thai-native model is reachable, the best result comes from **drafting
 with it and then auditing with this skill**, not from drafting with the skill

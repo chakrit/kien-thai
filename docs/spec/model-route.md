@@ -47,16 +47,37 @@ conditioning, and the route decision are scripts. The audit is an agent.
   own exemplars, and a register with no corpus category has no coverage — surface the
   gap rather than synthesizing prose to fill it.
 
-## Open — the voice question
+## Open — and the correctness claim is thin too
 
-The correctness claim is backed by a native-ear verdict on bare, unconditioned
-Typhoon-2 8B: no grammatical fault, no calque. The **voice** claim is not backed yet.
-One register, unconditioned, is thin.
+**Evidence audit, 2026-07-26.** The correctness claim rests on exactly one native-ear
+reading of bare, unconditioned Typhoon-2 8B: no grammatical fault, no calque. One
+register, one draft, unreplicated. It has been repeated across this repo's docs often
+enough to sound established; it is not.
 
-`workspace/iteration-14/*/comparison.md` holds the conditioned five-eval Typhoon vs
-Claude+skill set, generated and awaiting chakrit's ear. That review answers whether the
-native drafter also wins on voice, or whether it needs the exemplar layer to get there.
-Until then this spec claims correctness only.
+Everything generated since is unreviewed, and its mechanical signals do not support the
+claim:
+
+| eval | typhoon c/1k | claude+skill c/1k |
+| -------------------- | -----------: | ----------------: |
+| news-feature-bts | 8.7 | 1.5 |
+| exec-brief-oss-bi-hana | 3.4 | 1.2 |
+| tech-doc-short | 2.3 | 0.0 |
+| marketing-blurb | 0.0 | 0.0 |
+| personal-essay | 0.0 | 0.0 |
+
+Formal-connective density is *higher* for the native draft on three of five. Two further
+problems need no Thai judgment: the marketing draft emits outline labels instead of
+prose, and the exec-brief opens with a greeting. Length runs consistently shorter
+(marketing 542 vs 1891 chars) — terseness or under-delivery, undetermined.
+
+**The comparison set is also contaminated.** Every `workspace/iteration-14/*/comparison.md`
+declares "NOT co-generated — most-recent existing output"; the Claude arms come from
+iterations 12–13. Rerunning the five pairs co-generated is cheap and local, and should
+happen before any ear time is spent.
+
+So this spec claims **neither** correctness nor voice as settled. The route is the
+direction under test; `compare_arms.py` plus chakrit's ear on a clean pair set is what
+would settle it.
 
 Not yet built: Typhoon as a third entry in `tests/lib.py:BACKENDS`, which is what a
 measured cross-iteration comparison needs. Tracked in
