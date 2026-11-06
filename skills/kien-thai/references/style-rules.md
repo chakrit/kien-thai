@@ -218,6 +218,9 @@ For:
 - Industry-specific acronyms: GDP, CEO, AI, API, DCA, IPO
 - Technical terms developers use in English: deploy, scale, container, payload,
   latency, throughput, query, index, cluster, pipeline
+- Work-tracking terms: a Jira or GitHub ticket stays `ticket`, never `ตั๋ว`, which
+  a Thai dev reads as a train or concert ticket
+  (`เปิด ticket ไว้แล้ว`, not `เปิดตั๋วไว้แล้ว`)
 - Famous titles cited as titles: *The Wealth of Nations*
 - Terms whose discussion centers on the term itself
   (`คำว่า meritocracy แปลตรงตัวได้ลำบาก`)
