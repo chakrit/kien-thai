@@ -252,8 +252,8 @@ asides in parens or em-dashes (`(เพื่อความง่ายขอ�
 - `!!` (double-bang) — somkiat-style emphasis, signature of older-school Thai dev
   blogs; use sparingly outside that voice.
 
-**Code-mix**: keep `deploy / scale / cluster / latency / payload` etc. in English.
-Don't translate dev jargon.
+**Code-mix**: keep `deploy / scale / cluster / latency / payload / ticket` etc. in
+English. Don't translate dev jargon: `ticket` never becomes `ตั๋ว`.
 
 **Models (grammar-disciplined — lift patterns from these):**
 
