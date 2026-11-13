@@ -53,6 +53,8 @@ same change that adds the file.
 | [`2026-05-30-exemplar-first-pivot.md`](decisions/2026-05-30-exemplar-first-pivot.md) | **Revised.** Pairs over rules; auditor recall is the binding constraint. |
 | [`2026-07-26-model-route-revises-exemplar-first.md`](decisions/2026-07-26-model-route-revises-exemplar-first.md) | **Current direction.** Native drafter preferred; kien-thai is the audit-and-voice layer. |
 | [`2026-07-26-no-llm-judge.md`](decisions/2026-07-26-no-llm-judge.md) | No LLM judges Thai prose. The native ear is the only verdict. |
+| [`2026-11-13-corpus-pre-chatgpt-cutoff.md`](decisions/2026-11-13-corpus-pre-chatgpt-cutoff.md) | Corpus entries must predate 2022-11-30, proven by an archive capture. |
+| [`2026-11-13-matrix-review-methodology.md`](decisions/2026-11-13-matrix-review-methodology.md) | Drafters × auditors matrix; ear marks drafts blind; auditors scored against the ear. |
 | [`decisions/README.md`](decisions/README.md) | What earns a decision entry; the prose-direction-judgement subtype. |
 
 ### Spec — our design, living
@@ -100,6 +102,8 @@ same change that adds the file.
 | [`2026-07-17-skill-self-talk-audit.md`](scratch/2026-07-17-skill-self-talk-audit.md) | Self-talk findings in the distributed skills; kode-thai half open. |
 | [`2026-07-26-thai-authority-candidates.md`](scratch/2026-07-26-thai-authority-candidates.md) | Typhoon bibliography output, flagged unverified. |
 | [`2026-07-26-docs-audit.md`](scratch/2026-07-26-docs-audit.md) | Documentation-pass findings: gaps, stale text, duplication. |
+| [`2026-11-13-once-over.md`](scratch/2026-11-13-once-over.md) | Post-pause review: methodology gaps, tooling, ruleset defects, Thai-model landscape. |
+| [`2026-11-13-iteration-plan.md`](scratch/2026-11-13-iteration-plan.md) | Restart plan: hygiene → review UI → pairs → corpus → drafter → matrix iteration-16. |
 | [`scratch/README.md`](scratch/README.md) | What belongs in scratch, and the two carve-outs. |
 
 ### Queues — working state, rewritten continuously

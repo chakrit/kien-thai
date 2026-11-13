@@ -7,6 +7,62 @@ incl. prose-direction judgements). Items here are committed scope — the questi
 
 ---
 
+## Restart plan — ruled 2026-11-13 ← current
+
+After a four-month pause, a review
+([`scratch/2026-11-13-once-over.md`](scratch/2026-11-13-once-over.md)) and a phased plan
+([`scratch/2026-11-13-iteration-plan.md`](scratch/2026-11-13-iteration-plan.md)) restart
+the loop under two new rulings:
+[`decisions/2026-11-13-matrix-review-methodology.md`](decisions/2026-11-13-matrix-review-methodology.md)
+and
+[`decisions/2026-11-13-corpus-pre-chatgpt-cutoff.md`](decisions/2026-11-13-corpus-pre-chatgpt-cutoff.md).
+The iteration-15 gate below now covers only the drafter question (chakrit, 2026-11-13);
+everything in Phase 0–2 proceeds without it.
+
+Phase 0 — hygiene and matrix plumbing (English/code only — none writes Thai):
+
+- [ ] Stamp every run: pin `--model`; record model, CLI version, commit, dirty flag,
+  bundle hash, register, timestamp, ollama digest in `meta.json`.
+- [ ] Refuse unpinned runs when `workspace/INDEX.md` lists iterations missing locally.
+- [ ] Run the baseline arm from a temp cwd outside the repo so it cannot load
+  `CLAUDE.md`; verify it is bare.
+- [ ] Matrix mode: drafts × auditors, one audit pass, no fixes, flags as quoted span +
+  slug. `_run_loop` accepts an external pass-0 draft; Typhoon joins `BACKENDS`.
+- [ ] Scoring script: span-overlap match of flags to marks; per-auditor agreement and
+  catch rate; per-drafter failure profile; all-missed list; false positives on
+  reference drafts; renders `feedback.md` and the trend row.
+- [ ] Move the register→corpus map into `thai-native-draft.py`; fail loudly on zero
+  corpus files (`thai-route.sh marketing` silently drafts with none today).
+- [ ] kode-thai: pass cap, oscillation check, one line that CLEAN ≠ natural.
+- [ ] `ai-tells.md:16` ซึ่ง budget → per paragraph (the 2026-07-26 ruling missed it).
+- [ ] Forbidden-phrase loader: handle the two `...` entries it silently drops.
+- [ ] `grammar.md:157` points at a `ทีไร + เสมอ` collection that does not exist.
+- [ ] Recall harness: CLI error ≠ miss; hit must be a cited finding; stamped
+  per-iteration report; in-document seeding into native corpus paragraphs.
+- [ ] Housekeeping: dedupe the Typhoon model ID (×3) and ollama call (×2); `ace.toml`
+  declares `general-coding` / `copywriting`, which the school no longer ships — fix it
+  and the CLAUDE.md skill list; stale personal-blog comment in `typhoon_pass.py`.
+- [ ] Issue #2: document "prompt the native model in Thai, by function, specifically"
+  in `scripts/README.md` and SKILL step 0; consider a `--describe` mode.
+
+Later phases (detail in the plan):
+
+- [ ] Phase 0.5 — browser review UI: stdlib Python server + one static HTML page;
+  generic batches (drafts to mark with auditor flags hidden, blind comparison, pair
+  review, owed rewrite, reference draft, corpus spot-check); span marks; autosave to
+  tracked `workspace/iteration-N/verdicts/`. Port from the control agent.
+- [ ] Phase 1 — draft candidate pairs from iterations 8–10 feedback for ear session 1.
+- [ ] Phase 2 — corpus verification: backfill `published:` with archive evidence on the
+  43 curated entries; quarantine failures (incl. `aws-thailand-*`) to
+  `corpus/quarantine/`. Then growth via Claude in Chrome, pre-2022-11-30 only.
+- [ ] Phase 3 — drafter probe: Typhoon 2.5 / 2.1 / Typhoon-S (+ a ThaiLLM variant) on
+  two evals, blind ranking. Model pulls need chakrit's go.
+- [ ] Phase 4 — iteration-16 matrix: drafters Claude+skill, codex+skill, native
+  drafter, bare Claude; auditors Claude, codex, ± severity tags; then the fix-loop read
+  for the native route.
+
+---
+
 ## Next agent step — inline-driver, then exemplar expansion ← reordered 2026-07-27
 
 **Reordered (chakrit, 2026-07-27).** The co-generated comparison run went first and is
@@ -44,7 +100,8 @@ cheaper after A.
   stages, native ear ratifies). Then the wider arc: exemplar inversion +
   SKILL.md/reference reframing around pairs.
 
-**Block.** Iteration-15's review. A is the next build once that verdict lands.
+**Block.** Iteration-15's review, for A only (narrowed 2026-11-13). B proceeds now as
+the restart plan's Phase 1–2.
 
 ---
 

@@ -1,7 +1,10 @@
 # 2026-05-30 — Pivot: exemplar-first, auditor-recall-measured
 
 **Status:** Revised · 2026-05-30, revised 2026-07-26 by
-[`2026-07-26-model-route-revises-exemplar-first.md`](2026-07-26-model-route-revises-exemplar-first.md)
+[`2026-07-26-model-route-revises-exemplar-first.md`](2026-07-26-model-route-revises-exemplar-first.md);
+decisions 3, 6 and 7 qualified 2026-11-13 by
+[`2026-11-13-matrix-review-methodology.md`](2026-11-13-matrix-review-methodology.md) and
+[`2026-11-13-corpus-pre-chatgpt-cutoff.md`](2026-11-13-corpus-pre-chatgpt-cutoff.md)
 
 > **Revision (2026-07-26).** The "no better model escape hatch" premise in Context
 > below is narrowed to *voice*. A Thai-native model is now the preferred drafter where

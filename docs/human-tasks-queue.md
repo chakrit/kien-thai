@@ -5,6 +5,38 @@ token spend. An agent cannot clear these. This is the human counterpart to
 [`work-queue.md`](work-queue.md) (agent-doable committed work). Consult it when
 free; the agent adds items as work blocks on you and removes them when you clear them.
 
+- [ ] **Ear-review the 5 co-generated comparisons** —
+  `workspace/iteration-15/*/comparison.md` — in the browser review UI with arm labels
+  hidden once it exists (restart plan Phase 0.5), else iA Writer one at a time. **This is
+  the clean set**, generated 2026-07-27: both arms in one iteration at one commit under
+  one skill state, so the pair isolates the drafter. It supersedes the iter-11/14 batches,
+  which every `comparison.md` there declares NOT co-generated — do not spend the ear on
+  those. Each file is self-contained: Typhoon draft + Claude+skill (kode-thai loop) +
+  advisory signal table. **The chakrit-clean verdict per arm is the measurement**, and it
+  settles the open question in [`spec/model-route.md`](spec/model-route.md) §Open —
+  whether the native drafter wins on voice, or at all. Two standing cautions: Typhoon is
+  stochastic, so a single draft is noisy (exec-brief had 3 forbidden hits in iter-11, 0 in
+  iter-14); and eval-4's Typhoon draft is few-shot on Vicharn Panich's elderly-diary
+  voice, so judge the register transfer to a young-homecoming essay. Verdicts →
+  `iteration-15/feedback.md`, then flip the INDEX row.
+- [x] **Rule on the restart plan's open decisions** — RULED 2026-11-13: you review
+  iteration-15 (gate narrowed to the drafter question); corpus cutoff pre-ChatGPT;
+  matrix methodology replaces a single auditor; run-on slug and severity tags deferred to
+  the matrix; agent drafts pairs/notes, you batch-review.
+  → [`decisions/2026-11-13-matrix-review-methodology.md`](decisions/2026-11-13-matrix-review-methodology.md),
+  [`decisions/2026-11-13-corpus-pre-chatgpt-cutoff.md`](decisions/2026-11-13-corpus-pre-chatgpt-cutoff.md),
+  [`scratch/2026-11-13-iteration-plan.md`](scratch/2026-11-13-iteration-plan.md)
+- [ ] **Write reference drafts** — one per eval prompt, once, for the registers you
+  write day to day; held out of the skill. Written in the review UI once it exists
+  (plan Phase 3).
+- [ ] **Ear session 1 of the restart plan** — approve/cull pairs the agent stages from
+  iterations 8–10; write the owed "afters" (listed below); rule on shipped examples that
+  break the skill's own rules (`examples.md` Example 2's `เจ้าของร้าน`, em-dashes in
+  Good/After text, Example 4's notes, unsourced Examples 1–5).
+  → [`scratch/2026-11-13-once-over.md`](scratch/2026-11-13-once-over.md) § Content
+- [ ] **PR #3** (outside contributor, `ticket` stays Latin, never `ตั๋ว`) — open since
+  2026-11-06, unreviewed. Native-ear call on the term; under exemplar-first it lands as
+  an `examples.md` pair first (the contributor offered).
 - [x] **Decide the next agent step** — DECIDED 2026-07-07: **(A) Workflow inline-driver
   prototype → then (B) Phase 3 exemplar expansion.** Moved to
   [`work-queue.md`](work-queue.md) → "Next agent step".
@@ -27,10 +59,10 @@ free; the agent adds items as work blocks on you and removes them when you clear
 - [ ] **Rule on the run-on probe result** (2026-07-26) — the probe answered the recall
   question and raised two calls only you can make: (a) which slug owns run-ons —
   `mid-paragraph-period`, where the auditor already files them, or
-  `conceptual-seam-break`, where we assumed; (b) `skill-clean` turned out
-  backend-dependent — claude found 4 issues in prose codex terminated as CLEAN, so the
-  protocol needs to name the auditing backend or take the union. Also owed: the "after"
-  for the iter-10 line-7 break so it can land as a pair.
+  `conceptual-seam-break`, where we assumed — deferred 2026-11-13 to the first matrix
+  iteration, which shows where auditors file run-ons; (b) backend-dependent
+  `skill-clean` — resolved 2026-11-13 by the matrix methodology. Still owed: the "after"
+  for the iter-10 line-7 break so it can land as a pair (restart plan, ear session 1).
   → [`scratch/2026-07-26-runon-recall-probe.md`](scratch/2026-07-26-runon-recall-probe.md)
 - [ ] **Decide `reads-misstructured` / discourse axis** — iter-8 surfaced a
   discourse-level finding class the sentence-scoped skill + protocol can't hold
@@ -73,6 +105,8 @@ free; the agent adds items as work blocks on you and removes them when you clear
 - [ ] **Act on the AWS-Thailand b2b-formal re-vet** — flagged suspect (likely
   AI-drafted; `คงปฏิเสธไม่ได้ว่า` opener) with downgrade/remove action items, but all
   three `aws-thailand-*` files still sit in `corpus/curated/marketing/b2b-formal/`.
+  **Now an agent task (2026-11-13):** the pre-ChatGPT cutoff quarantines them in the
+  restart plan's Phase 2 corpus verification; remove this item when that lands.
   → [`scratch/source-vetting-2026-05-13.md`](scratch/source-vetting-2026-05-13.md)
 
 - [ ] **Expand `personal-blog` corpus beyond one author** — sweep unblocked 2026-06-16
@@ -83,19 +117,6 @@ free; the agent adds items as work blocks on you and removes them when you clear
   two extracted entries' voice-notes against your ear (frontmatter `notes:` flagged
   pending). Targets:
   [`scratch/personal-blog-sweep-2026-06-16.md`](scratch/personal-blog-sweep-2026-06-16.md)
-  - [ ] **Ear-review the 5 co-generated comparisons** —
-  `workspace/iteration-15/*/comparison.md` (open in iA Writer, one at a time). **This is
-  the clean set**, generated 2026-07-27: both arms in one iteration at one commit under
-  one skill state, so the pair isolates the drafter. It supersedes the iter-11/14 batches,
-  which every `comparison.md` there declares NOT co-generated — do not spend the ear on
-  those. Each file is self-contained: Typhoon draft + Claude+skill (kode-thai loop) +
-  advisory signal table. **The chakrit-clean verdict per arm is the measurement**, and it
-  settles the open question in [`spec/model-route.md`](spec/model-route.md) §Open —
-  whether the native drafter wins on voice, or at all. Two standing cautions: Typhoon is
-  stochastic, so a single draft is noisy (exec-brief had 3 forbidden hits in iter-11, 0 in
-  iter-14); and eval-4's Typhoon draft is few-shot on Vicharn Panich's elderly-diary
-  voice, so judge the register transfer to a young-homecoming essay. Verdicts →
-  `iteration-15/feedback.md`, then flip the INDEX row.
 
 ## How this list is maintained
 

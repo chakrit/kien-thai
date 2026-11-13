@@ -234,12 +234,14 @@ assertions.
   `iteration-N/<eval>/<backend>/<config>/{output.md,prompt.txt,meta.json}`.
   meta.json tracks per-pass usage (cache hits, input/output tokens).
 - **Stage 2 (review)**: the outer loop — see
-  [`docs/spec/review-protocol.md`](docs/spec/review-protocol.md). A skill-clean output
-  goes to chakrit's ear for the *chakrit-clean* verdict; the gap between the two is the
-  measurement. **Never read loop-to-CLEAN as a quality result — it is ruleset-coverage,
-  not naturalness.** Primary signals: the *CLEAN-but-flawed rate* and *auditor recall*
-  (recall-miss vs coverage-gap). Consolidated notes + the aggregate go to
-  `iteration-N/feedback.md` and graduate into pairs (`references/examples.md` /
+  [`docs/spec/review-protocol.md`](docs/spec/review-protocol.md). Every drafter drafts,
+  every auditor audits every draft (one pass, no fixes), chakrit marks the drafts blind
+  to the flags, and a script scores each auditor against his marks
+  ([`docs/decisions/2026-11-13-matrix-review-methodology.md`](docs/decisions/2026-11-13-matrix-review-methodology.md)).
+  **Never read loop-to-CLEAN as a quality result — it is ruleset-coverage, not
+  naturalness, and it depends on which model audited.** Scores inform; they never gate.
+  Verdicts go to tracked `iteration-N/verdicts/` and render into
+  `iteration-N/feedback.md`; marks graduate into pairs (`references/examples.md` /
   `exemplars.md`) first, rules only when the pair doesn't transfer. Flip the iteration's
   Review cell to `reviewed` in [`workspace/INDEX.md`](workspace/INDEX.md) and link the
   feedback file.

@@ -1,109 +1,114 @@
 # Review protocol — the outer loop
 
-**Status:** accepted
+**Status:** accepted · rewritten 2026-11-13 for the matrix methodology
+([`../decisions/2026-11-13-matrix-review-methodology.md`](../decisions/2026-11-13-matrix-review-methodology.md)).
+The harness pieces it needs — drafts × auditors mode, span-addressable flags, the
+scoring script, the browser review UI — are not built yet; they are queued in
+[`../work-queue.md`](../work-queue.md).
 
-kode-thai is the **inner loop**: audit→fix until *skill-clean* (the ruleset finds no
-citable violation). This protocol is the **outer loop**: a skill-clean output goes to the
-native ear for the *chakrit-clean* verdict. The gap between the two terminals is the
-measurement. Closing it across iterations is the product improving; a gap that stops
-shrinking is the prompt-only ceiling.
+kode-thai is the **inner loop**: audit → fix until the auditor returns `CLEAN`. This
+protocol is the **outer loop**: several models draft and audit each other, the native
+ear marks the drafts, and a script scores every auditor against the ear. The ear is the
+only judge (see [`../decisions/2026-07-26-no-llm-judge.md`](../decisions/2026-07-26-no-llm-judge.md));
+scores are signals to read, never gates — the work is qualitative and the ruleset will
+never be complete.
 
-Counterpart to `inline-iteration.md` (the generate protocol). Direction and rationale:
-`docs/decisions/2026-05-30-exemplar-first-pivot.md`.
+Counterpart to `inline-iteration.md` (the generate protocol). Direction:
+[`../decisions/2026-05-30-exemplar-first-pivot.md`](../decisions/2026-05-30-exemplar-first-pivot.md).
 
 ## Definitions
 
-- **skill-clean** — kode-thai's terminal. The audit pass returned `CLEAN`; the ruleset
-  finds nothing. Equals ruleset-coverage, not naturalness.
-- **chakrit-clean** — the outer terminal. The authoritative native reader finds nothing to
-  red-ink. The actual quality bar.
-- **recall-miss** — a finding for which a slug already exists that should have fired in
-  the audit pass but did not. An auditor-recall failure.
-- **coverage-gap** — a finding no slug covers. A genuine ruleset hole.
-- **reads-flat** — passes every rule yet has no voice. The additive gap no slug catches;
-  the most important signal and the hardest to act on.
+- **matrix** — every drafter × every auditor for one iteration's evals. Audits are one
+  pass, no fixes; the diagonal (a model auditing its own draft) is included.
+- **mark** — a span chakrit flags in a draft, with an optional note and an optional
+  rewrite (the pair's "after").
+- **flag** — a span an auditor cites, with the rule slug it cites.
+- **agreement** (per auditor) — the share of its flags that overlap a mark. Low
+  agreement means the auditor flags native-acceptable Thai.
+- **catch rate** (per auditor) — the share of marks that one of its flags overlaps.
+- **all-missed** — marks no auditor caught. The real coverage gaps.
+- **failure profile** (per drafter) — the marks on that drafter's drafts, grouped.
+- **reference draft** — chakrit's own answer to an eval prompt, written once, held out
+  of the skill bundle and exemplars.
+- **reads-flat** — a draft with no discrete flaw that still reads AI-flat. A verdict
+  flag, not a mark.
+- **skill-clean** — the auditor returned `CLEAN`. Only the inner loop's stop signal,
+  recorded with the auditor that issued it; never a metric.
+
+## Two authorities
+
+The native ear decides naturalness and voice. The Royal Institute dictionary and the
+orthography standards decide spelling and prescriptive convention. Chakrit's Thai is
+native, not book-author-proofed, so:
+
+- an auditor flag on his reference draft or his rewrite is a **false positive** when it
+  cites a style or naturalness rule;
+- it is a **candidate slip** for him to confirm when it cites a checked orthography
+  point. Nothing is auto-corrected.
 
 ## The lever
 
-The agent does everything except the verdict. Chakrit's time is spent only on the
-irreducible native call — read, judge, mark. Prep, classification, recording, routing, and
-aggregation are all agent work. This is deliberate: the judge is both the bottleneck and
-the spec, so the protocol shrinks the human surface to the ear alone.
+The agent does everything except the verdict. Chakrit's time goes only to the native
+call — read and mark. Generation, staging, matching, scoring, recording, and routing are
+agent or script work. Ear cost scales with the number of drafts, not with the matrix.
 
 ## Workflow
 
-1. **[agent] Gather.** Enumerate skill-clean outputs for the iteration (`with_skill`,
-   `converged: true`). For each, pull `output.md`, the pass that returned `CLEAN`, and the
-   audit trace (which slugs did fire).
-
-2. **[agent] Stage.** Open each output in iA Writer (Thai renders wrong in terminal
-   pagers; the command is in CLAUDE.md). **Open exactly one file at a time — never several
-   at once — and before opening it, state the verdict format: how and where chakrit marks
-   corrections.** Register labelled, audit trace visible so chakrit can see what the
-   auditor claimed was clean. Pre-fill a record with identity + `skill_clean` fields;
-   leave findings blank.
-
-   Editing the staged `output.md` inline is an accepted way to give the verdict — the
-   rewrite *is* the before/after pair's "after". But `output.md` is gitignored evidence
-   that regenerates, so harvest the edit immediately: diff it against the pass that
-   returned CLEAN (`pass-0.md` when it converged at pass-0) to recover the "before", lift
-   the pair into the queue, and do not treat `output.md` as the durable home.
-
-3. **[chakrit] Verdict.** Read end-to-end — not span-scan. Call it: chakrit-clean, yes/no.
-   If no, mark each offending span and the correction in your own words. If the piece is
-   technically fine but reads AI-flat with no discrete span, flag `reads-flat`.
-
-4. **[agent] Classify** each finding against the skill: `recall-miss` (a slug exists that
-   should have fired — grep to confirm) or `coverage-gap` (none does). Confirm only the
-   ambiguous calls with chakrit. `reads-flat` carries forward as a verdict flag, not a
-   finding.
-
-5. **[agent] Record** structured entries into the iteration's **tracked** feedback
-   (`workspace/iteration-N/feedback.md` — the eval subdirs are gitignored and will not
-   survive). Compute the aggregate table.
-
-6. **[agent] Route — collect, do not apply.** Under 1-by-1 discipline even agreed items
-   queue; no skill edits land mid-review.
-   - before/after pairs → candidate exemplars (register-tagged) for the exemplar work.
-   - recall-misses → the known-bad set for the auditor-recall harness, with the slug that
-     should have fired.
-   - coverage-gaps → the trace-before-write queue.
-
-7. **[agent] Update** `workspace/INDEX.md` (Review → `reviewed`, link the feedback) and
-   the plateau tracker.
+1. **[agent] Generate.** Every drafter drafts every eval under one iteration pin
+   (`EVAL_ITERATION=N`), runs stamped with model, commit, and bundle hash. Every auditor
+   audits every draft, one pass, no fixes.
+2. **[agent] Stage.** Build a review batch for the browser review UI: drafts only,
+   arms shuffled and labelled neutrally, auditor flags hidden. Order drafts by
+   mechanical distance from the reference draft where one exists, furthest first, so a
+   session that ends early has covered the most informative drafts.
+3. **[chakrit] Mark.** Read each draft end-to-end. Mark spans; add a note or a rewrite
+   where useful; flag `reads-flat` where it applies. Drafts not reached wait for the
+   next session.
+4. **[script] Score.** Match flags to marks by span overlap. The agent proposes matches
+   for ambiguous overlaps; chakrit confirms. Output per auditor (agreement, catch rate),
+   per drafter (failure profile), and the all-missed list. Reference drafts give each
+   auditor's false-positive count on native text.
+5. **[agent] Record** structured entries in the iteration's tracked verdict files
+   (`workspace/iteration-N/verdicts/`) and render `workspace/iteration-N/feedback.md`
+   from them. Never treat gitignored `output.md` as the home of a verdict.
+6. **[agent] Route — collect, do not apply.**
+   - Marks with rewrites → candidate before/after pairs, register-tagged, drafted with
+     notes by the agent; chakrit batch-reviews them later.
+   - All-missed patterns that recur across drafters → the trace-before-write queue
+     (pair first, rule only if the pair does not transfer).
+   - A single drafter's quirk → that drafter's failure profile, not a rule.
+   - Every confirmed mark → the known-bad set for the recall harness.
+7. **[agent] Fix-loop review, shipped routes only.** For the one or two routes meant to
+   ship, run the kode-thai loop to `CLEAN` and stage the final outputs for a second,
+   lighter read.
+8. **[agent] Update** `workspace/INDEX.md` (Review → `reviewed`, link the feedback) and
+   append the iteration's row to the trend.
 
 ## Record format
 
-One block per skill-clean output:
+One block per draft:
 
 ```
-iter / eval / backend / config · skill_clean: yes (passes_to_clean: N)
-chakrit_clean: no · reads_flat: no
-findings:
-  - span:       "<offending Thai>"
-    issue:      "<what is wrong — chakrit's framing>"
-    correction: "<native rewrite — the pair's 'after'>"
-    class:      recall-miss · slug: f6/ko-resumptive
-  - span:       "<…>"
-    correction: "<…>"
-    class:      coverage-gap · slug: (none; proposed …)
+iter / eval / drafter · reads_flat: no
+marks:
+  - span:    "<offending Thai>"
+    note:    "<chakrit's framing, verbatim>"
+    rewrite: "<native rewrite — the pair's 'after'>"
+    caught_by: [codex/f6/ko-resumptive]     # auditor/slug, from scoring
+  - span:    "<…>"
+    caught_by: []                           # all-missed
+flags_unmatched:                            # auditor flags the ear did not share
+  - auditor: claude · slug: em-dash-semicolon · span: "<…>"
 ```
 
-Per-iteration aggregate — the dashboard:
+## Reading the trend
 
-| Metric                      | Meaning                                               |
-| --------------------------- | ----------------------------------------------------- |
-| CLEAN-but-flawed rate       | skill-clean outputs the native ear still red-inks     |
-| recall-miss : coverage-gap  | auditor blind to existing rules vs ruleset incomplete |
-| per-slug recall-miss counts | which rules under-fire in the audit pass              |
-| reads-flat count            | passes every rule but has no pulse                    |
-
-## Reading the dashboard
-
-- **Mostly recall-misses** → the ruleset is adequate, the auditor is blind. Invest in
-  exemplars and the audit bundle, not new rules.
-- **Mostly coverage-gaps** → genuine holes. Trace-before-write; land as pairs first.
-- **High reads-flat** → the subtractive loop has sanded out voice. A pure exemplar-quality
-  problem; no rule will fix it.
-- **Numbers flat across iterations** → the prompt-only ceiling. Stop adding; per the
-  decision record, that is the answer, not a cue to push harder.
+- **An auditor with high catch rate but low agreement** over-flags; its fixes will
+  rewrite native Thai toward its own prior. Prefer it only as a secondary pass.
+- **A long all-missed list** that recurs across drafters is a genuine ruleset gap — land
+  pairs.
+- **A failure profile concentrated in one drafter** argues for routing that drafter's
+  output differently, not for a universal rule.
+- **High reads-flat** is an exemplar problem; no rule fixes it.
+- **Flat numbers across iterations** inform chakrit's call on whether the prompt-only
+  ceiling is reached; they do not decide it.
