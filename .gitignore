@@ -12,6 +12,10 @@
 .opencode/commands
 .opencode/rules
 .opencode/skills
+.pi/agents
+.pi/commands
+.pi/rules
+.pi/skills
 ace.local.toml
 # end ACE
 # Eval outputs (LLM-generated, regenerable) live under iteration-N/<eval>/.
